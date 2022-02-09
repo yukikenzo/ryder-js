@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@600&display=swap');
+
+div {
+    border: 1px solid black;
+}
+
+.ad-container {
+    background-color: rgb(32, 37, 75);
+    width: 100vw;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: auto;
+}
+
+.ad-container > h1 {
+    position: absolute;
+    left: 0;
+    font-size: 13px;
+    color: aliceblue;
+    white-space: nowrap;
+    font-family: 'Open Sans', sans-serif;
+    animation-name: scroll;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes scroll {
+    0%{
+        left: 100vw;
+    }
+
+    100%{
+        left: -50vw;
+    }
+}
+
+/* --------------------------------------- */
+
+.nav-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60vw;
+    position: absolute;
+    top: 40px;
+    right: 0;
+}
+
+.first-container {
+    background-color: blue;
+    width: 80px;
+    position: absolute;
+    top: 70px;
+    left: 10px;
+}
+
+.second-container {
+    background-color: blue;
+    width: 100px;
+    position: absolute;
+    top: 70px;
+    left: 130px;
+}
+
+.dropdown {
+    display: inline-block;
+    padding-top: 15px;
+}
+
+#dropdown1 {
+    width: 50px;
+    height: 30px;
+}
+
+#dropdown2 {
+    width: 80px;
+    height: 30px;
+}
+
+.options {
+    display: none;
+    background-color: brown;
+}
+
+
+.brand {
+    display: inline;
+    font-family: 'Poppins', sans-serif;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    float: right;
+}
