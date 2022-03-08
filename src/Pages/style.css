@@ -1,0 +1,108 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 170px;
+}
+
+.img1 {
+    margin-right: 10px;
+}
+
+.img1, .img2 {
+    height: 1000px;
+    width: 47vw;
+    min-width: 300px;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 610px) {
+    .img1, .img2 {
+        height: 400px;
+        width: 94.5vw;
+        object-fit: cover;
+    }
+}
+
+.img3 {
+    height: 730px;
+    width: 94.5vw;
+    object-fit: cover;
+    margin-top: 30px;
+}
+
+.advantages {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 80vw;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.advantages>div>img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    margin-bottom: 30px;
+}
+
+.advantages>div {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    height: 125px;
+    width: 330px;
+    text-align: center;
+}
+
+.advantages>div>p {
+    font-family: 'Nunito', sans-serif;
+}
+
+.home>a {
+    margin-bottom: 40px;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+}
+
+.instagram-photos>a>img {
+    height: 22vw;
+    width: 22vw;
+    margin: 5px;
+    object-fit: cover;
+}
+
+.home>p {
+    font-family: 'Nunito', sans-serif;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.email-input {
+    display: inline-block;
+    width: 350px;
+    height: 45px;
+    padding: 15px;
+    border: none;
+    outline: none;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.sub-button {
+    width: 150px;
+    height: 45px;
+    background-color: rgb(32, 37, 75);
+    border: none;
+    outline: none;
+    color: white;
+    position: relative;
+}

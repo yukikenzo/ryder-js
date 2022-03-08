@@ -1,8 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@600&display=swap');
-
-div {
-    border: 1px solid black;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Open+Sans&family=Poppins:wght@200;600&display=swap');
 
 .ad-container {
     background-color: rgb(32, 37, 75);
@@ -11,7 +7,8 @@ div {
     position: absolute;
     left: 0;
     top: 0;
-    padding: auto;
+    padding: 12px;
+    overflow-x: hidden;
 }
 
 .ad-container > h1 {
@@ -22,7 +19,7 @@ div {
     white-space: nowrap;
     font-family: 'Open Sans', sans-serif;
     animation-name: scroll;
-    animation-duration: 20s;
+    animation-duration: 30s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
@@ -41,59 +38,125 @@ div {
 
 .nav-container {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 60vw;
+    justify-content: center;
+    width: 100vw;
+    height: 100px;
     position: absolute;
     top: 40px;
-    right: 0;
 }
 
-.first-container {
-    background-color: blue;
-    width: 80px;
+.dropdown-names {
     position: absolute;
-    top: 70px;
-    left: 10px;
-}
-
-.second-container {
-    background-color: blue;
-    width: 100px;
-    position: absolute;
-    top: 70px;
-    left: 130px;
-}
-
-.dropdown {
+    top: 25px;
+    left: 5%;
+    cursor: pointer;
     display: inline-block;
-    padding-top: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    width: 60px;
+    height: 24px;
+    color: rgb(133, 133, 133);
 }
 
-#dropdown1 {
-    width: 50px;
-    height: 30px;
+.dropdown-names:hover, .options>*:hover {
+    text-decoration: underline;
+    color: black;
 }
 
-#dropdown2 {
-    width: 80px;
-    height: 30px;
+.dropdown-names:hover .drop-icon {
+    text-decoration: underline;
+    color: black;
+}
+
+.drop-icon {
+    color: rgb(133, 133, 133);
+    margin-left: 10px;
 }
 
 .options {
     display: none;
-    background-color: brown;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: wheat;
+    color: rgb(133, 133, 133);
+    width: 200px;
+    height: 250px;
+    padding-left: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    position: absolute;
+    top: 70px;
+    left: 50px;
+    cursor: pointer;
 }
-
 
 .brand {
     display: inline;
+    font-size: 45px;
     font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    position: absolute;
+    top: 5px;
+    margin: 0;
+    cursor: default;
 }
 
 .icons {
     display: flex;
     justify-content: space-between;
-    width: 150px;
-    float: right;
+    width: 100px;
+    position: absolute;
+    top: 28px;
+    right: 5%;
+}
+
+.search-icon:hover, .user-icon:hover, .cart-icon:hover {
+    font-size: 23px;
+}
+
+@media only screen and (max-width: 500px) {
+    .brand {
+        font-size: 30px;
+        top: 15px;
+    }
+    .icons {
+        right: 5%;
+    }
+}
+
+.row {
+    width: 100vw;
+    background-color: rgb(32, 37, 75);
+    height: 200px;
+    padding-top: 80px;
+    margin-left: 0 !important;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .copyright {
+        margin: 0 0 30px 10px !important;
+    }
+}
+
+
+
+.copyright {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: small;
+    margin-left: 40px;
+    color: #fff;
+}
+
+.col-md-2>ul>li {
+    display: flex;
+    justify-content: space-around;
+}
+
+.col-md-2>h5 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: medium;
+    color: #fff;
 }
