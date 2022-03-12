@@ -108,21 +108,3 @@
 }
 
 /* ----------------------------------------------------------- */
-
-.login {
-    margin-top: 200px;
-}
-
-.contact-form {
-    width: 550px;
-    height: 400px;
-    margin: auto;
-    margin-top: 60px;
-}
-
-.contact-form>* {
-    margin-bottom: 20px;
-}
-
-/* ---------------------------------------------------------- */
-

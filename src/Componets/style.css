@@ -58,37 +58,6 @@
     color: rgb(133, 133, 133);
 }
 
-.dropdown-names:hover, .options>*:hover {
-    text-decoration: underline;
-    color: black;
-}
-
-.dropdown-names:hover .drop-icon {
-    text-decoration: underline;
-    color: black;
-}
-
-.drop-icon {
-    color: rgb(133, 133, 133);
-    margin-left: 10px;
-}
-
-.options {
-    display: none;
-    flex-direction: column;
-    justify-content: space-evenly;
-    background-color: wheat;
-    color: rgb(133, 133, 133);
-    width: 200px;
-    height: 250px;
-    padding-left: 10px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    position: absolute;
-    top: 70px;
-    left: 50px;
-    cursor: pointer;
-}
 
 .brand {
     display: inline;
@@ -159,4 +128,40 @@
     font-weight: 600;
     font-size: medium;
     color: #fff;
+}
+
+.product_image>img {
+    height: 300px;
+    width: 47vw;
+    min-width: 300px;
+    object-fit: cover;
+}
+
+.product_image>img {
+    height: 300px;
+    width: 47vw;
+    min-width: 300px;
+    object-fit: cover;
+}
+
+.default_image {
+    margin-top: 200px;
+    transition-duration: 500s;
+}
+
+.alt_image {
+    position: absolute;
+    left: 0;
+    top: 200px;
+    opacity: 0;
+    transition-duration: 500ms;
+}
+
+.default_image:hover {
+    opacity: 0;
+}
+
+.alt_image:hover {
+    opacity: 100%;
+    transform: scale(1.1);
 }

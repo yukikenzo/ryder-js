@@ -2,11 +2,7 @@ import React from 'react';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faShoppingBag, faChevronDown, faBars } from '@fortawesome/free-solid-svg-icons'
-import { Link, BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from "../Pages/home";
-import About from "../Pages/about";
-import Cart from "../Pages/cart";
-import Collections from "../Pages/collections";
+import { Link } from 'react-router-dom';
 
 let shopQue = true;
 
@@ -25,30 +21,18 @@ export default function navbar() {
     return (
         <div className='nav-container'>
 
-            <div className='dropdown-names' onClick={openShopOptions}>Shop<FontAwesomeIcon icon={faChevronDown} className='drop-icon' size="xs" /></div>
+            <div className='dropdown-names' onClick={openShopOptions}><Link to="/collections">Shop</Link></div>
 
-            <div className='options' id='shop-options'>
-                <div>All</div>
-                <div onClick={event =>  window.location.href='/home'}>Gift Card</div>
-                <div onClick={event =>  window.location.href='/home'}>Sale</div>
-            </div>
-
-            <h1 className='brand' onClick={event =>  window.location.href='/home'}>RYDER</h1>
+            <h1 className='brand' onClick={event => window.location.href = '/home'}>RYDER</h1>
 
             <div className='icons'>
-                <FontAwesomeIcon icon={faSearch} size="lg" className='search-icon' />
-                <FontAwesomeIcon icon={faUser} size="lg" className='user-icon' onClick={event =>  window.location.href='/login'} />
-                <FontAwesomeIcon icon={faShoppingBag} size="lg" className='cart-icon' onClick={event =>  window.location.href='/cart'} />
-            </div>
 
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/about" element={<About />} />
-                    <Route path="/collections" element={<Collections />} />
-                    <Route path="/sale" element={<About />} />
-                    <Route path="/gifts" element={<Collections />} />
-                </Routes>
-            </BrowserRouter>
+                <Link to="/home"> <FontAwesomeIcon icon={faSearch} size="lg" className='search-icon' /></Link>
+                <Link to="/login"> <FontAwesomeIcon icon={faUser} size="lg" className='search-icon' /></Link>
+                <Link to="/cart"> <FontAwesomeIcon icon={faShoppingBag} size="lg" className='search-icon' /></Link>
+
+
+            </div>
 
         </div>
     )
