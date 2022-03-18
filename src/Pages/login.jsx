@@ -1,28 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../firebase-config'
 
-export default function login() {
+
+
+export default function Login() {
+
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+
+  const register = async () => {
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassword
+      );
+      console.log(user)
+    } catch (error) {
+      console.log(error.message);
+    }
+    document.querySelector(".login-email").value="";
+    document.querySelector(".password-input").value="";
+  }
+
+
   return (
     <form className="login" >
-        <div className="contact-form">
+      <div className="contact-form">
 
-          <h6>Email</h6>
+        <h6>Email</h6>
 
-          <input className='login-email' style={{ width: "100%" }} name='from_email'></input>
+        <input className='login-email' style={{ width: "100%" }} onChange={event => { setRegisterEmail(event.target.value) }}></input>
 
-          <h6>Password</h6>
+        <h6>Password</h6>
 
-          <input className='password-input' style={{ width: "100%" }} name='subject'></input>
+        <input className='password-input' style={{ width: "100%" }} onChange={event => { setRegisterPassword(event.target.value) }}></input>
 
-          <a href="/" style={{display: "block"}} >Forgot password </a>
+        <a href="/" style={{ display: "block" }} >Forgot password </a>
 
-          <input type="submit" value="Sign in" style={{display: "block"}}/>
+        <input type="button" value="Sign in" style={{ display: "block" }} onClick={register}/>
 
-          <a href="">Sign up</a>
+        <a href="">Sign up</a>
 
-        </div>
+      </div>
     </form>
   )
 }
-
-// https://cdn.shopify.com/s/files/1/0371/0749/products/youbeauty_995bdab6-013f-4743-8bfd-ddf882c8c82a_720x.png?v=1630611704
-// https://cdn.shopify.com/s/files/1/0371/0749/products/2_3_720x.png?v=1633277508

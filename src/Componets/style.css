@@ -41,12 +41,15 @@
     justify-content: center;
     width: 100vw;
     height: 100px;
+    margin-top: 40px;
+}
+
+.nav-container>* {
+    margin-top: 40px;
     position: absolute;
-    top: 40px;
 }
 
 .dropdown-names {
-    position: absolute;
     top: 25px;
     left: 5%;
     cursor: pointer;
@@ -64,8 +67,7 @@
     font-size: 45px;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    position: absolute;
-    top: 5px;
+    top: 50px;
     margin: 0;
     cursor: default;
 }
@@ -74,9 +76,9 @@
     display: flex;
     justify-content: space-between;
     width: 100px;
-    position: absolute;
     top: 28px;
     right: 5%;
+
 }
 
 .search-icon:hover, .user-icon:hover, .cart-icon:hover {
@@ -86,10 +88,11 @@
 @media only screen and (max-width: 500px) {
     .brand {
         font-size: 30px;
-        top: 15px;
+        top: 60px;
     }
     .icons {
-        right: 5%;
+        justify-content: space-around;
+        right: 3%;
     }
 }
 
@@ -100,15 +103,6 @@
     padding-top: 80px;
     margin-left: 0 !important;
 }
-
-
-@media only screen and (max-width: 600px) {
-    .copyright {
-        margin: 0 0 30px 10px !important;
-    }
-}
-
-
 
 .copyright {
     font-family: 'Open Sans', sans-serif;
@@ -130,38 +124,40 @@
     color: #fff;
 }
 
-.product_image>img {
-    height: 300px;
-    width: 47vw;
-    min-width: 300px;
-    object-fit: cover;
+/* ------------------------------------------ */
+
+.product_image {
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .product_image>img {
-    height: 300px;
-    width: 47vw;
-    min-width: 300px;
+    height: 30vw;
+    width: 30vw;
     object-fit: cover;
-}
-
-.default_image {
-    margin-top: 200px;
-    transition-duration: 500s;
+    margin-bottom: 20px;
 }
 
 .alt_image {
-    position: absolute;
-    left: 0;
-    top: 200px;
+    margin-left: -30vw;
     opacity: 0;
-    transition-duration: 500ms;
-}
-
-.default_image:hover {
-    opacity: 0;
+    transition-duration: 300ms;
 }
 
 .alt_image:hover {
     opacity: 100%;
     transform: scale(1.1);
+}
+
+.clothes_name {
+    font-size: 70%;
+    margin: 0;
+}
+
+.clothes_price {
+    font-size: 90%;
+    font-weight: 300;
+    margin-bottom: 50px;
+    font-family: 'Poppins', sans-serif;
 }

@@ -7,7 +7,8 @@ import './Pages/style.css';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Cart from "./Pages/cart";
 import Collections from "./Pages/collections";
-import Login from "./Pages/login"
+import Login from "./Pages/Login"
+import ProtectedRoutes from "./ProtectedRoutes";
 
 export default function App() {
 
@@ -19,9 +20,11 @@ export default function App() {
         <Navbar/>
         <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route path="/collections" element={<Collections />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/collections" element={<Collections />} />
+              <Route path="/cart" element={<Cart />} />
+            </Route>
             <Route path="/login" element={<Login />} />
-            <Route path="/cart" element={<Cart />} />
         </Routes>
       </HashRouter>
       <Footer/>
