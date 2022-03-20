@@ -9,6 +9,7 @@ import Cart from "./Pages/cart";
 import Collections from "./Pages/collections";
 import Login from "./Pages/Login"
 import ProtectedRoutes from "./ProtectedRoutes";
+import Products from "./Pages/products";
 
 export default function App() {
 
@@ -22,6 +23,7 @@ export default function App() {
             <Route exact path="/" element={<Home />} />
             <Route element={<ProtectedRoutes />}>
               <Route path="/collections" element={<Collections />} />
+              <Route path="/products" element={<Products />} />
               <Route path="/cart" element={<Cart />} />
             </Route>
             <Route path="/login" element={<Login />} />

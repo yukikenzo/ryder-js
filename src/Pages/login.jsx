@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase-config'
 
-
-
 export default function Login() {
 
   const [registerEmail, setRegisterEmail] = useState("");
@@ -11,12 +9,12 @@ export default function Login() {
 
   const register = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
-      console.log(user)
+
     } catch (error) {
       console.log(error.message);
     }
