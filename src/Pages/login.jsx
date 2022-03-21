@@ -1,25 +1,26 @@
 import React, { useState } from 'react'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase-config'
+import { Link } from 'react-router-dom';
 
 export default function Login() {
 
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
   const register = async () => {
     try {
-      await createUserWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         auth,
-        registerEmail,
-        registerPassword
+        loginEmail,
+        loginPassword
       );
 
     } catch (error) {
-      console.log(error.message);
+        document.querySelector(".error-message").innerHTML = 'The email or password is incorrect.';
     }
-    document.querySelector(".login-email").value="";
-    document.querySelector(".password-input").value="";
+    document.querySelector(".login-email").value = "";
+    document.querySelector(".password-input").value = "";
   }
 
 
@@ -27,19 +28,21 @@ export default function Login() {
     <form className="login" >
       <div className="contact-form">
 
+        <h4 className='error-message'></h4>
+
         <h6>Email</h6>
 
-        <input className='login-email' style={{ width: "100%" }} onChange={event => { setRegisterEmail(event.target.value) }}></input>
+        <input className='login-email' style={{ width: "100%" }} onChange={event => { setLoginEmail(event.target.value) }}></input>
 
         <h6>Password</h6>
 
-        <input className='password-input' style={{ width: "100%" }} onChange={event => { setRegisterPassword(event.target.value) }}></input>
+        <input type={'password'} className='password-input' style={{ width: "100%" }} onChange={event => { setLoginPassword(event.target.value) }}></input>
 
         <a href="/" style={{ display: "block" }} >Forgot password </a>
 
-        <input type="button" value="Sign in" style={{ display: "block" }} onClick={register}/>
+        <input type="button" value="Sign in" style={{ display: "block" }} onClick={register} />
 
-        <a href="">Sign up</a>
+        <Link to='/register'>Sign Up</Link>
 
       </div>
     </form>

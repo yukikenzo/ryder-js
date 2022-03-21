@@ -10,6 +10,7 @@ import Collections from "./Pages/collections";
 import Login from "./Pages/Login"
 import ProtectedRoutes from "./ProtectedRoutes";
 import Products from "./Pages/products";
+import Register from './Pages/Register';
 
 export default function App() {
 
@@ -27,6 +28,7 @@ export default function App() {
               <Route path="/cart" element={<Cart />} />
             </Route>
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
         </Routes>
       </HashRouter>
       <Footer/>
