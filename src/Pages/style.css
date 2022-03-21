@@ -19,7 +19,13 @@
     .img1, .img2 {
         height: 400px;
         width: 94.5vw;
-        object-fit: cover;
+        margin: 0;
+    }
+    .img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
 }
 
@@ -109,7 +115,8 @@
 /* ----------------------------------------------------------- */
 
 .contact-form {
-    width: 550px;
+    width: 70vw;
+    max-width: 500px;
     height: 400px;
     margin: auto;
     margin-top: 60px;
@@ -124,7 +131,8 @@
 }
 
 .register-form {
-    width: 550px;
+    width: 70vw;
+    max-width: 500px;
     height: 450px;
     margin: auto;
     margin-top: 60px;
