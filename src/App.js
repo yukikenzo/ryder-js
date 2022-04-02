@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import Treadmill from './Componets/treadmill'
 import Navbar from './Componets/navbar'
 import Footer from './Componets/footer'
@@ -12,26 +13,22 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import Products from "./Pages/products";
 import Register from './Pages/Register';
 import { db } from './firebase-config'
-import { collection, getDoc } from "firebase/firestore"
+import { collection, getDocs } from "firebase/firestore"
 
 export default function App() {
 
   const [first, setfirst] = useState([]);
-  const productsCollectionRef = collection(db, "products")
-
+  const productsCollectionRef = collection(db, 'products')
 
   useEffect(() => {
     const getProducts = async () => {
-      const data = await getDoc(productsCollectionRef);
-      setfirst(date.docs.map((doc) => ({...doc.data()})))
-      console.log(first);
-    }
+      let data = await getDocs(productsCollectionRef);
+      setfirst(data.docs.map((doc) => ({ ...doc.data() })))
+    };
     getProducts()
-    return () => {
-      second
-    }
   }, [])
 
+  console.log(first)
 
   return (
     <div className="App">
@@ -39,10 +36,12 @@ export default function App() {
 
       <HashRouter>
         <Navbar />
+        
         <Routes>
+          
           <Route exact path="/" element={<Home />} />
           <Route element={<ProtectedRoutes />}>
-            <Route path="/collections" element={<Collections />} />
+            <Route path="/collections" element={Collections(first)} />
             <Route path="/products" element={<Products />} />
             <Route path="/cart" element={<Cart />} />
           </Route>
@@ -50,6 +49,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
         </Routes>
       </HashRouter>
+
       <Footer />
     </div>
   );

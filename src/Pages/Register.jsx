@@ -5,22 +5,27 @@ import { Link } from 'react-router-dom';
 
 export default function Register() {
 
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+  let registerEmail = "";
+  let registerPassword = "";
+  let repeatPassword = "";
 
-  const register = async () => {
-    try {
-      await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
 
-    } catch (error) {
+  function register() {
+    if (registerPassword == repeatPassword) {
+      createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
+      .then(data => {
+        document.querySelector(".login-email").value = "";
+        document.querySelector(".password-input").value = "";
+        document.querySelector(".repeat-password").value = "";
+        document.querySelector(".error-message").innerHTML = 'Success';
+      })
+      .catch(err => {
         document.querySelector(".error-message").innerHTML = 'The email or password is incorrect.';
+      })
     }
-    document.querySelector(".login-email").value="";
-    document.querySelector(".password-input").value="";
+    else {
+      document.querySelector(".error-message").innerHTML = 'Write same password to repeat password filed!';
+    }
   }
 
 
@@ -32,15 +37,15 @@ export default function Register() {
 
         <h6>Email</h6>
 
-        <input className='login-email' style={{ width: "100%" }} onChange={event => { setRegisterEmail(event.target.value) }}></input>
+        <input className='login-email' style={{ width: "100%" }} onChange={event => { registerEmail = event.target.value }}></input>
 
         <h6>Password</h6>
 
-        <input type={'password'} className='password-input' style={{ width: "100%" }} onChange={event => { setRegisterPassword(event.target.value) }}></input>
+        <input type={'password'} className='password-input' style={{ width: "100%" }} onChange={event => { registerPassword = event.target.value }}></input>
 
         <h6>Repeat Password</h6>
 
-        <input type={'password'} className='repeat-password' style={{ width: "100%" }} onChange={event => { setRegisterPassword(event.target.value) }}></input>
+        <input type={'password'} className='repeat-password' style={{ width: "100%" }} onChange={event => { repeatPassword = event.target.value }}></input>
 
         <a href="/" style={{ display: "block" }} >Forgot password </a>
 

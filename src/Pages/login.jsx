@@ -8,7 +8,7 @@ export default function Login() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const register = async () => {
+  const login = async () => {
     try {
       await signInWithEmailAndPassword(
         auth,
@@ -19,11 +19,7 @@ export default function Login() {
     } catch (error) {
         document.querySelector(".error-message").innerHTML = 'The email or password is incorrect.';
     }
-    document.querySelector(".login-email").value = "";
-    document.querySelector(".password-input").value = "";
   }
-
-
   return (
     <form className="login" >
       <div className="contact-form">
@@ -40,7 +36,7 @@ export default function Login() {
 
         <a href="/" style={{ display: "block" }} >Forgot password </a>
 
-        <input type="button" value="Sign in" style={{ display: "block" }} onClick={register} />
+        <input type="button" value="Sign in" style={{ display: "block" }} onClick={login} />
 
         <Link to='/register'>Sign Up</Link>
 
