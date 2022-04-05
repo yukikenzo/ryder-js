@@ -21,6 +21,7 @@
         width: 94.5vw;
         margin: 0;
     }
+
     .img {
         display: flex;
         align-items: center;
@@ -120,6 +121,12 @@
     height: 400px;
     margin: auto;
     margin-top: 60px;
+}
+
+.contact-form>input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
 
 .contact-form>*, .register-form>* {

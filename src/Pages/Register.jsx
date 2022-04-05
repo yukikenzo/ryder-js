@@ -11,7 +11,7 @@ export default function Register() {
 
 
   function register() {
-    if (registerPassword == repeatPassword) {
+    if (registerPassword === repeatPassword) {
       createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
       .then(data => {
         document.querySelector(".login-email").value = "";

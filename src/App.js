@@ -14,6 +14,9 @@ import Products from "./Pages/products";
 import Register from './Pages/Register';
 import { db } from './firebase-config'
 import { collection, getDocs } from "firebase/firestore"
+import ForgotPassword from './Pages/ForgotPassword';
+
+export const UserContext = React.createContext();
 
 export default function App() {
 
@@ -28,25 +31,23 @@ export default function App() {
     getProducts()
   }, [])
 
-  console.log(first)
-
   return (
     <div className="App">
       <Treadmill />
 
       <HashRouter>
         <Navbar />
-        
         <Routes>
           
           <Route exact path="/" element={<Home />} />
           <Route element={<ProtectedRoutes />}>
-            <Route path="/collections" element={Collections(first)} />
+            <Route path="/collections" element={< Collections products = {first} />} />
             <Route path="/products" element={<Products />} />
             <Route path="/cart" element={<Cart />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
         </Routes>
       </HashRouter>
 

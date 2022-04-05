@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, getAuth, sendPasswordResetEmail } from 'firebase/auth'
 import { auth } from '../firebase-config'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+export let isAuth = false
 
 export default function Login() {
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const navigate = useNavigate();
 
   const login = async () => {
     try {
@@ -15,11 +18,15 @@ export default function Login() {
         loginEmail,
         loginPassword
       );
-
+      document.querySelector(".error-message").innerHTML = 'Success';
+      isAuth = true;
+      navigate(-1);
     } catch (error) {
-        document.querySelector(".error-message").innerHTML = 'The email or password is incorrect.';
+      document.querySelector(".error-message").innerHTML = 'The email or password is incorrect.';
+      console.log(error)
     }
   }
+
   return (
     <form className="login" >
       <div className="contact-form">
@@ -34,9 +41,9 @@ export default function Login() {
 
         <input type={'password'} className='password-input' style={{ width: "100%" }} onChange={event => { setLoginPassword(event.target.value) }}></input>
 
-        <a href="/" style={{ display: "block" }} >Forgot password </a>
+        <Link style={{marginBottom: '50px'}} to={'/forgotpassword'}>Forgot password?</Link>
 
-        <input type="button" value="Sign in" style={{ display: "block" }} onClick={login} />
+        <input type="button" value="Sign in" style={{ display: "block", marginTop: '30px'}} onClick={login} />
 
         <Link to='/register'>Sign Up</Link>
 
