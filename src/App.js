@@ -8,13 +8,14 @@ import './Pages/style.css';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Cart from "./Pages/cart";
 import Collections from "./Pages/collections";
-import Login from "./Pages/Login"
+import Login from "./Pages/login"
 import ProtectedRoutes from "./ProtectedRoutes";
 import Products from "./Pages/products";
 import Register from './Pages/Register';
 import { db } from './firebase-config'
-import { collection, getDocs } from "firebase/firestore"
+import { doc, collection, getDocs, setDoc } from "firebase/firestore"
 import ForgotPassword from './Pages/ForgotPassword';
+import AddProduct from './Pages/AddProduct';
 
 export const UserContext = React.createContext();
 
@@ -38,12 +39,13 @@ export default function App() {
       <HashRouter>
         <Navbar />
         <Routes>
-          
+
           <Route exact path="/" element={<Home />} />
           <Route element={<ProtectedRoutes />}>
-            <Route path="/collections" element={< Collections products = {first} />} />
+            <Route path="/collections" element={< Collections products={first} />} />
             <Route path="/products" element={<Products />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/addproduct" element={<AddProduct />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
