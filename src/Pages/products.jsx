@@ -1,6 +1,9 @@
 import React from 'react'
 
 export default function products() {
+
+  const isLoggedIn = true
+
   return (
     <>
       <div className='productPage'>
@@ -17,6 +20,12 @@ export default function products() {
           <h6>Price</h6>
           <button>Add to cart</button>
           <p>Details</p>
+
+          {isLoggedIn
+            ? <button>Edit</button>
+            : null
+          }
+
         </div>
       </div>
       <div className='recomendedProducts'>

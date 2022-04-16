@@ -86,7 +86,7 @@ body {
 
 }
 
-.search-icon:hover, .user-icon:hover, .cart-icon:hover {
+.main_icons:hover {
     font-size: 23px;
 }
 
