@@ -2,9 +2,11 @@ import React from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase-config'
 import { Link } from 'react-router-dom';
+import { setAuth } from './login'
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
-
+  const navigate = useNavigate();
   let registerEmail = "";
   let registerPassword = "";
   let repeatPassword = "";
@@ -13,15 +15,19 @@ export default function Register() {
   function register() {
     if (registerPassword === repeatPassword) {
       createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
-      .then(data => {
-        document.querySelector(".login-email").value = "";
-        document.querySelector(".password-input").value = "";
-        document.querySelector(".repeat-password").value = "";
-        document.querySelector(".error-message").innerHTML = 'Success';
-      })
-      .catch(err => {
-        document.querySelector(".error-message").innerHTML = 'The email or password is incorrect.';
-      })
+        .then(() => {
+          setAuth();
+          navigate(-2);
+          document.querySelector(".login-email").value = "";
+          document.querySelector(".password-input").value = "";
+          document.querySelector(".repeat-password").value = "";
+          document.querySelector(".error-message").innerHTML = 'Success';
+          console.log("am succes")
+        })
+        .catch(err => {
+          document.querySelector(".error-message").innerHTML = 'The email or password is incorrect.';
+          console.log("am not succes", err)
+        })
     }
     else {
       document.querySelector(".error-message").innerHTML = 'Write same password to repeat password filed!';
@@ -49,7 +55,7 @@ export default function Register() {
 
         <a href="/" style={{ display: "block" }} >Forgot password </a>
 
-        <input type="button" value="Sign Up" style={{ display: "block" }} onClick={register}/>
+        <input type="button" value="Sign Up" style={{ display: "block" }} onClick={register} />
 
         <Link to='/login'>Sign In</Link>
 

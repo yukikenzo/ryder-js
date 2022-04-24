@@ -2,10 +2,16 @@ import React, { useState } from 'react'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
+import { admin } from '../firebase-config';
 
-export let isAuth = true
+export let isAuth = false;
+export let isAdmin = false;
 
-export default function login() {
+export function setAuth() {
+  isAuth = true
+}
+
+export default function login(setadmin) {
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -21,6 +27,12 @@ export default function login() {
       document.querySelector(".error-message").innerHTML = 'Success';
       isAuth = true;
       navigate(-1);
+
+      if (loginEmail == admin) {
+        isAdmin = true;
+        setadmin(true)
+      }
+
     } catch (error) {
       document.querySelector(".error-message").innerHTML = 'The email or password is incorrect.';
       console.log(error)

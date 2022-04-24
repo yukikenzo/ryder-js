@@ -13,7 +13,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import Products from "./Pages/products";
 import Register from './Pages/Register';
 import { db } from './firebase-config'
-import { doc, collection, getDocs, setDoc } from "firebase/firestore"
+import { collection, getDocs} from "firebase/firestore"
 import ForgotPassword from './Pages/ForgotPassword';
 import AddProduct from './Pages/AddProduct';
 
@@ -35,7 +35,6 @@ export default function App() {
   return (
     <div className="App">
       <Treadmill />
-
       <HashRouter>
         <Navbar />
         <Routes>
@@ -43,7 +42,7 @@ export default function App() {
           <Route exact path="/" element={<Home />} />
           <Route element={<ProtectedRoutes />}>
             <Route path="/collections" element={< Collections products={first} />} />
-            <Route path="/products" element={<Products />} />
+            <Route path="/products" element={<Products products={first} />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/addproduct" element={<AddProduct />} />
           </Route>
