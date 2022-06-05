@@ -123,7 +123,7 @@
     margin-top: 60px;
 }
 
-.contact-form>input, .inputImgLink > input, .productDetails > input {
+.contact-form>input, .inputImgLink>input, .productDetails>input {
     border-top: none;
     border-left: none;
     border-right: none;
@@ -159,11 +159,6 @@
     width: 50vw;
 }
 
-.additionalImages {
-    width: 50vw;
-    height: fit-content;
-}
-
 .primaryImage {
     width: 48.6vw;
     height: 50vw;
@@ -171,11 +166,12 @@
 }
 
 .additionalImages {
-    width: 24vw;
+    width: max-content;
     height: 32vw;
     object-fit: cover;
     margin-top: 0.6vw;
     margin-right: 0.6vw;
+    display: none;
 }
 
 .productPage {
@@ -184,14 +180,50 @@
     margin: auto;
 }
 
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 1px solid silver;
+    -ms-box-orient: horizontal;
+    display: flex;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.wrap li {
+    background: gold;
+}
+
+.flex-item {
+    background: tomato;
+    padding: 5px;
+    max-width: 100%;
+    min-width: 45%;
+    width: fit-content;
+    height: 300px;
+    margin: 10px;
+
+    line-height: 100px;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}
+
+
+
 @media only screen and (max-width: 800px) {
     .productPage {
         display: flex;
         flex-direction: column;
     }
 
-    .productPage > div:nth-child(1) {
-        display: flex ;
+    .productPage>div:nth-child(1) {
+        display: flex;
         gap: 5px;
         height: 100vw;
         width: 88vw !important;
@@ -199,25 +231,34 @@
         overflow-y: hidden !important;
     }
 
-    .productPage > div:nth-child(1) > img {
+    .productPage>div:nth-child(1)>img {
         margin: 0;
-        width: 90vw !important; 
+        width: 90vw !important;
         height: 110vw;
     }
+
     .addProduct>div {
         flex-direction: column-reverse;
         height: 1000px;
         align-items: center;
         justify-content: space-between;
     }
-    .productDetails{
+
+    .productDetails {
         height: 350px;
         min-width: 250px;
     }
+
     .inputImgLink {
         height: 400px;
         width: 40vw !important;
-        
+    }
+
+    .wrap {
+        display: none;
+    }
+    .additionalImages {
+        display: inline-block;
     }
 }
 
@@ -237,7 +278,7 @@
     justify-content: space-between;
 }
 
-.productDetails{
+.productDetails {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

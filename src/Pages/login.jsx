@@ -4,8 +4,8 @@ import { auth } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
 import { admin } from '../firebase-config';
 
-export let isAuth = false;
-export let isAdmin = false;
+export let isAuth = true;
+export let isAdmin = true;
 
 export function setAuth() {
   isAuth = true

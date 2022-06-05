@@ -8,12 +8,17 @@ export default function products(props) {
   return (
     <>
       <div className='productPage'>
-        <div>
+        <div style={{ backgroundColor: 'blue' }}>
           <img className='primaryImage' src={props.products[0].img1} alt="" />
           <img className='additionalImages' src={props.products[0].img2} alt="" />
           <img className='additionalImages' src="https://cdn.shopify.com/s/files/1/0371/0749/products/youbeauty_995bdab6-013f-4743-8bfd-ddf882c8c82a_720x.png?v=1630611704" alt="" />
           <img className='additionalImages' src="https://cdn.shopify.com/s/files/1/0371/0749/products/youbeauty_995bdab6-013f-4743-8bfd-ddf882c8c82a_720x.png?v=1630611704" alt="" />
-          <img className='additionalImages' src="https://cdn.shopify.com/s/files/1/0371/0749/products/youbeauty_995bdab6-013f-4743-8bfd-ddf882c8c82a_720x.png?v=1630611704" alt="" />
+          <ul class="flex-container wrap">
+            <li class="flex-item">1</li>
+            <li class="flex-item">2</li>
+            <li class="flex-item">3</li>
+            <li class="flex-item">4</li>
+          </ul>
         </div>
 
         <div>

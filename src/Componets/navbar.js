@@ -1,20 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faShoppingBag, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
-import login from '../Pages/login';
 
 export default function navbar(props) {
-
-    login(setadmin)
-
-    function useForceUpdate(){
-        let [admin, setadmin] = useState(false)
-        return () => setValue(value => value + 1); // update the state to force render
-    }
-    
-
     return (
 
         <div className='nav-container'>
@@ -25,7 +15,7 @@ export default function navbar(props) {
 
             <div className='icons'>
 
-                {admin
+                {true
                     ? <Link to="/addproduct"> <FontAwesomeIcon icon={faPlus} size="lg" className='main_icons' /></Link>
                     : null
                 }
