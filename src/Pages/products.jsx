@@ -1,38 +1,42 @@
 import React from 'react'
 import { isAdmin } from './login'
+import { useState } from 'react';
 
 export default function products(props) {
 
-  console.log(props.products[0], "idinah")
+  function edit(){
+    document.getElementById("name1").readOnly = false;
+    document.getElementById("price1").readOnly = false;
+    document.getElementById("detail1").readOnly = false;
+    document.getElementById("saveChanges").style.display = "block";
+  }
+
+  const [name, setname] = useState(props.products[0].name)
+  const [price, setprice] = useState(props.products[0].price)
+  const [details, setdetails] = useState(props.products[0].details)
 
   return (
     <>
       <div className='productPage'>
-        <div style={{ backgroundColor: 'blue' }}>
+        <div>
           <img className='primaryImage' src={props.products[0].img1} alt="" />
           <img className='additionalImages' src={props.products[0].img2} alt="" />
-          <img className='additionalImages' src="https://cdn.shopify.com/s/files/1/0371/0749/products/youbeauty_995bdab6-013f-4743-8bfd-ddf882c8c82a_720x.png?v=1630611704" alt="" />
-          <img className='additionalImages' src="https://cdn.shopify.com/s/files/1/0371/0749/products/youbeauty_995bdab6-013f-4743-8bfd-ddf882c8c82a_720x.png?v=1630611704" alt="" />
-          <ul class="flex-container wrap">
-            <li class="flex-item">1</li>
-            <li class="flex-item">2</li>
-            <li class="flex-item">3</li>
-            <li class="flex-item">4</li>
-          </ul>
+          <img className='additionalImages' src={props.products[0].img3} alt="" />
+          <img className='additionalImages' src={props.products[0].img4} alt="" />
         </div>
 
-        <div>
-          <h5>{props.products[0].name}</h5>
-          <h6>{props.products[0].price}</h6>
+        <div className='productDescription'>
+          <input id="name1" readOnly onChange={event=>setname(event.target.value)} value={name}/>
+          <input id="price1" readOnly onChange={event=>setprice(event.target.value)} value={price}/>
           <button>Add to cart</button>
-          <p>{props.products[0].details}</p>
-
+          <textarea id="detail1" readOnly onChange={event=>setdetails(event.target.value)} value={details}/>
           {isAdmin
-            ? <button>Edit</button>
+            ? <button onClick={edit}>Edit</button>
             : null
           }
-
+          <button id='saveChanges'>Save</button>
         </div>
+
       </div>
       <div className='recomendedProducts'>
         You may also like
