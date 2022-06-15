@@ -1,32 +1,36 @@
 import React from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase-config'
-import { Link } from 'react-router-dom';
-import { setAuth } from './login'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function Register() {
+export default function Register({setAuth}) {
   const navigate = useNavigate();
   let registerEmail = "";
   let registerPassword = "";
   let repeatPassword = "";
 
 
+  function navig() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(resolve, 1500);
+    }).then(function() {
+        navigate(-3);
+        setAuth(true);
+    });
+}
+
   function register() {
     if (registerPassword === repeatPassword) {
       createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
         .then(() => {
-          setAuth();
-          navigate(-2);
           document.querySelector(".login-email").value = "";
           document.querySelector(".password-input").value = "";
           document.querySelector(".repeat-password").value = "";
           document.querySelector(".error-message").innerHTML = 'Success';
-          console.log("am succes")
+          navig();
         })
         .catch(err => {
           document.querySelector(".error-message").innerHTML = 'The email or password is incorrect.';
-          console.log("am not succes", err)
         })
     }
     else {

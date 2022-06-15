@@ -2,7 +2,6 @@ import React from 'react'
 import { collection, addDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
 import { useState } from 'react';
-import { reload } from 'firebase/auth';
 
 export default function AddProduct() {
   let [data, setData] = useState({

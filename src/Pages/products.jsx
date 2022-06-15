@@ -1,8 +1,7 @@
 import React from 'react'
-import { isAdmin } from './login'
 import { useState } from 'react';
 
-export default function products(props) {
+export default function products({products, isAdmin}) {
 
   function edit(){
     document.getElementById("name1").readOnly = false;
@@ -11,18 +10,18 @@ export default function products(props) {
     document.getElementById("saveChanges").style.display = "block";
   }
 
-  const [name, setname] = useState(props.products[0].name)
-  const [price, setprice] = useState(props.products[0].price)
-  const [details, setdetails] = useState(props.products[0].details)
+  const [name, setname] = useState(products[0].name)
+  const [price, setprice] = useState(products[0].price)
+  const [details, setdetails] = useState(products[0].details)
 
   return (
     <>
       <div className='productPage'>
         <div>
-          <img className='primaryImage' src={props.products[0].img1} alt="" />
-          <img className='additionalImages' src={props.products[0].img2} alt="" />
-          <img className='additionalImages' src={props.products[0].img3} alt="" />
-          <img className='additionalImages' src={props.products[0].img4} alt="" />
+          <img className='primaryImage' src={products[0].img1} alt="" />
+          <img className='additionalImages' src={products[0].img2} alt="" />
+          <img className='additionalImages' src={products[0].img3} alt="" />
+          <img className='additionalImages' src={products[0].img4} alt="" />
         </div>
 
         <div className='productDescription'>

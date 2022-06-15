@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faShoppingBag, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 
-export default function navbar(props) {
+export default function navbar({ isAdmin }) {
     return (
 
         <div className='nav-container'>
@@ -15,7 +15,7 @@ export default function navbar(props) {
 
             <div className='icons'>
 
-                {true
+                {isAdmin
                     ? <Link to="/addproduct"> <FontAwesomeIcon icon={faPlus} size="lg" className='main_icons' /></Link>
                     : null
                 }
