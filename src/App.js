@@ -1,18 +1,18 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
-import Treadmill from './Componets/treadmill'
-import Navbar from './Componets/navbar'
-import Footer from './Componets/footer'
+import Treadmill from './Componets/Treadmill'
+import Navbar from './Componets/Navbar'
+import Footer from './Componets/Footer'
 
-import Home from "./Pages/home";
-import Cart from "./Pages/cart";
-import Collections from "./Pages/collections";
-import Login from "./Pages/login"
-import Products from "./Pages/products";
+import Home from "./Pages/Home";
+import Cart from "./Pages/Cart";
+import Collections from "./Pages/Collections";
+import Login from "./Pages/Login"
 import Register from './Pages/Register';
 import ForgotPassword from './Pages/ForgotPassword';
 import AddProduct from './Pages/AddProduct';
+import Product from './Pages/Product';
 
 import './Pages/style.css';
 
@@ -28,17 +28,18 @@ export default function App() {
 
   const [first, setfirst] = useState([]);
   const productsCollectionRef = collection(db, 'products');
-  const [isAuth, setAuth] = useState(false);
-  const [isAdmin, setAdmin] = useState(false);
 
+  const [isAuth, setAuth] = useState(sessionStorage.getItem('logedIn') ? true : false);
+  const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
 
   useEffect(() => {
     const getProducts = async () => {
       let data = await getDocs(productsCollectionRef);
-      setfirst(data.docs.map((doc) => ({ ...doc.data() })))
+      setfirst(data.docs.map((doc, index) => ({ ...doc.data(), id: index + 1 })));
     };
-    getProducts()
+    getProducts();
   }, [])
+
 
   return (
     <div className="App">
@@ -46,15 +47,14 @@ export default function App() {
       <HashRouter>
         <Navbar isAdmin={isAdmin} />
         <Routes>
-
           <Route exact path="/" element={<Home />} />
           <Route element={<ProtectedRoutes isAuth={isAuth} />}>
-            <Route path="/collections" element={< Collections products={first} />} />
-            <Route path="/products" element={<Products products={first} isAdmin={isAdmin} />} />
+            <Route exact path="/collections" element={< Collections products={first} />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/addproduct" element={<AddProduct />} />
+            <Route path="/product/:id" element={<Product />} />
           </Route>
-          <Route path="/login" element={<Login setAuth={setAuth} setAdmin={setAdmin} />} />
+          <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
           <Route path="/register" element={<Register setAuth={setAuth} />} />
           <Route path="/forgotpassword" element={<ForgotPassword />} />
         </Routes>

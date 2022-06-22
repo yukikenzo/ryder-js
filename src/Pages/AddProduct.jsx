@@ -1,9 +1,27 @@
 import React from 'react'
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc, query, orderBy, limit, collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
+
+let k = 1;
 export default function AddProduct() {
+
+  const citiesRef = collection(db, "products");
+  const q = query(citiesRef, orderBy("id", "desc"), limit(1));
+
+  useEffect(() => {
+    const getLast = async () => {
+
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        k = doc.id;
+        console.log(doc.id);
+      });
+    };
+    getLast();
+  }, [])
+
   let [data, setData] = useState({
     name: "",
     price: "",
@@ -15,25 +33,18 @@ export default function AddProduct() {
   })
 
   async function submitData() {
-    await addDoc(collection(db, "products"), data);
-    setData({
-      ...data,
-      name: "",
-      price: "",
-      details: "",
-      img1: "",
-      img2: "",
-      img3: "",
-      img4: ""
-    })
+    await setDoc(doc(db, "products", `${k}`), {
+      ...data, id: k
+    });
+    k++;
   }
 
   return (
     <div className='addProduct'>
       <div>
         <div className='inputImgLink'>
-   
-          <input value={data.img1} onChange={e => setData({ ...data, img1: e.target.value })} placeholder='Paste your Image links here' type="text" />
+
+          <input value={data.img1} onChange={e => setData({ img1: e.target.value })} placeholder='Paste your Image links here' type="text" />
           <input value={data.img2} onChange={e => setData({ ...data, img2: e.target.value })} placeholder='Paste your Image links here' type="text" />
           <input value={data.img3} onChange={e => setData({ ...data, img3: e.target.value })} placeholder='Paste your Image links here' type="text" />
           <input value={data.img4} onChange={e => setData({ ...data, img4: e.target.value })} placeholder='Paste your Image links here' type="text" />

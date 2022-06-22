@@ -5,7 +5,7 @@ import { faInstagram, faFacebook, faPinterest } from '@fortawesome/free-brands-s
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col } from 'react-bootstrap';
 
-export default function footer() {
+export default function Footer() {
     return (
 
         <Row className='row'>
