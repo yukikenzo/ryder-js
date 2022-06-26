@@ -60,6 +60,8 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
         :
         <div className="contact-form">
 
+          <h1 className='login_header'>Login</h1>
+
           <h4 className='error-message'></h4>
 
           <h6>Email</h6>
@@ -70,11 +72,11 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
 
           <input type={'password'} className='password-input' style={{ width: "100%" }} onChange={event => { setLoginPassword(event.target.value) }}></input>
 
-          <Link style={{ marginBottom: '50px' }} to={'/forgotpassword'}>Forgot password?</Link>
+          <Link style={{ marginBottom: '50px' }} to={'/forgotpassword'}>Forgot your password?</Link>
 
-          <input type="button" value="Sign in" style={{ display: "block", marginTop: '30px' }} onClick={login} />
+          <input className='sign_button' type="button" value="Sign in" style={{ display: "block", marginTop: '30px' }} onClick={login} />
 
-          <Link to='/register'>Sign Up</Link>
+          <Link className='register_link' to='/register'>Create Account</Link>
 
         </div>
       }

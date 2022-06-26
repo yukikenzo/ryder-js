@@ -43,6 +43,8 @@ export default function Register({setAuth}) {
     <form className="login" >
       <div className="register-form">
 
+        <h1 className='register_header'>Create account</h1>
+
         <h4 className='error-message'></h4>
 
         <h6>Email</h6>
@@ -57,11 +59,9 @@ export default function Register({setAuth}) {
 
         <input type={'password'} className='repeat-password' style={{ width: "100%" }} onChange={event => { repeatPassword = event.target.value }}></input>
 
-        <a href="/" style={{ display: "block" }} >Forgot password </a>
+        <input className='sign_button' type="button" value="Create" style={{ display: "block" }} onClick={register} />
 
-        <input type="button" value="Sign Up" style={{ display: "block" }} onClick={register} />
-
-        <Link to='/login'>Sign In</Link>
+        <Link style={{marginLeft: '45%'}} to='/login'>Sign In</Link>
 
       </div>
     </form>

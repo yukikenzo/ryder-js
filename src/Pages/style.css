@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Open+Sans&family=Poppins:wght@400;600&display=swap');
+
+
 .home {
     display: flex;
     flex-direction: column;
@@ -118,19 +121,19 @@
 .contact-form {
     width: 70vw;
     max-width: 500px;
-    height: 400px;
+    height: 450px;
     margin: auto;
-    margin-top: 60px;
+    margin-top: 10px;
 }
 
-.contact-form>input, .inputImgLink>input, .productDetails>input {
-    border-top: none;
-    border-left: none;
-    border-right: none;
+.register-form>input, .contact-form>input, .inputImgLink>input, .productDetails>input {
+    border: none;
+    outline: none;
+    height: 50px;
 }
 
-.contact-form>*, .register-form>* {
-    margin-bottom: 20px;
+.register-form>* {
+    margin-bottom: 10px;
 }
 
 .contact-form>h4, .register-form>h4 {
@@ -138,11 +141,34 @@
 }
 
 .register-form {
-    width: 70vw;
+    width: 60vw;
     max-width: 500px;
-    height: 450px;
+    height: 500px;
     margin: auto;
     margin-top: 60px;
+}
+
+.login_header, .register_header{
+    text-align: center;
+    color: black;
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: xx-large;
+}
+
+.sign_button{
+    margin: auto;
+    margin-bottom: 30px;
+    width: 130px;
+    height: 40px;
+    border: none;
+    background-color: rgb(32, 37, 75);
+    color: white;
+}
+
+.register_link{
+    margin-left: 39%;
 }
 
 /* ---------------------------------------------------------- */
