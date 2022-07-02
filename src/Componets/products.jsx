@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Products({ product }) {
   const navigate = useNavigate();
+
   function passState(){
     navigate(`/product/${product.id}`, {
       state: product

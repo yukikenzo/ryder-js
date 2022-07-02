@@ -35,7 +35,7 @@ export default function App() {
   useEffect(() => {
     const getProducts = async () => {
       let data = await getDocs(productsCollectionRef);
-      setfirst(data.docs.map((doc, index) => ({ ...doc.data(), id: index + 1 })));
+      setfirst(data.docs.map((doc) => ({ ...doc.data()})));
     };
     getProducts();
   }, [])

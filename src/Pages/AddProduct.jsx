@@ -27,10 +27,8 @@ export default function AddProduct() {
     let len = 0;
     for (let i in Object.values(data)) {
       if (Object.values(data)[i] != '') {
-
         len++;
       }
-
     }
 
     if (len == 7) {
@@ -44,6 +42,7 @@ export default function AddProduct() {
         })
         document.querySelector("#warnings").style.color = 'green';
         document.getElementById('warnings').innerHTML = 'Success!!';
+        window.location.reload(false);
       }
       
     }

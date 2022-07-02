@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Open+Sans&family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500&display=swap');
 
 
 .home {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Jost', sans-serif;
 }
 
 .img1 {
@@ -65,14 +66,9 @@
     text-align: center;
 }
 
-.advantages>div>p {
-    font-family: 'Nunito', sans-serif;
-}
-
 .home>a {
     margin-bottom: 40px;
     text-decoration: none;
-    font-family: 'Nunito', sans-serif;
 }
 
 .instagram-photos>a>img {
@@ -83,7 +79,6 @@
 }
 
 .home>p {
-    font-family: 'Nunito', sans-serif;
     margin-top: 50px;
     margin-bottom: 50px;
 }
@@ -117,6 +112,10 @@
 }
 
 /* ----------------------------------------------------------- */
+.login {
+    font-family: 'Jost', sans-serif;
+}
+
 
 .contact-form {
     width: 70vw;
@@ -127,7 +126,9 @@
 }
 
 .register-form>input, .contact-form>input, .inputImgLink>input, .productDetails>input {
-    border: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     outline: none;
     height: 50px;
 }
@@ -152,7 +153,6 @@
     text-align: center;
     color: black;
     margin-bottom: 40px;
-    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-size: xx-large;
 }
@@ -185,6 +185,10 @@
     width: 50vw;
 }
 
+#detail1 {
+    height: 400px;
+}
+
 .primaryImage {
     width: 48.6vw;
     height: 50vw;
@@ -199,6 +203,21 @@
     margin-right: 0.6vw;
 }
 
+#name1 {
+    font-size: 25px;
+}
+
+#price1 {
+    font-size: 20px;
+}
+
+.addToCart {
+    height: 35px;
+    border: none;
+    background-color: rgb(32, 37, 75);
+    color: white;
+}
+
 #saveChanges {
     display: none;
 }
@@ -206,14 +225,11 @@
 .productDescription{
     display: flex;
     flex-direction: column;
-    padding: 5vw;
+    padding-left: 3vw;
     width: 100%;
-    height: 50vw;
-    justify-content: space-around;
-}
-
-.productDescription > textarea {
-    height: 200px;
+    height: calc(1000px - 20vw);
+    justify-content: space-between;
+    font-family: 'Jost', sans-serif;
 }
 
 .productDescription > * {
@@ -282,6 +298,7 @@
     display: flex;
     min-height: 400px;
     justify-content: space-around;
+    font-family: 'Jost', sans-serif;
 }
 
 .inputImgLink {
