@@ -167,8 +167,8 @@
     color: white;
 }
 
-.register_link{
-    margin-left: 39%;
+.contact-form>p, .register-form>p {
+    text-align: center;
 }
 
 /* ---------------------------------------------------------- */

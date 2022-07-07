@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Register({setAuth}) {
+export default function Register({ setAuth }) {
   const navigate = useNavigate();
   let registerEmail = "";
   let registerPassword = "";
@@ -11,13 +11,13 @@ export default function Register({setAuth}) {
 
 
   function navig() {
-    return new Promise(function(resolve, reject) {
-        setTimeout(resolve, 1500);
-    }).then(function() {
-        navigate(-3);
-        setAuth(true);
+    return new Promise(function (resolve, reject) {
+      setTimeout(resolve, 1500);
+    }).then(function () {
+      navigate(-3);
+      setAuth(true);
     });
-}
+  }
 
   function register() {
     if (registerPassword === repeatPassword) {
@@ -61,7 +61,9 @@ export default function Register({setAuth}) {
 
         <input className='sign_button' type="button" value="Create" style={{ display: "block" }} onClick={register} />
 
-        <Link style={{marginLeft: '45%'}} to='/login'>Sign In</Link>
+        <p>
+          <Link to='/login'>Sign In</Link>
+        </p>
 
       </div>
     </form>

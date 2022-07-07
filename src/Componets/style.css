@@ -139,9 +139,9 @@ body {
 
 .product_image>img {
     height: 30vw;
-    width: 30vw;
+    width: inherit;
     object-fit: cover;
-    margin-bottom: 20px;
+    margin-bottom: 1vw;
 }
 
 .alt_image {
@@ -165,4 +165,21 @@ body {
     font-size: 90%;
     font-weight: 300;
     margin-bottom: 50px;
+}
+
+
+@media only screen and (max-width: 770px) {
+    .product_image {
+        width: 40vw;
+    }
+
+    .alt_image {
+        height: 40vw !important;
+        margin-left: 0;
+        margin-top: -45vw;
+    }
+
+    .product_image>img {
+        height: 40vw;
+    }
 }

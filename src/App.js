@@ -32,10 +32,14 @@ export default function App() {
   const [isAuth, setAuth] = useState(sessionStorage.getItem('logedIn') ? true : false);
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
 
+  function func() {
+    console.log("lsdf")
+  }
+
   useEffect(() => {
     const getProducts = async () => {
       let data = await getDocs(productsCollectionRef);
-      setfirst(data.docs.map((doc) => ({ ...doc.data()})));
+      setfirst(data.docs.map((doc) => ({ ...doc.data(), fuct: func})));
     };
     getProducts();
   }, [])

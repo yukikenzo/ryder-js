@@ -2,14 +2,21 @@ import React from 'react'
 import "./style.css"
 import { useNavigate } from 'react-router-dom'
 
+
 export default function Products({ product }) {
   const navigate = useNavigate();
 
-  function passState(){
+  function passState() {
     navigate(`/product/${product.id}`, {
       state: product
     })
   }
+  function sex() {
+    console.log('sese')
+  }
+
+  // product.sex = sex;
+
   return (
     <>
       <div className='product_image'>

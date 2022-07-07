@@ -75,9 +75,10 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
           <Link style={{ marginBottom: '50px' }} to={'/forgotpassword'}>Forgot your password?</Link>
 
           <input className='sign_button' type="button" value="Sign in" style={{ display: "block", marginTop: '30px' }} onClick={login} />
-
+          <p>
           <Link className='register_link' to='/register'>Create Account</Link>
-
+          </p>
+          
         </div>
       }
 

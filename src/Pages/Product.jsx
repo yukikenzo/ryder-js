@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
+import Cart from './Cart';
 
 export default function Product() {
-  
+
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state;
-  console.log(product)
 
   async function changeData() {
       await setDoc(doc(db, "products", product.id.toString()), {
@@ -30,6 +30,14 @@ export default function Product() {
     document.getElementById("price1").readOnly = true;
     document.getElementById("detail1").readOnly = true;
     document.getElementById("saveChanges").style.display = "none";
+  }
+
+  const element = <Cart product={product} />;
+
+  function addCart(){
+    navigate('/cart', {
+      state: product
+    })
   }
 
   const [name, setname] = useState(product.name)
@@ -59,7 +67,7 @@ export default function Product() {
         <div className='productDescription'>
           <input id="name1" readOnly onChange={event => setname(event.target.value)} value={name} />
           <input id="price1" readOnly onChange={event => setprice(event.target.value)} value={price} />
-          <button className='addToCart'>Add to cart</button>
+          <button onClick={element} className='addToCart'>Add to cart</button>
           <h4 className='detailsHeader'>Details</h4>
           <textarea id="detail1" readOnly onChange={event => setdetails(event.target.value)} value={details} />
           
