@@ -11,11 +11,6 @@ export default function Products({ product }) {
       state: product
     })
   }
-  function sex() {
-    console.log('sese')
-  }
-
-  // product.sex = sex;
 
   return (
     <>

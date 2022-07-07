@@ -22,7 +22,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import { db } from './firebase-config'
 import { collection, getDocs } from "firebase/firestore"
 
-export const UserContext = React.createContext();
+import { Context } from './Context';
 
 export default function App() {
 
@@ -32,40 +32,39 @@ export default function App() {
   const [isAuth, setAuth] = useState(sessionStorage.getItem('logedIn') ? true : false);
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
 
-  function func() {
-    console.log("lsdf")
-  }
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
       let data = await getDocs(productsCollectionRef);
-      setfirst(data.docs.map((doc) => ({ ...doc.data(), fuct: func})));
+      setfirst(data.docs.map((doc) => ({ ...doc.data() })));
     };
     getProducts();
   }, [])
 
-
+  console.log(cart)
   return (
-    <div className="App">
-      <Treadmill />
-      <HashRouter>
-        <Navbar isAdmin={isAdmin} />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route element={<ProtectedRoutes isAuth={isAuth} />}>
-            <Route exact path="/collections" element={< Collections products={first} />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/addproduct" element={<AddProduct />} />
-            <Route path="/product/:id" element={<Product />} />
-          </Route>
-          <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
-          <Route path="/register" element={<Register setAuth={setAuth} />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
-        </Routes>
-      </HashRouter>
+    <Context.Provider value={{setCart, cart}}>
+      <div className="App">
+        <Treadmill />
+        <HashRouter>
+          <Navbar isAdmin={isAdmin} />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route element={<ProtectedRoutes isAuth={isAuth} />}>
+              <Route exact path="/collections" element={< Collections products={first} />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/addproduct" element={<AddProduct />} />
+              <Route path="/product/:id" element={<Product />} />
+            </Route>
+            <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
+            <Route path="/register" element={<Register setAuth={setAuth} />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+          </Routes>
+        </HashRouter>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </Context.Provider>
   );
-
 }
