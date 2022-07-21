@@ -341,3 +341,50 @@
     font-size: 20px;
     color: red;
 }
+
+/* ------------------------------------------ */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 40% 10% 30% auto;
+    column-gap: 15px;
+    row-gap: 5px;
+    padding: 5px;
+    margin: 0 7vw 0 7vw;
+  }
+  
+  .grid-container > div {
+    padding: 20px 0;
+  }
+  
+  .item1 {
+    font-size: 40px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .item2 {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    text-align: end;
+  }
+
+  .item3 {
+    text-align: start;
+    overflow: hidden;
+  }
+
+  .item4 {
+    text-align: end;
+    overflow: hidden;
+  }
+
+  .item5 {
+    text-align: start;
+    overflow: hidden;
+  }
+
+  .item6 {
+    text-align: end;
+    overflow: hidden;
+  }

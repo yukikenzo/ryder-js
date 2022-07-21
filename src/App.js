@@ -22,8 +22,6 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import { db } from './firebase-config'
 import { collection, getDocs } from "firebase/firestore"
 
-import { Context } from './Context';
-
 export default function App() {
 
   const [first, setfirst] = useState([]);
@@ -31,8 +29,6 @@ export default function App() {
 
   const [isAuth, setAuth] = useState(sessionStorage.getItem('logedIn') ? true : false);
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
-
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -42,9 +38,7 @@ export default function App() {
     getProducts();
   }, [])
 
-  console.log(cart)
   return (
-    <Context.Provider value={{setCart, cart}}>
       <div className="App">
         <Treadmill />
         <HashRouter>
@@ -65,6 +59,5 @@ export default function App() {
 
         <Footer />
       </div>
-    </Context.Provider>
   );
 }
