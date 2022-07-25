@@ -18,7 +18,7 @@ export default function Products({ product }) {
         <img className='default_image' src={product.img1} alt="clothes" />
         <img onClick={passState} className='alt_image' src={product.img2} alt="link clothes" />
         <p className='clothes_name'>{product.name}</p>
-        <h4 className='clothes_price'>{product.price}</h4>
+        <h4 className='clothes_price'>{'$' + product.price}</h4>
       </div>
     </>
   )

@@ -33,9 +33,13 @@ export default function Product() {
   }
 
   async function addCart() {
+    document.querySelector('#myBtn').disabled = true;
+    document.getElementById('myBtn').style.backgroundColor = "rgb(104, 110, 156)";
     await setDoc(doc(db, "cart", product.id.toString()), {
       ...product
     })
+    document.querySelector('#myBtn').disabled = false;
+    document.getElementById('myBtn').style.backgroundColor = "rgb(32, 37, 75)";
   }
 
   const [name, setname] = useState(product.name)
@@ -64,7 +68,7 @@ export default function Product() {
 
         <div className='productDescription'>
           <input id="name1" readOnly onChange={event => setname(event.target.value)} value={name} />
-          <input id="price1" readOnly onChange={event => setprice(event.target.value)} value={price} />
+          <input id="price1" readOnly onChange={event => setprice(event.target.value)} value={'$' + price} />
           <button id='myBtn' onClick={addCart} className='addToCart'>Add to cart</button>
           <h4 className='detailsHeader'>Details</h4>
           <textarea id="detail1" readOnly onChange={event => setdetails(event.target.value)} value={details} />

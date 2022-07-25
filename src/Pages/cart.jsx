@@ -51,7 +51,7 @@ export default function Cart() {
         <>
           <div class="grid-container">
             <div class="item1">Your Cart</div>
-            <div class="item2">Continue shopping</div>
+            <div class="item2"><Link to={'/collections'}>Continue shopping</Link></div>
             <div class="item3">PRODUCT</div>
             <div class="item4">PRICE</div>
             <div class="item5">QUANTITY</div>

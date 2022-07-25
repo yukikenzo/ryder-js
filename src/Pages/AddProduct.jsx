@@ -36,6 +36,10 @@ export default function AddProduct() {
         document.querySelector("#warnings").style.color = 'red';
         document.getElementById('warnings').innerHTML = 'Details should be well described!';
       }
+      if (isNaN(data.price)) {
+        document.querySelector("#warnings").style.color = 'red';
+        document.getElementById('warnings').innerHTML = 'Price should be integer';
+      }
       else {
         await setDoc(doc(db, "products", `${k}`), {
           ...data, id: k
