@@ -6,37 +6,31 @@ import { db } from '../firebase-config';
 import Recommended from '../Componets/Recommended';
 
 export default function Product() {
-
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state;
+  const user = sessionStorage.getItem('loggedIn');
+  const isAdmin = sessionStorage.getItem('admin');
 
   async function changeData() {
       await setDoc(doc(db, "products", product.id.toString()), {
-        product
+        ...product
       })
-      unEdit();
+      edit(true, 'none');
   }
 
-  function edit() {
-    document.getElementById("name1").readOnly = false;
-    document.getElementById("price1").readOnly = false;
-    document.getElementById("detail1").readOnly = false;
-    document.getElementById("saveChanges").style.display = "block";
-  }
-
-  function unEdit() {
-    document.getElementById("name1").readOnly = true;
-    document.getElementById("price1").readOnly = true;
-    document.getElementById("detail1").readOnly = true;
-    document.getElementById("saveChanges").style.display = "none";
+  function edit(read, display) {
+    document.getElementById("name1").readOnly = read;
+    document.getElementById("price1").readOnly = read;
+    document.getElementById("detail1").readOnly = read;
+    document.getElementById("saveChanges").style.display = display;
   }
 
   async function addCart() {
     document.querySelector('#myBtn').disabled = true;
     document.getElementById('myBtn').style.backgroundColor = "rgb(104, 110, 156)";
-    await setDoc(doc(db, "cart", product.id.toString()), {
-      ...product
+    await setDoc(doc(db, user, product.id.toString()), {
+      ...product, quantity: 1
     })
     document.querySelector('#myBtn').disabled = false;
     document.getElementById('myBtn').style.backgroundColor = "rgb(32, 37, 75)";
@@ -73,9 +67,9 @@ export default function Product() {
           <h4 className='detailsHeader'>Details</h4>
           <textarea id="detail1" readOnly onChange={event => setdetails(event.target.value)} value={details} />
           
-          {true
+          {isAdmin
             ? <>
-              <button className='addToCart' onClick={edit}>Edit</button>
+              <button className='addToCart' onClick={() => edit(false, 'block')}>Edit</button>
               <button className='addToCart' onClick={removeProduct}>Remove</button>
             </>
             : null

@@ -16,7 +16,7 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
     signOut(auth).then(() => {
       setAdmin(false);
       setAuth(false);
-      sessionStorage.removeItem('logedIn')
+      sessionStorage.removeItem('loggedIn')
       sessionStorage.removeItem('admin')
     }).catch((error) => {
     });
@@ -30,7 +30,7 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
         loginEmail,
         loginPassword
       );
-      sessionStorage.setItem('logedIn', true)
+      sessionStorage.setItem('loggedIn', auth.currentUser.email)
       document.querySelector(".error-message").innerHTML = 'Success';
       setAuth(true);
       navigate(-1);

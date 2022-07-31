@@ -1,9 +1,10 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc, setDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   display: 'grid',
@@ -37,57 +38,71 @@ const style2 = {
 
 const style3 = {
   marginLeft: '10px',
-  display: 'inline'
+  display: 'inline',
+  cursor: 'pointer'
 }
 
-const style4 = { 
+const style4 = {
   border: '2px groove gray',
   margin: '25px 120px 25px 0'
 }
 
-const style5 = { 
+const style5 = {
   margin: 'auto',
   marginLeft: '0',
   marginRight: '0'
 }
 
 export default function Selected({ product }) {
+
+  const user = sessionStorage.getItem('loggedIn');
+
   async function remove() {
-    await deleteDoc(doc(db, "cart", product.id.toString()))
+    await deleteDoc(doc(db, user, product.id.toString()))
     window.location.reload(true)
   }
 
-  const [amount, setAmount] = useState(1)
+  const [amount, setAmount] = useState(0)
 
-  function increaseAmount() {
-    setAmount(amount+1);
-  }
-  function decreaseAmount() {
-    if (amount == 1) {
-      remove()
+  useEffect(() => {
+    async function changeQuatity() {
+      if (product.quantity+amount < 1) {
+        remove()
+      }
+      else {
+        await setDoc(doc(db, user, product.id.toString()), {
+          ...product, quantity: product.quantity+amount
+        })
+      }
+      
     }
-    else {
-      setAmount(amount-1);
-    }
-    
+    changeQuatity()
+  }, [amount])
+
+  const navigate = useNavigate();
+  function passState() {
+    navigate(`/product/${product.id}`, {
+      state: product
+    })
   }
+  
   return (
     <div style={style}>
       <div class="item3">
         <img style={style2} src={product.img1} alt="" />
-        <h6 style={style3}>{product.name}</h6>
+        <h6 className='cartProductName' onClick={passState} style={style3}>{product.name}</h6>
       </div>
       <div style={style5} class="item4">
-        <h6 style={{textDecoration: 'line-through'}}>{'$' + (parseInt(product.price) + 10)  + '.00'}</h6>
-        <h6>{'$' + product.price}</h6>
+        <h6 style={{ textDecoration: 'line-through' }}>{'$' + (parseInt(product.price) + 10) + '.00'}</h6>
+        <h6>{'$' + product.price + '.00'}</h6>
       </div>
       <div style={style4} class="item5">
-        <button onClick={decreaseAmount} style={style1}>-</button>
-        <h6 style={style1}>{amount}</h6>
-        <button onClick={increaseAmount} style={style1}>+</button>
+        <button onClick={() => {setAmount(amount-1)}} style={style1}>-</button>
+        <h6 style={style1}>{product.quantity+amount}</h6>
+        <button onClick={() => {setAmount(amount+1)}} style={style1}>+</button>
       </div>
       <div style={style5} class="item6">
-        <h6>{'$' + (parseInt(product.price) * amount) + '.00'}</h6>
+        <h6>{'$' + (parseInt(product.price) * (product.quantity+amount)) + '.00'}</h6>
         <FontAwesomeIcon onClick={remove} icon={faTrash} />
       </div>
     </div>

@@ -27,7 +27,7 @@ export default function App() {
   const [first, setfirst] = useState([]);
   const productsCollectionRef = collection(db, 'products');
 
-  const [isAuth, setAuth] = useState(sessionStorage.getItem('logedIn') ? true : false);
+  const [isAuth, setAuth] = useState(sessionStorage.getItem('loggedIn') ? true : false);
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
 
   useEffect(() => {

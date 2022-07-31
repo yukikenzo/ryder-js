@@ -7,8 +7,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config'
 
 export default function Cart() {
-
-  const cartCollectionRef = collection(db, 'cart');
+  const user = sessionStorage.getItem('loggedIn');
+  const cartCollectionRef = collection(db, user);
   const [cart, setCart] = useState([])
 
   useEffect(() => {
@@ -37,10 +37,7 @@ export default function Cart() {
     height: '300px'
   }
 
-
-
   return (
-
     <div style={style1}>
       {cart.length == 0 ?
         <div style={style}>
