@@ -13,10 +13,10 @@ export default function Product() {
   const isAdmin = sessionStorage.getItem('admin');
 
   async function changeData() {
-      await setDoc(doc(db, "products", product.id.toString()), {
-        ...product
-      })
-      edit(true, 'none');
+    await setDoc(doc(db, "products", product.id.toString()), {
+      ...product
+    })
+    edit(true, 'none');
   }
 
   function edit(read, display) {
@@ -62,11 +62,14 @@ export default function Product() {
 
         <div className='productDescription'>
           <input id="name1" readOnly onChange={event => setname(event.target.value)} value={name} />
-          <input id="price1" readOnly onChange={event => setprice(event.target.value)} value={'$' + price} />
+          <div>
+            <p style={{display: 'inline', fontSize: '20px'}}>$</p>
+            <input id="price1" readOnly onChange={event => setprice(event.target.value)} value={price} />
+          </div>
           <button id='myBtn' onClick={addCart} className='addToCart'>Add to cart</button>
           <h4 className='detailsHeader'>Details</h4>
           <textarea id="detail1" readOnly onChange={event => setdetails(event.target.value)} value={details} />
-          
+
           {isAdmin
             ? <>
               <button className='addToCart' onClick={() => edit(false, 'block')}>Edit</button>
@@ -78,7 +81,7 @@ export default function Product() {
         </div>
 
       </div>
-      <Recommended/>
+      <Recommended />
     </>
 
   )

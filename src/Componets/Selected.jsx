@@ -6,57 +6,10 @@ import { doc, deleteDoc, setDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
 import { useNavigate } from 'react-router-dom';
 
-const style = {
-  display: 'grid',
-  gridTemplateColumns: '40% 10% 30% auto',
-  columnGap: '15px',
-  rowGap: '5px',
-  padding: '5px',
-  margin: '0 7vw 10px 7vw',
-  border: '2px groove gray',
-  borderRight: 'none',
-  borderLeft: 'none'
-}
 
-const style1 = {
-  display: 'inline',
-  marginLeft: '10px',
-  marginRight: '10px',
-  width: '30px',
-  height: '30px',
-  fontSize: '20px',
-  border: 'none',
-  backgroundColor: 'transparent',
-}
-
-const style2 = {
-  height: '100px',
-  width: '100px',
-  display: 'inline',
-  objectFit: 'cover'
-}
-
-const style3 = {
-  marginLeft: '10px',
-  display: 'inline',
-  cursor: 'pointer'
-}
-
-const style4 = {
-  border: '2px groove gray',
-  margin: '25px 120px 25px 0'
-}
-
-const style5 = {
-  margin: 'auto',
-  marginLeft: '0',
-  marginRight: '0'
-}
-
-export default function Selected({ product }) {
+export default function Selected({ product, subtotal, setSubtotal }) {
 
   const user = sessionStorage.getItem('loggedIn');
-
   async function remove() {
     await deleteDoc(doc(db, user, product.id.toString()))
     window.location.reload(true)
@@ -65,7 +18,22 @@ export default function Selected({ product }) {
   const [amount, setAmount] = useState(0)
 
   useEffect(() => {
+    setSubtotal(current =>
+      // looping throw array of object and searching for poduct with id equal to changed id. 'obj[0]' means id of object, I named '0' insted of id because 
+      // Cart.js: setSubtotal(data.docs.map((doc) => ({ ...doc.id, price: doc.price}))), I couldn't change ...doc.id to id and it sets '0' by default
+      current.map(obj => {
+        if (obj.id === product.id) {
+          // parseInt(product.price) * (product.quantity+amount) parses int from server data and and multiplies to previous product quatity and quantity
+          // added now. You cannot multyply directly to product quandity because to do that you should fetch data every time when there is change in quantity.
+          // Therefore I save added or reduced amount localy and silultainiously send them to server. In this way there is no need to wait everytime fo answer of serwer.
+          return {...obj, price: parseInt(product.price) * (product.quantity+amount)};
+        }
+        return obj;
+      }),
+    );
+
     async function changeQuatity() {
+      // removes product i its amount is less then 1
       if (product.quantity+amount < 1) {
         remove()
       }
@@ -73,8 +41,7 @@ export default function Selected({ product }) {
         await setDoc(doc(db, user, product.id.toString()), {
           ...product, quantity: product.quantity+amount
         })
-      }
-      
+      } 
     }
     changeQuatity()
   }, [amount])
@@ -85,23 +52,23 @@ export default function Selected({ product }) {
       state: product
     })
   }
-  
+
   return (
-    <div style={style}>
-      <div class="item3">
-        <img style={style2} src={product.img1} alt="" />
-        <h6 className='cartProductName' onClick={passState} style={style3}>{product.name}</h6>
+    <div className='selContainer'>
+      <div className='selTitles'>
+        <img className='selPhoto' src={product.img1} alt="" />
+        <div onClick={passState} className='selName'>{product.name}</div>
       </div>
-      <div style={style5} class="item4">
+      <div className='selPrice'>
         <h6 style={{ textDecoration: 'line-through' }}>{'$' + (parseInt(product.price) + 10) + '.00'}</h6>
         <h6>{'$' + product.price + '.00'}</h6>
       </div>
-      <div style={style4} class="item5">
-        <button onClick={() => {setAmount(amount-1)}} style={style1}>-</button>
-        <h6 style={style1}>{product.quantity+amount}</h6>
-        <button onClick={() => {setAmount(amount+1)}} style={style1}>+</button>
+      <div className='selQuantity'>
+        <button onClick={() => {setAmount(amount-1)}}>-</button>
+        <h6 style={{marginTop: '9px'}}>{product.quantity+amount}</h6>
+        <button onClick={() => {setAmount(amount+1)}}>+</button>
       </div>
-      <div style={style5} class="item6">
+      <div className='selTotal'>
         <h6>{'$' + (parseInt(product.price) * (product.quantity+amount)) + '.00'}</h6>
         <FontAwesomeIcon onClick={remove} icon={faTrash} />
       </div>

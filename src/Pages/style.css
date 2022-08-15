@@ -209,6 +209,7 @@
 
 #price1 {
     font-size: 20px;
+    width: auto;
 }
 
 .addToCart {
@@ -232,7 +233,7 @@
     font-family: 'Jost', sans-serif;
 }
 
-.productDescription > * {
+.productDescription > *, .productDescription > div > * {
     border: none;
     outline: none;
 }
@@ -346,11 +347,12 @@
 
 .grid-container {
     display: grid;
-    grid-template-columns: 40% 10% 30% auto;
-    column-gap: 15px;
+    grid-template-columns: 35vw 80px 145px auto;
+    column-gap: 3vw;
     row-gap: 5px;
     padding: 5px;
     margin: 0 7vw 0 7vw;
+    font-size: 13px;
   }
   
   .grid-container > div {
@@ -361,12 +363,14 @@
     font-size: 40px;
     grid-column-start: 1;
     grid-column-end: 3;
+    padding: 0 !important;
   }
 
   .item2 {
     grid-column-start: 3;
     grid-column-end: 5;
     text-align: end;
+    font-size: 16px;
   }
 
   .item3 {
@@ -388,3 +392,13 @@
     text-align: end;
     overflow: hidden;
   }
+
+/* ------------------------------------------ */
+
+.chekOutButton{
+    width: 300px;
+    height: 40px;
+    border: none;
+    background-color: rgb(32, 37, 75);
+    color: white;
+}

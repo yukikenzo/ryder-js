@@ -10,6 +10,8 @@ export default function AddProduct() {
   const citiesRef = collection(db, "products");
   const q = query(citiesRef, orderBy("id", "desc"), limit(1));
 
+  let [data, setData] = useState({})
+
   useEffect(() => {
     const getLast = async () => {
 
@@ -21,17 +23,15 @@ export default function AddProduct() {
     getLast();
   }, data)
 
-  let [data, setData] = useState({})
-
   async function submitData() {
     let len = 0;
     for (let i in Object.values(data)) {
-      if (Object.values(data)[i] != '') {
+      if (Object.values(data)[i] !== '') {
         len++;
       }
     }
 
-    if (len == 7) {
+    if (len === 7) {
       if (data.details.length < 50) {
         document.querySelector("#warnings").style.color = 'red';
         document.getElementById('warnings').innerHTML = 'Details should be well described!';
