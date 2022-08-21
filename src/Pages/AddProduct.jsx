@@ -31,29 +31,31 @@ export default function AddProduct() {
       }
     }
 
+    const warning = document.getElementById('warnings')
+
     if (len === 7) {
       if (data.details.length < 50) {
-        document.querySelector("#warnings").style.color = 'red';
-        document.getElementById('warnings').innerHTML = 'Details should be well described!';
+        warning.style.color = 'red';
+        warning.innerHTML = 'Details should be well described!';
       }
       if (isNaN(data.price)) {
-        document.querySelector("#warnings").style.color = 'red';
-        document.getElementById('warnings').innerHTML = 'Price should be integer';
+        warning.style.color = 'red';
+        warning.innerHTML = 'Price should be integer';
       }
       else {
         await setDoc(doc(db, "products", `${k}`), {
           ...data, id: k
         })
-        document.querySelector("#warnings").style.color = 'green';
-        document.getElementById('warnings').innerHTML = 'Success!!';
+        warning.style.color = 'green';
+        warning.innerHTML = 'Success!!';
         window.location.reload(false);
       }
       
     }
 
     else {
-      document.querySelector("#warnings").style.color = 'red';
-      document.getElementById('warnings').innerHTML = 'Fill all fields!!';
+      warning.style.color = 'red';
+      warning.innerHTML = 'Fill all fields!!';
     }
 
     setData({

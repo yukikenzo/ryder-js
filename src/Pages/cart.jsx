@@ -17,20 +17,25 @@ export default function Cart() {
     const getSelected = async () => {
       let data = await getDocs(cartCollectionRef);
       setCart(data.docs.map((doc) => ({ ...doc.data() })));
+      console.log(data)
       setSubtotal(data.docs.map((doc) => ({ id: parseInt(doc.id), price: doc.price })))
     };
     getSelected();
   }, [])
 
   useEffect(() => {
-    setTotal(
-      subtotal.reduce((price1, price2) => {
-        return price1.price + price2.price
-      })
-    )
-  }, [subtotal])
+    //in case that subtotal is empty
+    try {
+      setTotal(
+        subtotal.reduce((price1, price2) => {
+          return price1.price + price2.price
+        })
+      )
+    } catch (error) {
 
-  console.log(total, typeof (total))
+    }
+
+  }, [subtotal])
 
   // const removeCart = id => {
   //   setCart(cart.filter(cart => {
@@ -73,8 +78,8 @@ export default function Cart() {
           })}
           <p style={{ margin: '70px 0 0 7vw' }}>Order Notes:</p>
           <div style={{ textAlign: 'right', marginRight: '7vw' }}>
-            <p style={{display: 'inline'}}>Subtotal <p style={{marginLeft: '15px',  display: 'inline', fontSize: '20px'}}>${parseInt(total)}.00 USD</p></p>
-            <p style={{fontSize: '15px', marginTop: '20px'}}>Tax included. Shipping calculated at checkout.</p>
+            <p style={{ display: 'inline' }}>Subtotal <p style={{ marginLeft: '15px', display: 'inline', fontSize: '20px' }}>${parseInt(total)}.00 USD</p></p>
+            <p style={{ fontSize: '15px', marginTop: '20px' }}>Tax included. Shipping calculated at checkout.</p>
             <button className='chekOutButton'>Check out</button>
           </div>
         </>

@@ -13,10 +13,41 @@ export default function Product() {
   const isAdmin = sessionStorage.getItem('admin');
 
   async function changeData() {
-    await setDoc(doc(db, "products", product.id.toString()), {
-      ...product
-    })
-    edit(true, 'none');
+    let len = 0;
+    for (let i in Object.values(product)) {
+      if (Object.values(product)[i] !== '') {
+        len++;
+      }
+    }
+
+    const warning = document.getElementById('updateWarnings')
+
+    if (len === 8) {
+      if (product.details.length < 50) {
+        warning.style.color = 'red';
+        warning.innerHTML = 'Details should be well described!';
+      }
+      if (isNaN(product.price)) {
+        warning.style.color = 'red';
+        warning.innerHTML = 'Price should be integer';
+      }
+      else {
+        
+        await setDoc(doc(db, "products", product.id.toString()), {
+          ...product
+        })
+        warning.style.color = 'green';
+        warning.innerHTML = 'Successfuly Updated :)';
+        edit(true, 'none');
+        navigate('/collections')
+      }
+      
+    }
+
+    else {
+      warning.style.color = 'red';
+      warning.innerHTML = 'Fill all fields!!';
+    }
   }
 
   function edit(read, display) {
@@ -58,6 +89,7 @@ export default function Product() {
           <img className='additionalImages' src={product.img2} alt="" />
           <img className='additionalImages' src={product.img3} alt="" />
           <img className='additionalImages' src={product.img4} alt="" />
+          
         </div>
 
         <div className='productDescription'>
@@ -78,6 +110,7 @@ export default function Product() {
             : null
           }
           <button className='addToCart' onClick={changeData} id='saveChanges'>Save</button>
+          <p id='updateWarnings'></p>
         </div>
 
       </div>

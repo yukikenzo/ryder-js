@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500&display=swap');
 
-
 .home {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Jost', sans-serif;
+
 }
 
 .img1 {
@@ -112,11 +111,6 @@
 }
 
 /* ----------------------------------------------------------- */
-.login {
-    font-family: 'Jost', sans-serif;
-}
-
-
 .contact-form {
     width: 70vw;
     max-width: 500px;
@@ -230,7 +224,6 @@
     width: 100%;
     height: calc(1000px - 20vw);
     justify-content: space-between;
-    font-family: 'Jost', sans-serif;
 }
 
 .productDescription > *, .productDescription > div > * {
@@ -299,7 +292,6 @@
     display: flex;
     min-height: 400px;
     justify-content: space-around;
-    font-family: 'Jost', sans-serif;
 }
 
 .inputImgLink {
