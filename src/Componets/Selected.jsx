@@ -59,7 +59,7 @@ export default function Selected({ product, subtotal, setSubtotal }) {
         <div onClick={passState} className='selName'>{product.name}</div>
       </div>
       <div className='selPrice'>
-        <h6 style={{ textDecoration: 'line-through' }}>{'$' + (parseInt(product.price) + 10) + '.00'}</h6>
+        <h6 style={{ textDecoration: 'line-through', color: 'gray', textDecorationColor: 'black', textDecorationThickness: '1px' }}>{'$' + (parseInt(product.price) + 10) + '.00'}</h6>
         <h6>{'$' + product.price + '.00'}</h6>
       </div>
       <div className='selQuantity'>

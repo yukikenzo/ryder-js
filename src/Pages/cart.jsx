@@ -73,9 +73,11 @@ export default function Cart() {
             <div className="item5">QUANTITY</div>
             <div className="item6">TOTAL:</div>
           </div>
-          {cart.map((product) => {
-            return <Selected product={product} setSubtotal={setSubtotal} />
-          })}
+          <div style={{border: '2px groove', borderLeft: 'none', borderRight: 'none', margin: '0 7vw 10px 7vw'}}>
+            {cart.map((product) => {
+              return <Selected product={product} setSubtotal={setSubtotal} />
+            })}
+          </div>
           <p style={{ margin: '70px 0 0 7vw' }}>Order Notes:</p>
           <div style={{ textAlign: 'right', marginRight: '7vw' }}>
             <p style={{ display: 'inline' }}>Subtotal <p style={{ marginLeft: '15px', display: 'inline', fontSize: '20px' }}>${parseInt(total)}.00 USD</p></p>

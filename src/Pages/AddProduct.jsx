@@ -72,7 +72,6 @@ export default function AddProduct() {
   return (
     <div className='addProduct'>
       <div>
-        <h5 id='warnings'></h5>
         <div className='inputImgLink'>
 
           <input value={data.img1} onChange={e => setData({ ...data, img1: e.target.value })} placeholder='Paste your Image links here' type="text" />
@@ -86,6 +85,7 @@ export default function AddProduct() {
           <textarea value={data.details} onChange={e => setData({ ...data, details: e.target.value })} placeholder='Details' name="" id="" cols="30" rows="10"></textarea>
         </div>
       </div>
+      <h5 id='warnings'></h5>
       <button type='submit' onClick={submitData}>Submit</button>
     </div>
   )

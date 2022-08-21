@@ -11,28 +11,26 @@ export default function Product() {
   const product = location.state;
   const user = sessionStorage.getItem('loggedIn');
   const isAdmin = sessionStorage.getItem('admin');
+  const [name, setname] = useState(product.name)
+  const [price, setprice] = useState(product.price)
+  const [details, setdetails] = useState(product.details)
 
   async function changeData() {
-    let len = 0;
-    for (let i in Object.values(product)) {
-      if (Object.values(product)[i] !== '') {
-        len++;
-      }
-    }
-
     const warning = document.getElementById('updateWarnings')
 
-    if (len === 8) {
-      if (product.details.length < 50) {
+    if (price !== '' && name !== '' && details !== '') {
+      if (details.length < 50) {
         warning.style.color = 'red';
         warning.innerHTML = 'Details should be well described!';
       }
-      if (isNaN(product.price)) {
+      if (isNaN(price)) {
         warning.style.color = 'red';
         warning.innerHTML = 'Price should be integer';
       }
       else {
-        
+        product.name = name;
+        product.price = price;
+        product.details = details;
         await setDoc(doc(db, "products", product.id.toString()), {
           ...product
         })
@@ -67,19 +65,11 @@ export default function Product() {
     document.getElementById('myBtn').style.backgroundColor = "rgb(32, 37, 75)";
   }
 
-  const [name, setname] = useState(product.name)
-  const [price, setprice] = useState(product.price)
-  const [details, setdetails] = useState(product.details)
-
   async function removeProduct() {
     await deleteDoc(doc(db, "products", product.id.toString()))
     navigate('/collections')
     window.location.reload(true)
   }
-
-  product.name = name;
-  product.price = price;
-  product.details = details;
 
   return (
     <>
