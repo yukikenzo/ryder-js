@@ -10,7 +10,15 @@ export default function AddProduct() {
   const citiesRef = collection(db, "products");
   const q = query(citiesRef, orderBy("id", "desc"), limit(1));
 
-  let [data, setData] = useState({})
+  let [data, setData] = useState({
+    name: "",
+    price: "",
+    details: "",
+    img1: "",
+    img2: "",
+    img3: "",
+    img4: ""
+  })
 
   useEffect(() => {
     const getLast = async () => {
@@ -24,40 +32,28 @@ export default function AddProduct() {
   }, data)
 
   async function submitData() {
-    let len = 0;
-    for (let i in Object.values(data)) {
-      if (Object.values(data)[i] !== '') {
-        len++;
+    for (let i = 0; i < 7; i++) {
+      if (Object.values(data)[i] == '') {
+        document.getElementById(i.toString()).innerHTML = 'Fill all fields!!';
+        document.getElementById(i.toString()+i.toString()).style.borderColor = 'red'
+        return;
       }
     }
 
-    const warning = document.getElementById('warnings')
-
-    if (len === 7) {
-      if (data.details.length < 50) {
-        warning.style.color = 'red';
-        warning.innerHTML = 'Details should be well described!';
-      }
-      if (isNaN(data.price)) {
-        warning.style.color = 'red';
-        warning.innerHTML = 'Price should be integer';
-      }
-      else {
-        await setDoc(doc(db, "products", `${k}`), {
-          ...data, id: k
-        })
-        warning.style.color = 'green';
-        warning.innerHTML = 'Success!!';
-        window.location.reload(false);
-      }
-      
+    if (data.details.length < 50) {
+      document.getElementById('2').innerHTML = 'Details should be well described!';
+      document.getElementById('22').style.borderColor = 'red'
+      return
+    }
+    if (isNaN(data.price) || data.price < 1) {
+      document.getElementById('1').innerHTML = 'Price should be integer';
+      document.getElementById('11').style.borderColor = 'red'
+      return
     }
 
-    else {
-      warning.style.color = 'red';
-      warning.innerHTML = 'Fill all fields!!';
-    }
-
+    await setDoc(doc(db, "products", `${k}`), {
+      ...data, id: k
+    })
     setData({
       name: "",
       price: "",
@@ -67,25 +63,39 @@ export default function AddProduct() {
       img3: "",
       img4: ""
     })
+    document.getElementById('success').innerHTML = 'Success!!';
+    // window.location.reload(false);
+  }
+
+  function clearWarning(id, clue, value) {
+    setData({ ...data, [`${clue}`]: value })
+    document.getElementById(id).innerHTML = '';
+    document.getElementById(id+id).style.borderColor = 'rgb(118, 118, 118)'
   }
 
   return (
     <div className='addProduct'>
       <div>
         <div className='inputImgLink'>
-
-          <input value={data.img1} onChange={e => setData({ ...data, img1: e.target.value })} placeholder='Paste your Image links here' type="text" />
-          <input value={data.img2} onChange={e => setData({ ...data, img2: e.target.value })} placeholder='Paste your Image links here' type="text" />
-          <input value={data.img3} onChange={e => setData({ ...data, img3: e.target.value })} placeholder='Paste your Image links here' type="text" />
-          <input value={data.img4} onChange={e => setData({ ...data, img4: e.target.value })} placeholder='Paste your Image links here' type="text" />
+          <input id='33' value={data.img1} onChange={e => clearWarning('3', 'img1', e.target.value)} placeholder='Paste your Image links here' type="text" />
+          <h5 id='3'></h5>
+          <input id='44' value={data.img2} onChange={e => clearWarning('4', 'img2', e.target.value)} placeholder='Paste your Image links here' type="text" />
+          <h5 id='4'></h5>
+          <input id='55' value={data.img3} onChange={e => clearWarning('5', 'img3', e.target.value)} placeholder='Paste your Image links here' type="text" />
+          <h5 id='5'></h5>
+          <input id='66' value={data.img4} onChange={e => clearWarning('6', 'img4', e.target.value)} placeholder='Paste your Image links here' type="text" />
+          <h5 id='6'></h5>
         </div>
         <div className='productDetails'>
-          <input value={data.name} onChange={e => setData({ ...data, name: e.target.value })} placeholder='Name' type="text" />
-          <input value={data.price} onChange={e => setData({ ...data, price: e.target.value })} placeholder='Price' type="text" />
-          <textarea value={data.details} onChange={e => setData({ ...data, details: e.target.value })} placeholder='Details' name="" id="" cols="30" rows="10"></textarea>
+          <input id='00' value={data.name} onChange={e => clearWarning('0', 'name', e.target.value)} placeholder='Name' type="text" />
+          <h5 id='0'></h5>
+          <input id='11' value={data.price} onChange={e => clearWarning('1', 'price', e.target.value)} placeholder='Price' type="text" />
+          <h5 id='1'></h5>
+          <textarea id='22' value={data.details} onChange={e => clearWarning('2', 'details', e.target.value)} placeholder='Details' cols="30" rows="10"></textarea>
+          <h5 id='2'></h5>
         </div>
       </div>
-      <h5 id='warnings'></h5>
+      <h5 id='success'></h5>
       <button type='submit' onClick={submitData}>Submit</button>
     </div>
   )

@@ -58,7 +58,7 @@ export default function Cart() {
   return (
 
     <div style={style1}>
-      {cart.length == 0 ?
+      {cart.length === 0 ?
         <div style={style}>
           <h3>Your cart is empty</h3>
           <Link to={'/collections'}>Continue shopping</Link>

@@ -39,7 +39,7 @@ export default function Home() {
 
       <p>Sign Up For 10% Off Your First Order</p>
       <div className='input-container'>
-        <input className='email-input' placeholder='Your email' autoComplete='email' type="email" />
+        <input className='email-input' autoComplete='email' type="email" />
         <button className='sub-button'>Subscribe</button>
       </div>
 

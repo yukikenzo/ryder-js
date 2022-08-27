@@ -320,9 +320,15 @@
     margin: 50px 0 20px 0;
 }
 
-#warnings {
+.inputImgLink>h5, .productDetails>h5:not(#success) {
+    color: red;
+    font-size: small;
+}
+
+#success {
     text-align: center;
     margin-top: 30px;
+    color: green;
 }
 
 #updateWarnings {
