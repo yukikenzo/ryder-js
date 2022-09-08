@@ -140,7 +140,7 @@
     max-width: 500px;
     height: 500px;
     margin: auto;
-    margin-top: 60px;
+    margin-bottom: 50px;
 }
 
 .login_header, .register_header{
@@ -149,6 +149,11 @@
     margin-bottom: 40px;
     font-weight: 400;
     font-size: xx-large;
+}
+
+.login-email, .register-form>.password-input {
+    width: 100%;
+    margin-bottom: 50px;
 }
 
 .sign_button{

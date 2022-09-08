@@ -2,12 +2,14 @@ import React from 'react'
 import Product from "../Componets/Products"
 
 
-export default function Collections(props) {
+export default function Collections({ products, query }) {
 
   return (
     <div className='product_container'>
-      {props.products.map((product) => {
-        return < Product product={product} />
+      {products.map((product) => {
+        if (product.name.toLowerCase().includes(query.toLowerCase())) {
+          return < Product product={product} />
+        }
       })}
     </div>
   )

@@ -1,9 +1,8 @@
 import React from 'react';
 import './style.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BiUser, BiSearch, BiShoppingBag, BiPlus } from 'react-icons/bi';
 import { BsXLg, BsPlusLg } from "react-icons/bs";
-
 
 const style1 = {
     width: '15px',
@@ -25,18 +24,24 @@ const style2 = {
     fontFamily: "'Jost', sans-serif"
 }
 
-function search(x) {
-    document.getElementById('searchContainer').style.display = x? 'flex' : 'none';
-    document.getElementById('nav-container').style.display = x? 'none': 'flex';
-}
 
-export default function Navbar({ isAdmin }) {
-    let i = 7;
+
+export default function Navbar({ isAdmin, setQuery, query }) {
+
+    const navigate = useNavigate()
+
+    function search(x) {
+        document.getElementById('searchContainer').style.display = x ? 'flex' : 'none';
+        document.getElementById('nav-container').style.display = x ? 'none' : 'flex';
+        setQuery('');
+        navigate('collections')
+    }
+
+    let i = 7; // cart products quality. it will pop when user adds product to cart.
     return (
         <>
             <div id='searchContainer'>
-                <input className='searchInput' placeholder='Search' type="text" />
-                <button onClick={() => search(false)}> <BiSearch className='main_icons' /> </button>
+                <input value={query} onChange={(e) => setQuery(e.target.value)} className='searchInput' placeholder='Search Product' type="text" />
                 <button onClick={() => search(false)}> <BsXLg className='x_icons' /> </button>
             </div>
             <div id='nav-container' className='nav-container'>
@@ -51,10 +56,10 @@ export default function Navbar({ isAdmin }) {
                         ? <Link to="/addproduct"> <BsPlusLg className='x_icons' /> </Link>
                         : null
                     }
-                    <button onClick={() => search(true)}> <BiSearch className='main_icons'/> </button>
-                    <Link to="/login"> <BiUser className='main_icons'/> </Link>
+                    <button onClick={() => search(true)}> <BiSearch className='main_icons' /> </button>
+                    <Link to="/login"> <BiUser className='main_icons' /> </Link>
                     <Link to="/cart">
-                        <BiShoppingBag className='main_icons'/>
+                        <BiShoppingBag className='main_icons' />
                     </Link>
                     <div style={style1}>
                         <p style={style2}>{i}</p>

@@ -47,15 +47,15 @@ export default function Register({ setAuth }) {
 
         <h4 className='error-message'></h4>
 
-        <h6>Email</h6>
+        <h6 style={{ margin: '0' }}>Email</h6>
 
         <input className='login-email' style={{ width: "100%" }} onChange={event => { registerEmail = event.target.value }}></input>
 
-        <h6>Password</h6>
+        <h6 style={{ margin: '0' }}>Password</h6>
 
-        <input type={'password'} className='password-input' style={{ width: "100%" }} onChange={event => { registerPassword = event.target.value }}></input>
+        <input type={'password'} className='password-input' onChange={event => { registerPassword = event.target.value }}></input>
 
-        <h6>Repeat Password</h6>
+        <h6 style={{ margin: '0' }}>Repeat Password</h6>
 
         <input type={'password'} className='repeat-password' style={{ width: "100%" }} onChange={event => { repeatPassword = event.target.value }}></input>
 

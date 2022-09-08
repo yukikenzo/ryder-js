@@ -115,6 +115,10 @@ body {
 
 .searchInput {
     width: 400px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
 }
 
 .x_icons {

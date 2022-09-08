@@ -30,6 +30,8 @@ export default function App() {
   const [isAuth, setAuth] = useState(sessionStorage.getItem('loggedIn') ? true : false);
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
 
+  const [query, setQuery] = useState('')
+
   useEffect(() => {
     const getProducts = async () => {
       let data = await getDocs(productsCollectionRef);
@@ -42,11 +44,11 @@ export default function App() {
       <div className="App">
         <Treadmill />
         <HashRouter>
-          <Navbar isAdmin={isAdmin} />
+          <Navbar isAdmin={isAdmin} setQuery={setQuery} query = {query} />
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route element={<ProtectedRoutes isAuth={isAuth} />}>
-              <Route exact path="/collections" element={< Collections products={first} />} />
+              <Route exact path="/collections" element={< Collections products={first} query = {query} />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/addproduct" element={<AddProduct />} />
               <Route path="/product/:id" element={<Product />} />
