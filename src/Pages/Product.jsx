@@ -5,7 +5,7 @@ import { doc, setDoc, deleteDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
 import Recommended from '../Componets/Recommended';
 
-export default function Product() {
+export default function Product( {setNotifyCart} ) {
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state;
@@ -58,6 +58,7 @@ export default function Product() {
   async function addCart() {
     document.querySelector('#myBtn').disabled = true;
     document.getElementById('myBtn').style.backgroundColor = "rgb(104, 110, 156)";
+    setNotifyCart(prev => prev + 1);
     await setDoc(doc(db, user, product.id.toString()), {
       ...product, quantity: 1
     })

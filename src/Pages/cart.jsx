@@ -6,7 +6,7 @@ import Selected from '../Componets/Selected'
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config'
 
-export default function Cart() {
+export default function Cart( {setNotifyCart} ) {
   const user = sessionStorage.getItem('loggedIn');
   const cartCollectionRef = collection(db, user);
   const [cart, setCart] = useState([]);
@@ -36,6 +36,7 @@ export default function Cart() {
     }
 
   }, [subtotal])
+  console.log(subtotal)
 
   // const removeCart = id => {
   //   setCart(cart.filter(cart => {
@@ -74,7 +75,8 @@ export default function Cart() {
             <div className="item6">TOTAL:</div>
           </div>
           <div style={{border: '2px groove', borderLeft: 'none', borderRight: 'none', margin: '0 7vw 10px 7vw'}}>
-            {cart.map((product) => {
+            {cart.map((product, index) => {
+              setNotifyCart(index+1);
               return <Selected product={product} setSubtotal={setSubtotal} />
             })}
           </div>

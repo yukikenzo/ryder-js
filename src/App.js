@@ -32,6 +32,8 @@ export default function App() {
 
   const [query, setQuery] = useState('')
 
+  const [notifyCart, setNotifyCart] = useState(0)  // cart products quality. it will pop when user adds product to cart.
+
   useEffect(() => {
     const getProducts = async () => {
       let data = await getDocs(productsCollectionRef);
@@ -44,14 +46,14 @@ export default function App() {
       <div className="App">
         <Treadmill />
         <HashRouter>
-          <Navbar isAdmin={isAdmin} setQuery={setQuery} query = {query} />
+          <Navbar notifyCart={notifyCart} isAdmin={isAdmin} setQuery={setQuery} query = {query}  />
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route element={<ProtectedRoutes isAuth={isAuth} />}>
               <Route exact path="/collections" element={< Collections products={first} query = {query} />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/addproduct" element={<AddProduct />} />
-              <Route path="/product/:id" element={<Product />} />
+              <Route path="/cart" element={<Cart setNotifyCart={setNotifyCart} />} />
+              <Route path="/addproduct" element={<AddProduct  />} />
+              <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} />} />
             </Route>
             <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
             <Route path="/register" element={<Register setAuth={setAuth} />} />
