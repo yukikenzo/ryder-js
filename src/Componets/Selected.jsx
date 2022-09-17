@@ -17,13 +17,11 @@ export default function Selected({ product, subtotal, setSubtotal }) {
   const [amount, setAmount] = useState(0)
 
   useEffect(() => {
-    console.log(subtotal)
     setSubtotal(subtotal =>
       // looping throw array of object and searching for poduct with id equal to changed id. 'obj[0]' means id of object, I named '0' insted of id because 
       // Cart.js: setSubtotal(data.docs.map((doc) => ({ ...doc.id, price: doc.price}))), I couldn't change ...doc.id to id and it sets '0' by default
       
       subtotal.map(obj => {
-        console.log(obj)
         if (obj.id === product.id) {
           
           // parseInt(product.price) * (product.quantity+amount) parses int from server data and and multiplies to previous product quatity and quantity

@@ -36,7 +36,7 @@ export default function Product( {setNotifyCart} ) {
         })
         warning.style.color = 'green';
         warning.innerHTML = 'Successfuly Updated :)';
-        edit(true, 'none');
+        edit(true, 'Edit');
         navigate('/collections')
       }
       
@@ -48,11 +48,23 @@ export default function Product( {setNotifyCart} ) {
     }
   }
 
-  function edit(read, display) {
+  function edit(read, value) {
     document.getElementById("name1").readOnly = read;
     document.getElementById("price1").readOnly = read;
     document.getElementById("detail1").readOnly = read;
-    document.getElementById("saveChanges").style.display = display;
+    document.getElementById("editButton").replaceChildren(value)
+  }
+
+  let toggler = true
+  function editData(){
+    if (toggler) {
+      edit(false, 'Save')
+      toggler = false;
+    }
+    else {
+      changeData()
+      toggler = true;
+    }
   }
 
   async function addCart() {
@@ -95,12 +107,11 @@ export default function Product( {setNotifyCart} ) {
 
           {isAdmin
             ? <>
-              <button className='addToCart' onClick={() => edit(false, 'block')}>Edit</button>
+              <button className='addToCart' id='editButton' onClick={editData}>Edit</button>
               <button className='addToCart' onClick={removeProduct}>Remove</button>
             </>
             : null
           }
-          <button className='addToCart' onClick={changeData} id='saveChanges'>Save</button>
           <p id='updateWarnings'></p>
         </div>
 

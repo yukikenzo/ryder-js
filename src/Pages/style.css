@@ -218,8 +218,9 @@
     color: white;
 }
 
-#saveChanges {
-    display: none;
+.addToCart:last-of-type {
+    background-color: black;
+    color: red;
 }
 
 .productDescription{

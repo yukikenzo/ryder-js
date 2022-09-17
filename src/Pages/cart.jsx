@@ -16,9 +16,10 @@ export default function Cart( {setNotifyCart} ) {
   useEffect(() => {
     const getSelected = async () => {
       let data = await getDocs(cartCollectionRef);
-      setCart(data.docs.map((doc) => ({ ...doc.data() })));
-      console.log(data)
-      setSubtotal(data.docs.map((doc) => ({ id: parseInt(doc.id), price: doc.price })))
+      let datadocs = data.docs;
+      console.log(data.docs[0].data())
+      setCart(datadocs.map((doc) => ({ ...doc.data() })));
+      setSubtotal(datadocs.map((doc) => ({ id: doc.id, price: parseInt(doc.price) })))
     };
     getSelected();
   }, [])
@@ -36,7 +37,6 @@ export default function Cart( {setNotifyCart} ) {
     }
 
   }, [subtotal])
-  console.log(subtotal)
 
   // const removeCart = id => {
   //   setCart(cart.filter(cart => {
