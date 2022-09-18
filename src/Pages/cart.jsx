@@ -16,27 +16,26 @@ export default function Cart( {setNotifyCart} ) {
   useEffect(() => {
     const getSelected = async () => {
       let data = await getDocs(cartCollectionRef);
-      let datadocs = data.docs;
-      console.log(data.docs[0].data())
-      setCart(datadocs.map((doc) => ({ ...doc.data() })));
-      setSubtotal(datadocs.map((doc) => ({ id: doc.id, price: parseInt(doc.price) })))
+      setCart(data.docs.map((doc) => ({ ...doc.data() })));
+      setSubtotal(data.docs.map((doc) => ({ id: doc.data().id, price: parseInt(doc.data().price) })))
     };
     getSelected();
   }, [])
 
+  console.log(subtotal)
+
   useEffect(() => {
     //in case that subtotal is empty
     try {
-      setTotal(
-        subtotal.reduce((price1, price2) => {
-          return price1.price + price2.price
-        })
-      )
+      let sum = 0
+      subtotal.map((obj) => {sum += obj.price})
+      setTotal(sum)
     } catch (error) {
-
+      
     }
 
   }, [subtotal])
+
 
   // const removeCart = id => {
   //   setCart(cart.filter(cart => {
@@ -77,7 +76,7 @@ export default function Cart( {setNotifyCart} ) {
           <div style={{border: '2px groove', borderLeft: 'none', borderRight: 'none', margin: '0 7vw 10px 7vw'}}>
             {cart.map((product, index) => {
               setNotifyCart(index+1);
-              return <Selected product={product} setSubtotal={setSubtotal} />
+              return <Selected product={product} setSubtotal={setSubtotal} subtotal={subtotal} />
             })}
           </div>
           <p style={{ margin: '70px 0 0 7vw' }}>Order Notes:</p>
