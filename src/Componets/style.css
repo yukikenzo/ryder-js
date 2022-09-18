@@ -150,6 +150,12 @@ body {
     margin-left: 0 !important;
 }
 
+@media only screen and (max-width: 576px) {
+    .row {
+        padding-top: 20px;
+    }
+}
+
 .copyright {
     font-weight: 300;
     font-size: 15px;
@@ -211,7 +217,13 @@ body {
 
 @media only screen and (max-width: 770px) {
     .product_image {
-        width: 40vw;
+        width: 45vw;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .clothes_price {
+        margin-bottom: 20px;
     }
 
     .alt_image {
