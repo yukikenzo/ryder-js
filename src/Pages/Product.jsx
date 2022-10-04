@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { doc, setDoc, deleteDoc } from "firebase/firestore";
+import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
 import Recommended from '../Componets/Recommended';
 
-export default function Product( {setNotifyCart} ) {
+export default function Product({ setNotifyCart }) {
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state;
@@ -39,9 +39,8 @@ export default function Product( {setNotifyCart} ) {
         edit(true, 'Edit');
         navigate('/collections')
       }
-      
-    }
 
+    }
     else {
       warning.style.color = 'red';
       warning.innerHTML = 'Fill all fields!!';
@@ -56,7 +55,7 @@ export default function Product( {setNotifyCart} ) {
   }
 
   let toggler = true
-  function editData(){
+  function editData() {
     if (toggler) {
       edit(false, 'Save')
       toggler = false;
@@ -68,11 +67,18 @@ export default function Product( {setNotifyCart} ) {
   }
 
   async function addCart() {
+    let q = 1
+    const docRef = doc(db, user, product.id.toString());
+    const docSnap = await getDoc(docRef);
     document.querySelector('#myBtn').disabled = true;
     document.getElementById('myBtn').style.backgroundColor = "rgb(104, 110, 156)";
     setNotifyCart(prev => prev + 1);
+    if (docSnap.exists()) {
+      q = docSnap.data().quantity + 1
+    }
+    console.log(q)
     await setDoc(doc(db, user, product.id.toString()), {
-      ...product, quantity: 1
+      ...product, quantity: q
     })
     document.querySelector('#myBtn').disabled = false;
     document.getElementById('myBtn').style.backgroundColor = "rgb(32, 37, 75)";
@@ -92,13 +98,12 @@ export default function Product( {setNotifyCart} ) {
           <img className='additionalImages' src={product.img2} alt="" />
           <img className='additionalImages' src={product.img3} alt="" />
           <img className='additionalImages' src={product.img4} alt="" />
-          
         </div>
 
         <div className='productDescription'>
           <input id="name1" readOnly onChange={event => setname(event.target.value)} value={name} />
           <div>
-            <p style={{display: 'inline', fontSize: '20px'}}>$</p>
+            <p style={{ display: 'inline', fontSize: '20px' }}>$</p>
             <input id="price1" readOnly onChange={event => setprice(event.target.value)} value={price} />
           </div>
           <button id='myBtn' onClick={addCart} className='addToCart'>Add to cart</button>

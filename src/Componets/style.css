@@ -51,20 +51,29 @@ body {
     margin-top: 40px;
 }
 
+#search {
+    width: 100vw;
+    height: 150px;
+    display: none;
+    margin-top: 40px;
+}
+
 #searchContainer {
     display: none;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid black;
     width: 100vw;
     height: 100px;
-    margin-top: 40px;
-    margin-bottom: 60px;
+    position: fixed;
+    background-color: #fff;
+    z-index: 6;
 }
 
 .nav-container>* {
     margin-top: 40px;
-    position: absolute;
+    position: fixed;
+    z-index: 5;
+    transition: top 0.3s;
 }
 
 .shop-link {
@@ -114,7 +123,9 @@ body {
 }
 
 .searchInput {
-    width: 400px;
+    max-width: 400px;
+    width: 60vw;
+
     border-left: none;
     border-right: none;
     border-top: none;
@@ -182,6 +193,7 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     overflow: hidden;
+    z-index: 4;
 }
 
 .product_image>img {

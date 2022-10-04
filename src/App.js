@@ -23,16 +23,12 @@ import { db } from './firebase-config'
 import { collection, getDocs } from "firebase/firestore"
 
 export default function App() {
-
   const [first, setfirst] = useState([]);
-  const productsCollectionRef = collection(db, 'products');
-
   const [isAuth, setAuth] = useState(sessionStorage.getItem('loggedIn') ? true : false);
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
-
   const [query, setQuery] = useState('')
-
   const [notifyCart, setNotifyCart] = useState(0)  // cart products quality. it will pop when user adds product to cart.
+  const productsCollectionRef = collection(db, 'products');
 
   useEffect(() => {
     const getProducts = async () => {

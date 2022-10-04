@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { BiTrash } from 'react-icons/bi';
-import { doc, deleteDoc, setDoc} from "firebase/firestore";
+import { doc, deleteDoc, setDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function Selected({ product, subtotal, setSubtotal }) {
+export default function Selected({ product, setSubtotal }) {
 
   const user = sessionStorage.getItem('loggedIn');
   async function remove() {
@@ -22,12 +22,13 @@ export default function Selected({ product, subtotal, setSubtotal }) {
       // Cart.js: setSubtotal(data.docs.map((doc) => ({ ...doc.id, price: doc.price}))), I couldn't change ...doc.id to id and it sets '0' by default
       
       subtotal.map(obj => {
+        console.log(subtotal)
         if (obj.id === product.id) {
-          
+
           // parseInt(product.price) * (product.quantity+amount) parses int from server data and and multiplies to previous product quatity and quantity
           // added now. You cannot multyply directly to product quandity because to do that you should fetch data every time when there is change in quantity.
           // Therefore I save added or reduced amount localy and silultainiously send them to server. In this way there is no need to wait everytime fo answer of serwer.
-          return { ...obj, price: parseInt(product.price) * (product.quantity + amount) };
+          return { ...obj, price: parseInt(product.price) * (product.quantity + amount), quantity: product.quantity + amount };
         }
         return obj;
       }),
@@ -47,6 +48,16 @@ export default function Selected({ product, subtotal, setSubtotal }) {
     changeQuatity()
   }, [amount])
 
+  function changeAmount(increase) {
+    if (increase && product.quantity + amount < 50) {
+      setAmount(amount + 1)
+    }
+    else if (increase == false) {
+      setAmount(amount - 1)
+    }
+
+  }
+
   const navigate = useNavigate();
   function passState() {
     navigate(`/product/${product.id}`, {
@@ -65,9 +76,9 @@ export default function Selected({ product, subtotal, setSubtotal }) {
         <h6>{'$' + product.price + '.00'}</h6>
       </div>
       <div className='selQuantity'>
-        <button onClick={() => { setAmount(amount - 1) }}>-</button>
+        <button onClick={() => { changeAmount(false) }}>-</button>
         <h6 style={{ marginTop: '9px' }}>{product.quantity + amount}</h6>
-        <button onClick={() => { setAmount(amount + 1) }}>+</button>
+        <button onClick={() => { changeAmount(true) }}>+</button>
       </div>
       <div className='selTotal'>
         <h6>{'$' + (parseInt(product.price) * (product.quantity + amount)) + '.00'}</h6>

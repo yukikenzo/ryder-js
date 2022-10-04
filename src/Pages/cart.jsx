@@ -6,7 +6,7 @@ import Selected from '../Componets/Selected'
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config'
 
-export default function Cart( {setNotifyCart} ) {
+export default function Cart({ setNotifyCart }) {
   const user = sessionStorage.getItem('loggedIn');
   const cartCollectionRef = collection(db, user);
   const [cart, setCart] = useState([]);
@@ -17,31 +17,27 @@ export default function Cart( {setNotifyCart} ) {
     const getSelected = async () => {
       let data = await getDocs(cartCollectionRef);
       setCart(data.docs.map((doc) => ({ ...doc.data() })));
-      setSubtotal(data.docs.map((doc) => ({ id: doc.data().id, price: parseInt(doc.data().price) })))
+      setSubtotal(data.docs.map((doc) => ({ id: doc.data().id, price: parseInt(doc.data().price), quantity: doc.data().quantity })))
     };
     getSelected();
   }, [])
-
-  console.log(subtotal)
 
   useEffect(() => {
     //in case that subtotal is empty
     try {
       let sum = 0
-      subtotal.map((obj) => {sum += obj.price})
+      let quantity = 0
+      subtotal.map((obj) => {
+        sum += obj.price
+        quantity += obj.quantity
+      })
       setTotal(sum)
+      setNotifyCart(quantity)
     } catch (error) {
-      
+
     }
 
   }, [subtotal])
-
-
-  // const removeCart = id => {
-  //   setCart(cart.filter(cart => {
-  //     return cart != id;
-  //   }))
-  // }
 
   const style1 = {
     fontFamily: "'Jost', sans-serif"
@@ -73,9 +69,8 @@ export default function Cart( {setNotifyCart} ) {
             <div className="item5">QUANTITY</div>
             <div className="item6">TOTAL:</div>
           </div>
-          <div style={{border: '2px groove', borderLeft: 'none', borderRight: 'none', margin: '0 7vw 10px 7vw'}}>
+          <div style={{ border: '2px groove', borderLeft: 'none', borderRight: 'none', margin: '0 7vw 10px 7vw' }}>
             {cart.map((product, index) => {
-              setNotifyCart(index+1);
               return <Selected product={product} setSubtotal={setSubtotal} subtotal={subtotal} />
             })}
           </div>

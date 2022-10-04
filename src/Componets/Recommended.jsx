@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Recommended() {
   return (
-    <div>Recommended</div>
+    <div>You may also like</div>
   )
 }
