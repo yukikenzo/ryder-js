@@ -23,17 +23,17 @@ import { db } from './firebase-config'
 import { collection, getDocs } from "firebase/firestore"
 
 export default function App() {
-  const [first, setfirst] = useState([]);
+  const [clotheArray, setClotheArray] = useState([]);
   const [isAuth, setAuth] = useState(sessionStorage.getItem('loggedIn') ? true : false);
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
-  const [query, setQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
   const [notifyCart, setNotifyCart] = useState(0)  // cart products quality. it will pop when user adds product to cart.
   const productsCollectionRef = collection(db, 'products');
 
   useEffect(() => {
     const getProducts = async () => {
-      let data = await getDocs(productsCollectionRef);
-      setfirst(data.docs.map((doc) => ({ ...doc.data() })));
+      let fetchedData = await getDocs(productsCollectionRef);
+      setClotheArray(fetchedData.docs.map((doc) => ({ ...doc.data() })));
     };
     getProducts();
   }, [])
@@ -42,14 +42,14 @@ export default function App() {
       <div className="App">
         <Treadmill />
         <HashRouter>
-          <Navbar notifyCart={notifyCart} isAdmin={isAdmin} setQuery={setQuery} query = {query}  />
+          <Navbar notifyCart={notifyCart} isAdmin={isAdmin} setQuery={setSearchQuery} query = {searchQuery}  />
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route element={<ProtectedRoutes isAuth={isAuth} />}>
-              <Route exact path="/collections" element={< Collections products={first} query = {query} />} />
-              <Route path="/cart" element={<Cart setNotifyCart={setNotifyCart} products={first} />} />
+              <Route exact path="/collections" element={< Collections products={clotheArray} query = {searchQuery} />} />
+              <Route path="/cart" element={<Cart setNotifyCart={setNotifyCart} products={clotheArray} />} />
               <Route path="/addproduct" element={<AddProduct  />} />
-              <Route path="/product/:id" element={<Product products = {first} setNotifyCart={setNotifyCart} />} />
+              <Route path="/product/:id" element={<Product products = {clotheArray} setNotifyCart={setNotifyCart} />} />
             </Route>
             <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
             <Route path="/register" element={<Register setAuth={setAuth} />} />

@@ -125,7 +125,6 @@ body {
 .searchInput {
     max-width: 400px;
     width: 60vw;
-
     border-left: none;
     border-right: none;
     border-top: none;
@@ -189,22 +188,17 @@ body {
 
 .product_image {
     width: 30vw;
-    display: inline;
-    margin-left: 10px;
-    margin-right: 10px;
     overflow: hidden;
-    z-index: 4;
 }
 
 .product_image>img {
-    height: 30vw;
     width: inherit;
     object-fit: cover;
     margin-bottom: 1vw;
 }
 
 .alt_image {
-    height: 27.5vw !important;
+    margin-top: -8vw;
     margin-left: -30vw;
     opacity: 0;
     transition-duration: 300ms;
@@ -228,18 +222,11 @@ body {
 
 
 @media only screen and (max-width: 770px) {
-    .product_image {
-        width: 45vw;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
     .clothes_price {
         margin-bottom: 20px;
     }
 
     .alt_image {
-        height: 40vw !important;
         margin-left: 0;
         margin-top: -45vw;
     }
@@ -334,20 +321,18 @@ body {
 
 .rec_product_image {
     width: 20vw;
-    display: inline;
     overflow: hidden;
     z-index: 4;
 }
 
 .rec_product_image>img {
-    height: 20vw;
     width: inherit;
     object-fit: cover;
     margin-bottom: 1vw;
 }
 
 .rec_alt_image {
-    height: 18.5vw !important;
+    margin-top: -5vw;
     margin-left: -21vw;
     opacity: 0;
     transition-duration: 300ms;
@@ -371,24 +356,20 @@ body {
 
 
 @media only screen and (max-width: 770px) {
-    .rec_product_image {
-        width: 45vw;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
     .rec_clothes_price {
         margin-bottom: 20px;
     }
 
     .rec_alt_image {
-        height: 40vw !important;
         margin-left: 0;
         margin-top: -45vw;
     }
-
+    .rec_product_image {
+        min-width: 200px;
+    }
+    
     .rec_product_image>img {
-        height: 40vw;
+        min-width: 200px;
     }
 }
 

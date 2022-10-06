@@ -7,11 +7,11 @@
 
 }
 
-.img1 {
+.homeWallpaper1 {
     margin-right: 10px;
 }
 
-.img1, .img2 {
+.homeWallpaper1, .homeWallpaper2 {
     height: 1000px;
     width: 47vw;
     min-width: 300px;
@@ -19,13 +19,13 @@
 }
 
 @media only screen and (max-width: 610px) {
-    .img1, .img2 {
+    .homeWallpaper1, .homeWallpaper2 {
         height: 400px;
         width: 94.5vw;
         margin: 0;
     }
 
-    .img {
+    .homeWallpaperContainer {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -33,7 +33,7 @@
     }
 }
 
-.img3 {
+.homeWallpaper3 {
     height: 730px;
     width: 94.5vw;
     object-fit: cover;

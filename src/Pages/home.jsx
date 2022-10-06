@@ -3,11 +3,11 @@ import React from 'react'
 export default function Home() {
   return (
     <div className='home'>
-      <div className='img'>
-        <img className='img1' src="https://cdn.shopify.com/s/files/1/0371/0749/files/000412400005_1100x.jpg?v=1637615010"  alt="wallpaper" />
-        <img className='img2' src="https://cdn.shopify.com/s/files/1/0371/0749/files/g_day-blue_750x.png?v=1633341228" alt="wallpaper" />
+      <div className='homeWallpaperContainer'>
+        <img className='homeWallpaper1' src="https://cdn.shopify.com/s/files/1/0371/0749/files/000412400005_1100x.jpg?v=1637615010"  alt="wallpaper" />
+        <img className='homeWallpaper2' src="https://cdn.shopify.com/s/files/1/0371/0749/files/g_day-blue_750x.png?v=1633341228" alt="wallpaper" />
       </div>
-      <img className='img3' src="https://cdn.shopify.com/s/files/1/0371/0749/files/000724550009_c150dfca-a09d-431b-98c6-50be83019b74_2000x.jpg?v=1633351843" alt="wallpaper"/>
+      <img className='homeWallpaper3' src="https://cdn.shopify.com/s/files/1/0371/0749/files/000724550009_c150dfca-a09d-431b-98c6-50be83019b74_2000x.jpg?v=1633351843" alt="wallpaper"/>
 
       <div className='advantages'>
         <div>

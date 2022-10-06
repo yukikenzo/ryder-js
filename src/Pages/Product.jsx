@@ -38,7 +38,7 @@ export default function Product({ setNotifyCart, products }) {
         })
         warning.style.color = 'green';
         warning.innerHTML = 'Successfuly Updated :)';
-        edit(true, 'Edit');
+        editable(true, 'Edit');
         navigate('/collections')
       }
 
@@ -49,7 +49,7 @@ export default function Product({ setNotifyCart, products }) {
     }
   }
 
-  function edit(read, value) {
+  function editable(read, value) {
     document.getElementById("name1").readOnly = read;
     document.getElementById("price1").readOnly = read;
     document.getElementById("detail1").readOnly = read;
@@ -59,7 +59,7 @@ export default function Product({ setNotifyCart, products }) {
   let toggler = true
   function editData() {
     if (toggler) {
-      edit(false, 'Save')
+      editable(false, 'Save')
       toggler = false;
     }
     else {
