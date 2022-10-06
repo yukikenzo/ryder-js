@@ -47,9 +47,9 @@ export default function App() {
             <Route exact path="/" element={<Home />} />
             <Route element={<ProtectedRoutes isAuth={isAuth} />}>
               <Route exact path="/collections" element={< Collections products={first} query = {query} />} />
-              <Route path="/cart" element={<Cart setNotifyCart={setNotifyCart} />} />
+              <Route path="/cart" element={<Cart setNotifyCart={setNotifyCart} products={first} />} />
               <Route path="/addproduct" element={<AddProduct  />} />
-              <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} />} />
+              <Route path="/product/:id" element={<Product products = {first} setNotifyCart={setNotifyCart} />} />
             </Route>
             <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
             <Route path="/register" element={<Register setAuth={setAuth} />} />

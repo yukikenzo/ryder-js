@@ -64,7 +64,7 @@ export default function AddProduct() {
       img4: ""
     })
     document.getElementById('success').innerHTML = 'Success!!';
-    // window.location.reload(false);
+    window.location.reload(false);
   }
 
   function clearWarning(id, clue, value) {

@@ -5,7 +5,7 @@ import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
 import Recommended from '../Componets/Recommended';
 
-export default function Product({ setNotifyCart }) {
+export default function Product({ setNotifyCart, products }) {
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state;
@@ -14,6 +14,8 @@ export default function Product({ setNotifyCart }) {
   const [name, setname] = useState(product.name)
   const [price, setprice] = useState(product.price)
   const [details, setdetails] = useState(product.details)
+
+  document.documentElement.scrollTop = 0
 
   async function changeData() {
     const warning = document.getElementById('updateWarnings')
@@ -121,7 +123,7 @@ export default function Product({ setNotifyCart }) {
         </div>
 
       </div>
-      <Recommended />
+      <Recommended products={products} />
     </>
 
   )

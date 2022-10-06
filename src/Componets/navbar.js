@@ -76,7 +76,7 @@ export default function Navbar({ isAdmin, setQuery, query, notifyCart }) {
                         <BiShoppingBag className='main_icons' />
                     </Link>
                     
-                    {notifyCart <= 0
+                    {notifyCart <= 0 || notifyCart == NaN
                         ? null
                         : <div style={style1}>
                             <p style={style2}>{notifyCart}</p>

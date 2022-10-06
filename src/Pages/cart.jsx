@@ -6,7 +6,7 @@ import Selected from '../Componets/Selected'
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config'
 
-export default function Cart({ setNotifyCart }) {
+export default function Cart({ setNotifyCart, products }) {
   const user = sessionStorage.getItem('loggedIn');
   const cartCollectionRef = collection(db, user);
   const [cart, setCart] = useState([]);
@@ -17,7 +17,7 @@ export default function Cart({ setNotifyCart }) {
     const getSelected = async () => {
       let data = await getDocs(cartCollectionRef);
       setCart(data.docs.map((doc) => ({ ...doc.data() })));
-      setSubtotal(data.docs.map((doc) => ({ id: doc.data().id, price: parseInt(doc.data().price), quantity: doc.data().quantity })))
+      setSubtotal(data.docs.map((doc) => ({ id: doc.data().id, price: parseInt(doc.data().price), qussantity: doc.data().quantity })))
     };
     getSelected();
   }, [])
@@ -82,7 +82,7 @@ export default function Cart({ setNotifyCart }) {
           </div>
         </>
       }
-      <Recommended />
+      <Recommended products={products} />
     </div>
   )
 }
