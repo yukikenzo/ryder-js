@@ -16,37 +16,54 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
     signOut(auth).then(() => {
       setAdmin(false);
       setAuth(false);
-      sessionStorage.removeItem('loggedIn')
-      sessionStorage.removeItem('admin')
+      sessionStorage.removeItem('loggedIn', 'admin')
     }).catch((error) => {
+      alert(error)
     });
   }
 
   const login = async () => {
-    try {
-      setPersistence(auth, browserSessionPersistence)
-      await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      sessionStorage.setItem('loggedIn', auth.currentUser.email)
-      document.querySelector(".error-message").innerHTML = 'Success';
-      setAuth(true);
-      navigate(-1);
-
-
-      if (loginEmail === admin) {
-        sessionStorage.setItem('admin', true)
-        setAdmin(true);
-      }
-
-    } catch (error) {
-      document.querySelector(".error-message") ? 
-      document.querySelector(".error-message").innerHTML = 'The email or password is incorrect.'
-      :
-      console.log(error)
+    if (loginEmail == '') {
+      document.querySelector('.contact-form>.login-email+p5').innerHTML = 'Fill all fields!!';
+      document.querySelector('.contact-form>.login-email').style.borderColor = 'red'
     }
+
+    else if (loginPassword == '') {
+      document.querySelector('.contact-form>.password-input+p5').innerHTML = 'Fill all fields!!';
+      document.querySelector('.contact-form>.password-input').style.borderColor = 'red'
+    }
+
+    else {
+      try {
+        setPersistence(auth, browserSessionPersistence)
+
+        await signInWithEmailAndPassword(
+          auth,
+          loginEmail,
+          loginPassword
+        );
+        sessionStorage.setItem('loggedIn', auth.currentUser.email)
+        document.querySelector(".error-message").innerHTML = 'Success';
+        setAuth(true);
+        navigate('/collections');
+
+        
+        if (loginEmail === admin) {
+          sessionStorage.setItem('admin', true)
+          setAdmin(true);
+        }
+
+      } catch (err) {
+        
+        let error = err.code.toString().slice(5).replaceAll('-', ' ')+'!!'
+        document.querySelector(".error-message").innerHTML = error.charAt(0).toUpperCase() + error.slice(1);
+      }
+    }
+  }
+
+  function clearWarning(inputBorder) {
+    document.querySelector(`.contact-form>.${inputBorder}+p5`).innerHTML = '';
+    document.querySelector(`.${inputBorder}`).style.borderColor = 'rgb(118, 118, 118)'
   }
 
   return (
@@ -62,23 +79,32 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
 
           <h1 className='login_header'>Login</h1>
 
-          <h4 className='error-message'></h4>
-
           <h6 style={{ margin: '0' }}>Email</h6>
 
-          <input className='login-email' onChange={event => { setLoginEmail(event.target.value) }}></input>
+          <input type={'email'} className='login-email' onChange={event => {
+            setLoginEmail(event.target.value)
+            clearWarning('login-email')
+          }}></input>
+          <p5></p5>
 
-          <h6 style={{ margin: '0' }}>Password</h6>
+          <h6 style={{ margin: '40px 0 0 0' }}>Password</h6>
 
-          <input type={'password'} className='password-input' style={{ width: "100%" }} onChange={event => { setLoginPassword(event.target.value) }}></input>
+          <input type={'password'} className='password-input' style={{ width: "100%" }} onChange={event => {
+            setLoginPassword(event.target.value)
+            clearWarning('password-input')
+          }}></input>
+          <p5></p5>
 
           <Link style={{ marginBottom: '50px' }} to={'/forgotpassword'}>Forgot your password?</Link>
 
-          <input className='sign_button' type="button" value="Sign in" style={{ display: "block", marginTop: '30px' }} onClick={login} />
+          <h5 className='error-message'></h5>
+
+          <button className='sign_button' style={{ display: "block", marginTop: '30px' }} onClick={login} >Sign in</button>
+
           <p>
-          <Link className='register_link' to='/register'>Create Account</Link>
+            <Link className='register_link' to='/register'>Create Account</Link>
           </p>
-          
+
         </div>
       }
 

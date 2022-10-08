@@ -1,9 +1,9 @@
 import React from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
-import { BiUser, BiSearch, BiShoppingBag } from 'react-icons/bi';
-import { BsXLg, BsPlusLg } from "react-icons/bs";
-import { useLocation } from 'react-router-dom';
+import { BiUser, BiShoppingBag } from 'react-icons/bi';
+import {BsPlusLg } from "react-icons/bs";
+
 
 const style1 = {
     width: '13px',
@@ -23,9 +23,7 @@ const style2 = {
     fontFamily: "'Jost', sans-serif"
 }
 
-export default function Navbar({ isAdmin, setQuery, query, notifyCart }) {
-
-    const location = useLocation().pathname;
+export default function Navbar({ isAdmin, notifyCart }) {
 
     let lastScroll = 0;
     window.addEventListener("scroll", function () {
@@ -33,26 +31,11 @@ export default function Navbar({ isAdmin, setQuery, query, notifyCart }) {
         document.querySelector('.shop-link').style.top = coordinates < lastScroll ? '25px' : '-60px'
         document.querySelector('.brand').style.top = coordinates < lastScroll ? '50px' : '-60px'
         document.querySelector('.icons').style.top = coordinates < lastScroll ? '28px' : '-70px'
-        coordinates < lastScroll ? void (0) : searchToggler(false);
         lastScroll = coordinates <= 0 ? 0 : coordinates; // For Mobile or negative scrolling
     }, false);
 
-    function searchToggler(x) {
-        setQuery('');
-        document.getElementById('searchContainer').style.display = x ? 'flex' : 'none';
-        document.getElementById('search').style.display = x ? 'block' : 'none';
-        document.getElementById('nav-container').style.display = x ? 'none' : 'flex';
-    }
-
     return (
         <>
-            <div id='search'>
-                <div id='searchContainer'>
-                    <input value={query} onChange={(e) => setQuery(e.target.value)} className='searchInput' placeholder='Search Product' type="text" />
-                    <button onClick={() => searchToggler(false)}> <BsXLg className='x_icons' /> </button>
-                </div>
-            </div>
-
             <div id='nav-container' className='nav-container'>
 
                 <Link className='shop-link' to="/collections">Shop</Link>
@@ -66,17 +49,12 @@ export default function Navbar({ isAdmin, setQuery, query, notifyCart }) {
                         : null
                     }
 
-                    {isAdmin && location == '/collections'
-                        ? <button onClick={() => searchToggler(true)}> <BiSearch className='main_icons' /> </button>
-                        : null
-                    }
-
                     <Link to="/login"> <BiUser className='main_icons' /> </Link>
                     <Link to="/cart">
                         <BiShoppingBag className='main_icons' />
                     </Link>
                     
-                    {notifyCart <= 0 || notifyCart == NaN
+                    {notifyCart <= 0 || notifyCart === isNaN
                         ? null
                         : <div style={style1}>
                             <p style={style2}>{notifyCart}</p>

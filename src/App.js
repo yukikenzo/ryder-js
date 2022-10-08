@@ -26,7 +26,6 @@ export default function App() {
   const [clotheArray, setClotheArray] = useState([]);
   const [isAuth, setAuth] = useState(sessionStorage.getItem('loggedIn') ? true : false);
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
-  const [searchQuery, setSearchQuery] = useState('')
   const [notifyCart, setNotifyCart] = useState(0)  // cart products quality. it will pop when user adds product to cart.
   const productsCollectionRef = collection(db, 'products');
 
@@ -42,17 +41,17 @@ export default function App() {
       <div className="App">
         <Treadmill />
         <HashRouter>
-          <Navbar notifyCart={notifyCart} isAdmin={isAdmin} setQuery={setSearchQuery} query = {searchQuery}  />
+          <Navbar notifyCart={notifyCart} isAdmin={isAdmin} />
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route element={<ProtectedRoutes isAuth={isAuth} />}>
-              <Route exact path="/collections" element={< Collections products={clotheArray} query = {searchQuery} />} />
+              <Route exact path="/collections" element={< Collections products={clotheArray} />} />
               <Route path="/cart" element={<Cart setNotifyCart={setNotifyCart} products={clotheArray} />} />
               <Route path="/addproduct" element={<AddProduct  />} />
               <Route path="/product/:id" element={<Product products = {clotheArray} setNotifyCart={setNotifyCart} />} />
             </Route>
             <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
-            <Route path="/register" element={<Register setAuth={setAuth} />} />
+            <Route path="/register" element={<Register setAuth={setAuth} setAdmin={setAdmin} />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
           </Routes>
         </HashRouter>

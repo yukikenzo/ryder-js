@@ -11,7 +11,7 @@ export default function Cart({ setNotifyCart, products }) {
   const cartCollectionRef = collection(db, user);
   const [cart, setCart] = useState([]);
   const [subtotal, setSubtotal] = useState([{}]);
-  const [total, setTotal] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     const getSelected = async () => {
@@ -28,10 +28,9 @@ export default function Cart({ setNotifyCart, products }) {
       let sum = 0
       let quantity = 0
       subtotal.map((obj) => {
-        sum += obj.price
-        quantity += obj.quantity
+        return (sum += obj.price, quantity += obj.quantity)
       })
-      setTotal(sum)
+      setTotalPrice(sum)
       setNotifyCart(quantity)
     } catch (error) {
 
@@ -76,7 +75,7 @@ export default function Cart({ setNotifyCart, products }) {
           </div>
           <p style={{ margin: '70px 0 0 7vw' }}>Order Notes:</p>
           <div style={{ textAlign: 'right', marginRight: '7vw' }}>
-            <p style={{ display: 'inline' }}>Subtotal <p style={{ marginLeft: '15px', display: 'inline', fontSize: '20px' }}>${parseInt(total)}.00 USD</p></p>
+            <p style={{ display: 'inline' }}>Subtotal <p style={{ marginLeft: '15px', display: 'inline', fontSize: '20px' }}>${parseInt(totalPrice)}.00 USD</p></p>
             <p style={{ fontSize: '15px', marginTop: '20px' }}>Tax included. Shipping calculated at checkout.</p>
             <button className='chekOutButton'>Check out</button>
           </div>

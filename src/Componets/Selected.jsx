@@ -52,7 +52,7 @@ export default function Selected({ product, setSubtotal }) {
     if (increase && product.quantity + amount < 50) {
       setAmount(amount + 1)
     }
-    else if (increase == false) {
+    else if (increase === false) {
       setAmount(amount - 1)
     }
 

@@ -78,7 +78,7 @@ export default function Product({ setNotifyCart, products }) {
     if (docSnap.exists()) {
       q = docSnap.data().quantity + 1
     }
-    console.log(q)
+
     await setDoc(doc(db, user, product.id.toString()), {
       ...product, quantity: q
     })

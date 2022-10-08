@@ -35,14 +35,14 @@ export default function Recommended({ products }) {
     <div>
       <h1 className='recommendationContainer' style={style1}>You may also like</h1>
       <div className='recommendationContainer'>
-        {recommendedClothesData.map(rec => {
+        {recommendedClothesData.map(clothe => {
           return (
             <>
               <div className='rec_product_image'>
-                <img className='rec_default_image' src={rec.img1} alt="clothes" />
-                <img onClick={() => passState(rec.id, rec)} className='rec_alt_image' src={rec.img2} alt="link clothes" />
-                <p className='rec_clothes_name'>{rec.name}</p>
-                <h4 className='rec_clothes_price'>{'$' + rec.price + '.00'}</h4>
+                <img className='rec_default_image' src={clothe.img1} alt="clothes" />
+                <img onClick={() => passState(clothe.id, clothe)} className='rec_alt_image' src={clothe.img2} alt="link clothes" />
+                <p className='rec_clothes_name'>{clothe.name}</p>
+                <h4 className='rec_clothes_price'>{'$' + clothe.price + '.00'}</h4>
               </div>
             </>
           )
