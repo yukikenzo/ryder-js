@@ -82,23 +82,28 @@ export default function Register({ setAuth, setAdmin }) {
       }}></input>
 
       <p5></p5>
+
       <h6 style={{ margin: '40px 0 0 0' }}>Password</h6>
 
       <input type={'password'} className='password-input' onChange={event => {
         setRegisterPassword(event.target.value)
         clearWarning('password-input')
       }}></input>
+
       <p5></p5>
+
       <h6 style={{ margin: '40px 0 0 0' }}>Repeat Password</h6>
 
       <input type={'password'} className='repeat-password' style={{ width: "100%" }} onChange={event => {
         setRepeatPassword(event.target.value)
         clearWarning('repeat-password')
       }}></input>
+
       <p5></p5>
+
       <h5 className='error-message'></h5>
 
-      <button className='sign_button' style={{ display: "block", marginTop: '40px' }} onClick={register}> Create </button>
+      <button type='reset' className='sign_button' style={{ display: "block", marginTop: '40px' }} onClick={register}> Create </button>
 
       <p>
         <Link to='/login'>Sign In</Link>

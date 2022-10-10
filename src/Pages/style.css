@@ -142,7 +142,7 @@
     margin-bottom: 50px;
 }
 
-.login_header, .register_header{
+.login_header, .register_header {
     text-align: center;
     color: black;
     margin-bottom: 40px;
@@ -154,7 +154,7 @@
     width: 100%;
 }
 
-.sign_button{
+.sign_button {
     margin: auto;
     margin-bottom: 30px;
     width: 130px;
@@ -229,7 +229,7 @@
     color: red;
 }
 
-.productDescription{
+.productDescription {
     display: flex;
     flex-direction: column;
     padding-left: 3vw;
@@ -238,7 +238,7 @@
     justify-content: space-between;
 }
 
-.productDescription > *, .productDescription > div > * {
+.productDescription>*, .productDescription>div>* {
     border: none;
     outline: none;
 }
@@ -248,6 +248,7 @@
         width: 48%;
         height: 42vw;
     }
+
     .primaryImage {
         margin-right: 1.5vw !important;
     }
@@ -374,58 +375,93 @@ p5:not(#success) {
 
 .grid-container {
     display: grid;
+    align-items: center;
     grid-template-columns: 35vw 80px 145px auto;
     column-gap: 3vw;
     row-gap: 5px;
-    padding: 5px;
-    margin: 0 7vw 0 7vw;
+    margin: 0 8vw 0 7vw;
     font-size: 13px;
-  }
-  
-  .grid-container > div {
+}
+
+.grid-container>div {
     padding: 20px 0;
-  }
-  
-  .item1 {
+}
+
+.item1 {
     font-size: 40px;
     grid-column-start: 1;
     grid-column-end: 3;
     padding: 0 !important;
-  }
+}
 
-  .item2 {
+.item2 {
     grid-column-start: 3;
     grid-column-end: 5;
     text-align: end;
     font-size: 16px;
-  }
+}
 
-  .item3 {
+.item3 {
     text-align: start;
     overflow: hidden;
-  }
+}
 
-  .item4 {
+.item4 {
     text-align: end;
     overflow: hidden;
-  }
+}
 
-  .item5 {
+.item5 {
     text-align: start;
     overflow: hidden;
-  }
+}
 
-  .item6 {
+.item6 {
     text-align: end;
     overflow: hidden;
-  }
+}
 
-/* ------------------------------------------ */
-
-.chekOutButton{
+.checkOutButton {
     width: 300px;
     height: 40px;
     border: none;
     background-color: rgb(32, 37, 75);
     color: white;
 }
+
+.checkOutContainer{
+    text-align: right;
+    margin-Right: 7vw;
+    margin-top: 50px;
+}
+
+@media only screen and (max-width: 740px) {
+    .item6 {
+        display: none;
+    }
+    .grid-container {
+        grid-template-columns: 35vw 80px auto !important;
+        justify-content: space-between;
+    }
+    .item1 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .item2 {
+        grid-column-start: 3;
+        grid-column-end: 4;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .checkOutContainer{
+        text-align: center;
+        margin-Right: 0;
+    }
+    .item5 {
+        display: none;
+    }
+}
+
+/* ------------------------------------------ */
+

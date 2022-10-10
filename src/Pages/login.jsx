@@ -3,7 +3,6 @@ import { admin } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
 
-
 export default function Login({ isAuth, setAuth, setAdmin }) {
 
   const [loginEmail, setLoginEmail] = useState("");
@@ -18,7 +17,7 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
       setAuth(false);
       sessionStorage.removeItem('loggedIn', 'admin')
     }).catch((error) => {
-      alert(error)
+      void(0)
     });
   }
 
@@ -99,7 +98,7 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
 
           <h5 className='error-message'></h5>
 
-          <button className='sign_button' style={{ display: "block", marginTop: '30px' }} onClick={login} >Sign in</button>
+          <button type='reset' className='sign_button' style={{ display: "block", marginTop: '30px' }} onClick={login} >Sign in</button>
 
           <p>
             <Link className='register_link' to='/register'>Create Account</Link>

@@ -15,8 +15,6 @@ export default function Product({ setNotifyCart, products }) {
   const [price, setprice] = useState(product.price)
   const [details, setdetails] = useState(product.details)
 
-  document.documentElement.scrollTop = 0
-
   async function changeData() {
     const warning = document.getElementById('updateWarnings')
 
@@ -118,12 +116,14 @@ export default function Product({ setNotifyCart, products }) {
               <button className='addToCart' onClick={removeProduct}>Remove</button>
             </>
             : null
+            
           }
           <p id='updateWarnings'></p>
         </div>
 
       </div>
-      <Recommended products={products} />
+      {products.length == 0 ? void(0) : <Recommended products={products} />}
+
     </>
 
   )

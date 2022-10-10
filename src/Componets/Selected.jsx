@@ -22,7 +22,6 @@ export default function Selected({ product, setSubtotal }) {
       // Cart.js: setSubtotal(data.docs.map((doc) => ({ ...doc.id, price: doc.price}))), I couldn't change ...doc.id to id and it sets '0' by default
       
       subtotal.map(obj => {
-        console.log(subtotal)
         if (obj.id === product.id) {
 
           // parseInt(product.price) * (product.quantity+amount) parses int from server data and and multiplies to previous product quatity and quantity
@@ -81,7 +80,7 @@ export default function Selected({ product, setSubtotal }) {
         <button onClick={() => { changeAmount(true) }}>+</button>
       </div>
       <div className='selTotal'>
-        <h6>{'$' + (parseInt(product.price) * (product.quantity + amount)) + '.00'}</h6>
+        <h6 className='totalH6'>{'$' + (parseInt(product.price) * (product.quantity + amount)) + '.00'}</h6>
         <BiTrash onClick={remove} />
       </div>
     </div>

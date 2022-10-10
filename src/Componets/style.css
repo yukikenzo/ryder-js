@@ -19,7 +19,7 @@ body {
     overflow-x: hidden;
 }
 
-.ad-container > h1 {
+.ad-container>h1 {
     position: absolute;
     left: 0;
     font-size: 13px;
@@ -32,11 +32,11 @@ body {
 }
 
 @keyframes scroll {
-    0%{
+    0% {
         left: 100vw;
     }
 
-    100%{
+    100% {
         left: -50vw;
     }
 }
@@ -128,6 +128,7 @@ body {
         font-size: 30px;
         top: 60px;
     }
+
     .icons {
         justify-content: space-around;
         right: 3%;
@@ -189,6 +190,7 @@ body {
 .alt_image:hover {
     opacity: 100%;
     transform: scale(1.1);
+    transition-duration: 300ms;
 }
 
 .clothes_name {
@@ -220,37 +222,41 @@ body {
 
 /* ------------------------- Selected ------------------------- */
 
-.selContainer  {
+.selContainer {
     display: grid;
     align-items: center;
     grid-template-columns: 35vw 80px 145px auto;
     height: 160px !important;
     column-gap: 3vw;
     row-gap: 5px;
-    border: none;
-  }
+    border: 2px groove;
+    border-left: none;
+    border-right: none;
+    margin: 0 8vw 0 7vw;
+    overflow: hidden;
+}
 
-  .selQuantity>* {
+.selQuantity>* {
     display: inline;
     font-size: 15px;
     border: none;
     background-color: transparent;
-  }
+}
 
-  .selTitles {
+.selTitles {
     display: flex;
     align-content: center;
     justify-content: center;
-  }
-  
-  .selPhoto  {
+}
+
+.selPhoto {
     height: 100px;
     width: 100px;
     display: inline;
     object-fit: cover;
-  }
-  
-  .selName  {
+}
+
+.selName {
     margin-left: 10px;
     display: inline-block;
     cursor: pointer;
@@ -259,35 +265,58 @@ body {
     align-items: center;
     word-wrap: break-word;
     overflow: hidden;
-  }
+}
 
-  .selName:hover {
+.selName:hover {
     text-decoration: underline;
 }
-  
-  .selQuantity  {
+
+.selQuantity {
     border: 2px groove;
-    margin: 0 120px 0 0;
     width: 140px;
     height: 45px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-  }
-  
-  .selTotal, .selPrice {
+}
+
+.selTotal, .selPrice {
     margin-left: 0;
     margin-right: 0;
     direction: rtl;
-  }
-  
-  @media only screen and (max-width: 650px) {
-    .selContainer  {
-        grid-template-columns: 25% 25% 25% 25%;
-        grid-template-rows: 50% 50%;
+}
+
+@media only screen and (max-width: 740px) {
+    .selTotal {
+        grid-column-start: 2;
+        text-align: center;
     }
-    .selQuantity  {
-        grid-column: 2 / 3;
+
+    .totalH6 {
+        display: none;
+    }
+
+    .selContainer {
+        grid-template-columns: 35vw 80px auto;
+        justify-content: space-between;
+        column-gap: 3vw;
+        row-gap: 0;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .selContainer {
+        grid-template-columns: 60vw auto;
+    }
+
+    .selQuantity {
+        grid-column-start: 1;
+        justify-self: end;
+
+    }
+
+    .selName {
+        width: calc(60vw - 115px);
     }
 }
 
@@ -346,12 +375,12 @@ body {
         margin-left: 0;
         margin-top: -45vw;
     }
+
     .rec_product_image {
         min-width: 200px;
     }
-    
+
     .rec_product_image>img {
         min-width: 200px;
     }
 }
-

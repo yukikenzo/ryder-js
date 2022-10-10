@@ -1,23 +1,23 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
-import Treadmill from './Componets/Treadmill'
 import Navbar from './Componets/Navbar'
 import Footer from './Componets/Footer'
+import Treadmill from './Componets/Treadmill'
 
-import Home from "./Pages/Home";
-import Cart from "./Pages/Cart";
-import Collections from "./Pages/Collections";
-import Login from "./Pages/Login"
-import Register from './Pages/Register';
-import ForgotPassword from './Pages/ForgotPassword';
-import AddProduct from './Pages/AddProduct';
+import Home from './Pages/Home';
+import Cart from './Pages/Cart';
+import Login from './Pages/Login'
 import Product from './Pages/Product';
+import Register from './Pages/Register';
+import AddProduct from './Pages/AddProduct';
+import Collections from './Pages/Collections';
+import ForgotPassword from './Pages/ForgotPassword';
 
 import './Pages/style.css';
 
-import { HashRouter, Route, Routes } from 'react-router-dom';
 import ProtectedRoutes from "./ProtectedRoutes";
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import { db } from './firebase-config'
 import { collection, getDocs } from "firebase/firestore"
@@ -46,16 +46,15 @@ export default function App() {
             <Route exact path="/" element={<Home />} />
             <Route element={<ProtectedRoutes isAuth={isAuth} />}>
               <Route exact path="/collections" element={< Collections products={clotheArray} />} />
-              <Route path="/cart" element={<Cart setNotifyCart={setNotifyCart} products={clotheArray} />} />
+              <Route path="/cart" element={<Cart products={clotheArray} />} />
               <Route path="/addproduct" element={<AddProduct  />} />
-              <Route path="/product/:id" element={<Product products = {clotheArray} setNotifyCart={setNotifyCart} />} />
+              <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} products={clotheArray} />} />
             </Route>
             <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
             <Route path="/register" element={<Register setAuth={setAuth} setAdmin={setAdmin} />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
           </Routes>
         </HashRouter>
-
         <Footer />
       </div>
   );
