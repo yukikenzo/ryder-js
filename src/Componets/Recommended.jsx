@@ -44,8 +44,9 @@ export default function Recommended({ products }) {
           return (
             <>
               <div className='rec_product_image'>
-                <img className='rec_default_image' src={clothe.img1} alt="clothes" />
-                <img onClick={() => passState(clothe.id, clothe)} className='rec_alt_image' src={clothe.img2} alt="link clothes" />
+                <div className='rec_defalut_image_container'>
+                <img onClick={() => passState(clothe.id, clothe)} className='rec_default_image' src={clothe.img1} alt="clothes" />
+                </div>
                 <p className='rec_clothes_name'>{clothe.name}</p>
                 <h4 className='rec_clothes_price'>{'$' + clothe.price + '.00'}</h4>
               </div>

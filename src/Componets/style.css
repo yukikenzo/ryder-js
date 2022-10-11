@@ -188,7 +188,6 @@ body {
 }
 
 .alt_image:hover {
-    opacity: 100%;
     transform: scale(1.1);
     transition-duration: 300ms;
 }
@@ -329,25 +328,23 @@ body {
 
 .rec_product_image {
     width: 20vw;
-    overflow: hidden;
     z-index: 4;
 }
 
-.rec_product_image>img {
+.rec_defalut_image_container {
+    width: inherit;
+    overflow: hidden;
+}
+
+.rec_default_image {
     width: inherit;
     object-fit: cover;
     margin-bottom: 1vw;
-}
-
-.rec_alt_image {
-    margin-top: -5vw;
-    margin-left: -21vw;
     transition-duration: 300ms;
 }
 
-.rec_alt_image:hover {
-    opacity: 100%;
-    transform: scale(1.1);
+.rec_default_image:hover {
+    transform: scale(1.3);
 }
 
 .rec_clothes_name {
