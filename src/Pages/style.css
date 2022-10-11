@@ -379,7 +379,7 @@ p5:not(#success) {
     grid-template-columns: 35vw 80px 145px auto;
     column-gap: 3vw;
     row-gap: 5px;
-    margin: 0 8vw 0 7vw;
+    width: 100%;
     font-size: 13px;
 }
 
@@ -431,7 +431,6 @@ p5:not(#success) {
 
 .checkOutContainer{
     text-align: right;
-    margin-Right: 7vw;
     margin-top: 50px;
 }
 

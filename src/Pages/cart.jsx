@@ -6,7 +6,7 @@ import Selected from '../Componets/Selected'
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config'
 
-export default function Cart({ products }) {
+export default function Cart({ products, setNotifyCart }) {
   const user = sessionStorage.getItem('loggedIn');
   const cartCollectionRef = collection(db, user);
   const [cart, setCart] = useState([]);
@@ -31,7 +31,7 @@ export default function Cart({ products }) {
         return (sum += obj.price, quantity += obj.quantity)
       })
       setTotalPrice(sum)
-      // setNotifyCart(quantity)
+      setNotifyCart(quantity)
     } catch (error) {
 
     }
@@ -59,30 +59,33 @@ export default function Cart({ products }) {
           <Link to={'/collections'}>Continue shopping</Link>
         </div>
         :
-        <>
-          <div>
-            <div className="grid-container">
-              <div className="item1">Your cart</div>
-              <div className="item2"><Link to={'/collections'}>Continue shopping</Link></div>
-              <div className="item3">PRODUCT</div>
-              <div className="item4">PRICE</div>
-              <div className="item5">QUANTITY</div>
-              <div className="item6">TOTAL:</div>
-            </div>
+
+        <div style={{ width: '90vw', margin: 'auto' }}>
+
+          <div className="grid-container">
+            <div className="item1">Your cart</div>
+            <div className="item2"><Link to={'/collections'}>Continue shopping</Link></div>
+            <div className="item3">PRODUCT</div>
+            <div className="item4">PRICE</div>
+            <div className="item5">QUANTITY</div>
+            <div className="item6">TOTAL:</div>
           </div>
 
-          {cart.map((product, index) => {
-            return <Selected product={product} setSubtotal={setSubtotal} subtotal={subtotal} />
-          })}
+          <div style={{ border: '2px groove', borderLeft: 'none', borderRight: 'none' }}>
+            {cart.map((product, index) => {
+              return <Selected product={product} setSubtotal={setSubtotal} subtotal={subtotal} />
+            })}
+          </div>
 
           <div className='checkOutContainer'>
             <p style={{ display: 'inline' }}>Subtotal <p style={{ marginLeft: '15px', display: 'inline', fontSize: '20px' }}>${parseInt(totalPrice)}.00 USD</p></p>
             <p style={{ fontSize: '15px', marginTop: '20px' }}>Tax included. Shipping calculated at checkout.</p>
             <button className='checkOutButton'>Check out</button>
           </div>
-        </>
+
+        </div>
       }
-      {products.length == 0 ? void(0) : <Recommended products={products} />}
+      {products.length == 0 ? void (0) : <Recommended products={products} />}
     </div>
   )
 }

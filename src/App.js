@@ -46,7 +46,7 @@ export default function App() {
             <Route exact path="/" element={<Home />} />
             <Route element={<ProtectedRoutes isAuth={isAuth} />}>
               <Route exact path="/collections" element={< Collections products={clotheArray} />} />
-              <Route path="/cart" element={<Cart products={clotheArray} />} />
+              <Route path="/cart" element={<Cart products={clotheArray} setNotifyCart={setNotifyCart} />} />
               <Route path="/addproduct" element={<AddProduct  />} />
               <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} products={clotheArray} />} />
             </Route>
