@@ -187,7 +187,7 @@ body {
     transition-duration: 300ms;
 }
 
-.default_image:hover, .alt_image {
+.alt_image:hover {
     opacity: 100%;
     transform: scale(1.1);
     transition-duration: 300ms;
@@ -229,7 +229,6 @@ body {
     height: 160px !important;
     column-gap: 3vw;
     row-gap: 5px;
-
     width: 100%;
     overflow: hidden;
 }
@@ -343,11 +342,10 @@ body {
 .rec_alt_image {
     margin-top: -5vw;
     margin-left: -21vw;
-    opacity: 0;
     transition-duration: 300ms;
 }
 
-.rec_default_image:hover ~ .rec_alt_image {
+.rec_alt_image:hover {
     opacity: 100%;
     transform: scale(1.1);
 }
