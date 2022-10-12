@@ -4,32 +4,32 @@
 - If you are using badges, add them here.
 
 ##  :beginner: About
-Add a detailed introduction about the project here, everything you want the reader to know.
+This project was developed by Kutman Eshenkulov
 
 ##  :wrench: Development
-If you want other people to contribute to this project, this is the section, make sure you always add this.
+Developed with JS, React
 
 ###  :file_folder: File Structure
-Add a file structure here with the basic details about files, below is an example.
 
 ```
 .
-├── assets
-│   ├── css
+├── src
+│   ├── Componets
 │   │   ├── index-ui.css
 │   │   └── rate-ui.css
-│   ├── images
+│   ├── Pages
 │   │   ├── icons
 │   │   │   ├── shrink-button.png
 │   │   │   └── umbrella.png
 │   │   ├── logo_144.png
 │   │   └── Untitled-1.psd
-│   └── javascript
-│       ├── index.js
-│       └── rate.js
-├── CNAME
-├── index.html
-├── rate.html
+│   ├── App.js
+│   ├── index.js
+|   ├──
+│   └── rate.js
+|
+├── package-lock.json
+├── package.json
 └── README.md
 ```
 
