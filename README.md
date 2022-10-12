@@ -15,18 +15,25 @@ Developed with JS, React
 .
 ├── src
 │   ├── Componets
-│   │   ├── index-ui.css
-│   │   └── rate-ui.css
+│   │   ├── Footer.js
+│   │   ├── Navbar.js
+│   │   ├── Products.jsx
+│   │   ├── Recemmended.jsx
+│   │   ├── Selected.jsx
+│   │   ├── style.css
+│   │   └── Treadmill.js
 │   ├── Pages
-│   │   ├── icons
-│   │   │   ├── shrink-button.png
-│   │   │   └── umbrella.png
-│   │   ├── logo_144.png
-│   │   └── Untitled-1.psd
+│   │   ├── AddProduct.jsx
+│   │   ├── Cart.jsx
+│   │   ├── Collections.jsx
+│   │   ├── ForgotPassword
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Product.jsx
+│   │   ├── Register.jsx
+│   │   └── style.css
 │   ├── App.js
-│   ├── index.js
-|   ├──
-│   └── rate.js
+│   └── index.js
 |
 ├── package-lock.json
 ├── package.json
