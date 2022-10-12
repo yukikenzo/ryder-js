@@ -328,6 +328,7 @@ body {
 
 .rec_product_image {
     width: 20vw;
+    min-width: 100px;
     z-index: 4;
 }
 
@@ -359,21 +360,8 @@ body {
 }
 
 
-@media only screen and (max-width: 770px) {
-    .rec_clothes_price {
-        margin-bottom: 20px;
-    }
-
-    .rec_alt_image {
-        margin-left: 0;
-        margin-top: -45vw;
-    }
-
+@media only screen and (max-width: 500px) {
     .rec_product_image {
-        min-width: 200px;
-    }
-
-    .rec_product_image>img {
-        min-width: 200px;
+        width: 40vw;
     }
 }

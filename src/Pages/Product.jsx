@@ -72,7 +72,12 @@ export default function Product({ setNotifyCart, products }) {
     const docSnap = await getDoc(docRef);
     document.querySelector('#myBtn').disabled = true;
     document.getElementById('myBtn').style.backgroundColor = "rgb(104, 110, 156)";
+
+    document.querySelector('.shop-link').style.top = '25px';
+    document.querySelector('.brand').style.top = '50px';
+    document.querySelector('.icons').style.top = '28px';
     setNotifyCart(prev => prev + 1);
+    
     if (docSnap.exists()) {
       q = docSnap.data().quantity + 1
     }
