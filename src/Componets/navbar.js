@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
 import { BiUser, BiShoppingBag } from 'react-icons/bi';
-import {BsPlusLg } from "react-icons/bs";
+import { BsPlusLg } from "react-icons/bs";
 
 
 const style1 = {
@@ -53,7 +53,7 @@ export default function Navbar({ isAdmin, notifyCart }) {
                     <Link to="/cart">
                         <BiShoppingBag className='main_icons' />
                     </Link>
-                    
+
                     {notifyCart <= 0 || notifyCart === isNaN
                         ? null
                         : <div style={style1}>

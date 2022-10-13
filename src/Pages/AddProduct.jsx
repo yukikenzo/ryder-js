@@ -35,7 +35,7 @@ export default function AddProduct() {
     for (let i = 0; i < 7; i++) {
       if (Object.values(data)[i] === '') {
         document.getElementById(i.toString()).innerHTML = 'Fill all fields!!';
-        document.getElementById(i.toString()+i.toString()).style.borderColor = 'red'
+        document.getElementById(i.toString() + i.toString()).style.borderColor = 'red'
         return;
       }
     }
@@ -70,7 +70,7 @@ export default function AddProduct() {
   function clearWarning(id, clue, value) {
     setData({ ...data, [`${clue}`]: value })
     document.getElementById(id).innerHTML = '';
-    document.getElementById(id+id).style.borderColor = 'rgb(118, 118, 118)'
+    document.getElementById(id + id).style.borderColor = 'rgb(118, 118, 118)'
   }
 
   return (

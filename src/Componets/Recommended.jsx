@@ -30,10 +30,10 @@ export default function Recommended({ products }) {
       state: rec
     })
     window.scroll({
-      top: 0, 
-      left: 0, 
-      behavior: 'smooth' 
-     });
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
   return (
@@ -45,7 +45,7 @@ export default function Recommended({ products }) {
             <>
               <div className='rec_product_image'>
                 <div className='rec_defalut_image_container'>
-                <img onClick={() => passState(clothe.id, clothe)} className='rec_default_image' src={clothe.img1} alt="clothes" />
+                  <img onClick={() => passState(clothe.id, clothe)} className='rec_default_image' src={clothe.img1} alt="clothes" />
                 </div>
                 <p className='rec_clothes_name'>{clothe.name}</p>
                 <h4 className='rec_clothes_price'>{'$' + clothe.price + '.00'}</h4>

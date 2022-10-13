@@ -429,7 +429,7 @@ p5:not(#success) {
     color: white;
 }
 
-.checkOutContainer{
+.checkOutContainer {
     text-align: right;
     margin-top: 50px;
 }
@@ -438,14 +438,17 @@ p5:not(#success) {
     .item6 {
         display: none;
     }
+
     .grid-container {
         grid-template-columns: 35vw 80px auto !important;
         justify-content: space-between;
     }
+
     .item1 {
         grid-column-start: 1;
         grid-column-end: 3;
     }
+
     .item2 {
         grid-column-start: 3;
         grid-column-end: 4;
@@ -453,14 +456,14 @@ p5:not(#success) {
 }
 
 @media only screen and (max-width: 540px) {
-    .checkOutContainer{
+    .checkOutContainer {
         text-align: center;
         margin-Right: 0;
     }
+
     .item5 {
         display: none;
     }
 }
 
 /* ------------------------------------------ */
-

@@ -18,14 +18,14 @@ export default function Footer() {
             <Col md={2} sm={2} className="col-4 text-center">
 
                 <h5>Call</h5>
-                <a href="tel:+996500225119"> <FaPhone/> </a>
+                <a href="tel:+996500225119"> <FaPhone /> </a>
 
             </Col>
 
             <Col md={2} sm={2} className="col-4 text-center">
 
                 <h5>Write</h5>
-                <a href="mailto:kutman.eshenkulov@alatoo.edu.kg"><FaEnvelope/></a>
+                <a href="mailto:kutman.eshenkulov@alatoo.edu.kg"><FaEnvelope /></a>
 
             </Col>
 

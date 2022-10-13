@@ -77,7 +77,7 @@ export default function Product({ setNotifyCart, products }) {
     document.querySelector('.brand').style.top = '50px';
     document.querySelector('.icons').style.top = '28px';
     setNotifyCart(prev => prev + 1);
-    
+
     if (docSnap.exists()) {
       q = docSnap.data().quantity + 1
     }
@@ -121,13 +121,13 @@ export default function Product({ setNotifyCart, products }) {
               <button className='addToCart' onClick={removeProduct}>Remove</button>
             </>
             : null
-            
+
           }
           <p id='updateWarnings'></p>
         </div>
 
       </div>
-      {products.length == 0 ? void(0) : <Recommended products={products} />}
+      {products.length == 0 ? void (0) : <Recommended products={products} />}
 
     </>
 

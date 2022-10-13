@@ -17,7 +17,7 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
       setAuth(false);
       sessionStorage.removeItem('loggedIn', 'admin')
     }).catch((error) => {
-      void(0)
+      void (0)
     });
   }
 
@@ -46,15 +46,15 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
         setAuth(true);
         navigate('/collections');
 
-        
+
         if (loginEmail === admin) {
           sessionStorage.setItem('admin', true)
           setAdmin(true);
         }
 
       } catch (err) {
-        
-        let error = err.code.toString().slice(5).replaceAll('-', ' ')+'!!'
+
+        let error = err.code.toString().slice(5).replaceAll('-', ' ') + '!!'
         document.querySelector(".error-message").innerHTML = error.charAt(0).toUpperCase() + error.slice(1);
       }
     }

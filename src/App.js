@@ -1,9 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 
-import Navbar from './Componets/Navbar'
-import Footer from './Componets/Footer'
-import Treadmill from './Componets/Treadmill'
+import Navbar from './Componets/Navbar';
+import Footer from './Componets/Footer';
+import Treadmill from './Componets/Treadmill';
 
 import Home from './Pages/Home';
 import Cart from './Pages/Cart';
@@ -16,11 +16,11 @@ import ForgotPassword from './Pages/ForgotPassword';
 
 import './Pages/style.css';
 
-import ProtectedRoutes from "./ProtectedRoutes";
+import ProtectedRoutes from './ProtectedRoutes';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
-import { db } from './firebase-config'
-import { collection, getDocs } from "firebase/firestore"
+import { db } from './firebase-config';
+import { collection, getDocs } from 'firebase/firestore';
 
 export default function App() {
   const [clotheArray, setClotheArray] = useState([]);
@@ -38,24 +38,24 @@ export default function App() {
   }, [])
 
   return (
-      <div className="App">
-        <Treadmill />
-        <HashRouter>
-          <Navbar notifyCart={notifyCart} isAdmin={isAdmin} />
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route element={<ProtectedRoutes isAuth={isAuth} />}>
-              <Route exact path="/collections" element={< Collections products={clotheArray} />} />
-              <Route path="/cart" element={<Cart products={clotheArray} setNotifyCart={setNotifyCart} />} />
-              <Route path="/addproduct" element={<AddProduct  />} />
-              <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} products={clotheArray} />} />
-            </Route>
-            <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
-            <Route path="/register" element={<Register setAuth={setAuth} setAdmin={setAdmin} />} />
-            <Route path="/forgotpassword" element={<ForgotPassword />} />
-          </Routes>
-        </HashRouter>
-        <Footer />
-      </div>
+    <div className="App">
+      <Treadmill />
+      <HashRouter>
+        <Navbar notifyCart={notifyCart} isAdmin={isAdmin} />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route element={<ProtectedRoutes isAuth={isAuth} />}>
+            <Route exact path="/collections" element={< Collections products={clotheArray} />} />
+            <Route path="/cart" element={<Cart products={clotheArray} setNotifyCart={setNotifyCart} />} />
+            <Route path="/addproduct" element={<AddProduct />} />
+            <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} products={clotheArray} />} />
+          </Route>
+          <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
+          <Route path="/register" element={<Register setAuth={setAuth} setAdmin={setAdmin} />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+        </Routes>
+      </HashRouter>
+      <Footer />
+    </div>
   );
 }
