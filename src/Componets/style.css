@@ -189,6 +189,7 @@ body {
 
 .alt_image:hover {
     transform: scale(1.1);
+    opacity: 100;
     transition-duration: 300ms;
 }
 
@@ -254,11 +255,12 @@ body {
 
 .selName {
     margin-left: 10px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
     width: calc(35vw - 115px);
     height: 100px;
-    align-items: center;
+    margin-top: auto;
     word-wrap: break-word;
     overflow: hidden;
 }
@@ -286,6 +288,7 @@ body {
     .selTotal {
         grid-column-start: 2;
         text-align: center;
+        margin-bottom: 30px;
     }
 
     .totalH6 {
@@ -307,7 +310,7 @@ body {
 
     .selQuantity {
         grid-column-start: 1;
-        justify-self: end;
+        margin: 0 0 15px 115px;
 
     }
 
