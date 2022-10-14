@@ -44,14 +44,12 @@ Developed with JS, React
 |----|------------|-------|
 | 1  | index | Entry point
 
-###  :hammer: Build
-Write the build Instruction here.
-
  ###  :fire: Contribution
 
  Your contributions are always welcome and appreciated. Following are the things you can do to contribute to this project.
 
 **Report a bug** <br>
- If you think you have encountered a bug, and I should know about it, feel free to report it [here]() and I will take care of it.
+ If you think you have encountered a bug, and I should know about it, feel free to report it [here](https://t.me/kut_man) and I will take care of it.
 
-- This website is not original page of Ryder, it was developed only for education purposes. Original website is: [https://ryderlabel.com/]
+
+- This website is not original page of Ryder, it was developed only for education purposes. Original website is [here](https://ryderlabel.com/)
