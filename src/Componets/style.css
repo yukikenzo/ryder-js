@@ -174,14 +174,18 @@ body {
     overflow: hidden;
 }
 
-.product_image>img {
+.product_image_container {
+    width: inherit;
+    overflow: hidden;
+}
+
+.product_image_container>img {
     width: inherit;
     object-fit: cover;
     margin-bottom: 1vw;
 }
 
 .alt_image {
-    margin-top: -8vw;
     margin-left: -30vw;
     opacity: 0;
     transition-duration: 300ms;
