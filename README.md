@@ -48,4 +48,4 @@ Developed with JS, React
  If you think you have encountered a bug, and I should know about it, feel free to report it [here](https://t.me/kut_man) and I will take care of it.
 
 
-# This website is not original page of Ryder, it was developed only for education purposes. Original website is [here](https://ryderlabel.com/)
+## This website is not original page of Ryder, it was developed only for education purposes. Original website is [here.](https://ryderlabel.com/)
