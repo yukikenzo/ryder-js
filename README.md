@@ -1,7 +1,7 @@
 ##  :beginner: About
 - This project was developed by Kutman Eshenkulov
 - Ryder is online woman clothing shop
-- Website deployed in <a href="https://kut-man.github.io/ryder/" target="_blank">Github Pages</a>
+- Website deployed in <a href="https://kut-man.github.io/ryder/" target="_blank" rel="noopener">Github Pages</a>
 - If you want to get admin possiblites login as 'kutman.stel@gmail.com' password: 'kutman'
 ##  :wrench: Development
 Developed with JS, React.
