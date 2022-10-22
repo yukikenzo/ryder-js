@@ -22,6 +22,8 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import { db } from './firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
 
+import { Helmet } from 'react-helmet';
+
 export default function App() {
   const [clotheArray, setClotheArray] = useState([]);
   const [isAuth, setAuth] = useState(sessionStorage.getItem('loggedIn') ? true : false);
@@ -39,6 +41,9 @@ export default function App() {
 
   return (
     <div className="App">
+      <Helmet>
+        <meta name="google-site-verification" content="mZBPrtmfgey5fRd6rubg8jUy5Lt8a8-y51CIkK4d5Zk" />
+      </Helmet>
       <Treadmill />
       <HashRouter>
         <Navbar notifyCart={notifyCart} isAdmin={isAdmin} />

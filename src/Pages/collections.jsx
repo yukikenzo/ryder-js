@@ -17,8 +17,8 @@ export default function Collections({ products }) {
       </div>
 
       <div className='product_container'>
-        {products.map((product) => {
-          return < Product product={product} />
+        {products.map((product, index) => {
+          return < Product product={product} key={index.toString()} />
         })}
       </div>
     </>

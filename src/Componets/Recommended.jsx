@@ -40,17 +40,15 @@ export default function Recommended({ products }) {
     <div>
       <h1 className='recommendationContainer' style={style1}>You may also like</h1>
       <div className='recommendationContainer'>
-        {recommendedClothesData.map(clothe => {
+        {recommendedClothesData.map((clothe, index) => {
           return (
-            <>
-              <div className='rec_product_image'>
-                <div className='rec_defalut_image_container'>
-                  <img onClick={() => passState(clothe.id, clothe)} className='rec_default_image' src={clothe.img1} alt="clothes" />
-                </div>
-                <p className='rec_clothes_name'>{clothe.name}</p>
-                <h4 className='rec_clothes_price'>{'$' + clothe.price + '.00'}</h4>
+            <div className='rec_product_image' key={index.toString()}>
+              <div className='rec_defalut_image_container'>
+                <img onClick={() => passState(clothe.id, clothe)} className='rec_default_image' src={clothe.img1} alt="clothes" />
               </div>
-            </>
+              <p className='rec_clothes_name'>{clothe.name}</p>
+              <h4 className='rec_clothes_price'>{'$' + clothe.price + '.00'}</h4>
+            </div>
           )
         })}
       </div>
