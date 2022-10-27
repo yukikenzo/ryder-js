@@ -45,7 +45,7 @@ export default function Navbar({ isAdmin, notifyCart }) {
                 <div className='icons'>
 
                     {isAdmin
-                        ? <Link to="/addproduct"> <BsPlusLg className='x_icons' /> </Link>
+                        ? <Link to="/addproduct"> <BsPlusLg className='add_icon' /> </Link>
                         : null
                     }
 

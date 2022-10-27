@@ -19,10 +19,10 @@ export default function Products({ product }) {
 
   return (
     <>
-      <div className='product_image'>
-        <div className='product_image_container'>
-          <img className='default_image' src={product.img1} alt="clothes" />
-          <img onClick={passState} className='alt_image' src={product.img2} alt="link clothes" />
+      <div className='clothes_img'>
+        <div className='clothes_img_container'>
+          <img className='clothes_default_img' src={product.img1} alt="clothes" />
+          <img onClick={passState} className='clothes_alt_img' src={product.img2} alt="link clothes" />
         </div>
         <p className='clothes_name'>{product.name}</p>
         <h4 className='clothes_price'>{'$' + product.price + '.00'}</h4>

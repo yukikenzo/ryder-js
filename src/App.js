@@ -26,7 +26,7 @@ export default function App() {
   const [clotheArray, setClotheArray] = useState([]);
   const [isAuth, setAuth] = useState(sessionStorage.getItem('loggedIn') ? true : false);
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
-  const [notifyCart, setNotifyCart] = useState(0)  // cart products quality. it will pop when user adds product to cart.
+  const [notifyCart, setNotifyCart] = useState(0)
   const productsCollectionRef = collection(db, 'products');
 
   useEffect(() => {

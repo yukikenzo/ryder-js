@@ -20,6 +20,8 @@ export default function AddProduct() {
     img4: ""
   })
 
+
+
   useEffect(() => {
     const getLast = async () => {
 
@@ -29,9 +31,11 @@ export default function AddProduct() {
       });
     };
     getLast();
+
   }, data)
 
   async function submitData() {
+
     for (let i = 0; i < 7; i++) {
       if (Object.values(data)[i] === '') {
         document.getElementById(i.toString()).innerHTML = 'Fill all fields!!';

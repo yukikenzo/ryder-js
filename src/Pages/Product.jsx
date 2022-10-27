@@ -62,8 +62,8 @@ export default function Product({ setNotifyCart, products }) {
     }
     else {
       changeData()
-      toggler = true;
     }
+    
   }
 
   async function addCart() {

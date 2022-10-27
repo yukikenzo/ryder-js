@@ -76,7 +76,7 @@ export default function Register({ setAuth, setAdmin }) {
 
       <h6 style={{ margin: '0' }}>Email</h6>
 
-      <input type={'email'} className='login-email' style={{ width: "100%" }} onChange={event => {
+      <input value={registerEmail} type={'email'} className='login-email' style={{ width: "100%" }} onChange={event => {
         setRegisterEmail(event.target.value)
         clearWarning('login-email')
       }}></input>
@@ -85,7 +85,7 @@ export default function Register({ setAuth, setAdmin }) {
 
       <h6 style={{ margin: '40px 0 0 0' }}>Password</h6>
 
-      <input type={'password'} className='password-input' onChange={event => {
+      <input value={registerPassword} type={'password'} className='password-input' onChange={event => {
         setRegisterPassword(event.target.value)
         clearWarning('password-input')
       }}></input>
@@ -94,7 +94,7 @@ export default function Register({ setAuth, setAdmin }) {
 
       <h6 style={{ margin: '40px 0 0 0' }}>Repeat Password</h6>
 
-      <input type={'password'} className='repeat-password' style={{ width: "100%" }} onChange={event => {
+      <input value={repeatPassword} type={'password'} className='repeat-password' style={{ width: "100%" }} onChange={event => {
         setRepeatPassword(event.target.value)
         clearWarning('repeat-password')
       }}></input>

@@ -23,13 +23,13 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
 
   const login = async () => {
     if (loginEmail == '') {
-      document.querySelector('.contact-form>.login-email+p5').innerHTML = 'Fill all fields!!';
-      document.querySelector('.contact-form>.login-email').style.borderColor = 'red'
+      document.querySelector('.login-form>.login-email+p5').innerHTML = 'Fill all fields!!';
+      document.querySelector('.login-form>.login-email').style.borderColor = 'red'
     }
 
     else if (loginPassword == '') {
-      document.querySelector('.contact-form>.password-input+p5').innerHTML = 'Fill all fields!!';
-      document.querySelector('.contact-form>.password-input').style.borderColor = 'red'
+      document.querySelector('.login-form>.password-input+p5').innerHTML = 'Fill all fields!!';
+      document.querySelector('.login-form>.password-input').style.borderColor = 'red'
     }
 
     else {
@@ -61,7 +61,7 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
   }
 
   function clearWarning(inputBorder) {
-    document.querySelector(`.contact-form>.${inputBorder}+p5`).innerHTML = '';
+    document.querySelector(`.login-form>.${inputBorder}+p5`).innerHTML = '';
     document.querySelector(`.${inputBorder}`).style.borderColor = 'rgb(118, 118, 118)'
   }
 
@@ -74,13 +74,13 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
         </div>
 
         :
-        <div className="contact-form">
+        <div className="login-form">
 
           <h1 className='login_header'>Login</h1>
 
           <h6 style={{ margin: '0' }}>Email</h6>
 
-          <input type={'email'} className='login-email' onChange={event => {
+          <input value={loginEmail} type={'email'} className='login-email' onChange={event => {
             setLoginEmail(event.target.value)
             clearWarning('login-email')
           }}></input>
@@ -88,7 +88,7 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
 
           <h6 style={{ margin: '40px 0 0 0' }}>Password</h6>
 
-          <input type={'password'} className='password-input' style={{ width: "100%" }} onChange={event => {
+          <input value={loginPassword} type={'password'} className='password-input' style={{ width: "100%" }} onChange={event => {
             setLoginPassword(event.target.value)
             clearWarning('password-input')
           }}></input>

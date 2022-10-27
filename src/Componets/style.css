@@ -113,13 +113,13 @@ body {
     outline: none;
 }
 
-.x_icons {
+.add_icon{
     color: black;
     font-size: 17px;
     margin: 0 0.7vw 0 0.7vw;
 }
 
-.x_icons:hover {
+.add_icon:hover {
     font-size: 18px;
 }
 
@@ -169,29 +169,29 @@ body {
 
 /* ------------------------- Products ------------------------- */
 
-.product_image {
+.clothes_img {
     width: 30vw;
     overflow: hidden;
 }
 
-.product_image_container {
+.clothes_img_container {
     width: inherit;
     overflow: hidden;
 }
 
-.product_image_container>img {
+.clothes_img_container>img {
     width: inherit;
     object-fit: cover;
     margin-bottom: 1vw;
 }
 
-.alt_image {
+.clothes_alt_img {
     margin-left: -30vw;
     opacity: 0;
     transition-duration: 300ms;
 }
 
-.alt_image:hover {
+.clothes_alt_img:hover {
     transform: scale(1.1);
     opacity: 100;
     transition-duration: 300ms;
@@ -214,12 +214,12 @@ body {
         margin-bottom: 20px;
     }
 
-    .alt_image {
+    .clothes_alt_img {
         margin-left: 0;
         margin-top: -45vw;
     }
 
-    .product_image>img {
+    .clothes_img>img {
         height: 40vw;
     }
 }
@@ -333,42 +333,41 @@ body {
     margin: auto;
 }
 
-.rec_product_image {
+.product_image {
     width: 20vw;
     min-width: 100px;
     z-index: 4;
 }
 
-.rec_defalut_image_container {
+.defalut_image_container {
     width: inherit;
     overflow: hidden;
 }
 
-.rec_default_image {
+.default_image {
     width: inherit;
     object-fit: cover;
     margin-bottom: 1vw;
     transition-duration: 300ms;
 }
 
-.rec_default_image:hover {
+.default_image:hover {
     transform: scale(1.3);
 }
 
-.rec_clothes_name {
+.clothes_name {
     font-size: 80%;
     margin: 0 0 10px 0;
 }
 
-.rec_clothes_price {
+.clothes_price {
     font-size: 90%;
     font-weight: 300;
     margin-bottom: 50px;
 }
 
-
 @media only screen and (max-width: 500px) {
-    .rec_product_image {
+    .product_image {
         width: 40vw;
     }
 }

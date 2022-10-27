@@ -13,7 +13,7 @@ export default function Collections({ products }) {
     <>
       <div id='searchContainer'>
         <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className='searchInput' placeholder='Search Product' type="text" />
-        <button onClick={() => setSearchQuery('')}> <BsXLg className='x_icons' /> </button>
+        <button onClick={() => setSearchQuery('')}> <BsXLg className='clear_search_icon' /> </button>
       </div>
 
       <div className='product_container'>

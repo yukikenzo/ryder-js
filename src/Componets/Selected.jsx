@@ -66,23 +66,28 @@ export default function Selected({ product, setSubtotal }) {
 
   return (
     <div className='selContainer'>
+
       <div className='selTitles'>
         <img className='selPhoto' src={product.img1} alt="" />
         <div onClick={passState} className='selName'>{product.name}</div>
       </div>
+
       <div className='selPrice'>
         <h6 style={{ textDecoration: 'line-through', color: 'gray', textDecorationColor: 'black', textDecorationThickness: '1px' }}>{'$' + (parseInt(product.price) + 10) + '.00'}</h6>
         <h6>{'$' + product.price + '.00'}</h6>
       </div>
+
       <div className='selQuantity'>
         <button onClick={() => { changeAmount(false) }}>-</button>
         <h6 style={{ marginTop: '9px' }}>{product.quantity + amount}</h6>
         <button onClick={() => { changeAmount(true) }}>+</button>
       </div>
+
       <div className='selTotal'>
         <h6 className='totalH6'>{'$' + (parseInt(product.price) * (product.quantity + amount)) + '.00'}</h6>
         <BiTrash onClick={remove} />
       </div>
+      
     </div>
   )
 }
