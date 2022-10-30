@@ -2,16 +2,16 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-const style = {
+const h1style = {
   fontSize: '20px',
   display: 'block',
+  width: '85vw',
+  margin: 'auto',
   marginTop: '80px',
   marginBottom: '50px',
-  width: '85vw',
-  margin: 'auto'
 }
 
-export default function Recommended({ products }) {
+export default function Recommended({ products, editable }) {
   let recommendedClothesData = [];
   let randomId = [];
   while (randomId.length < 4) {
@@ -27,20 +27,25 @@ export default function Recommended({ products }) {
 
   const navigate = useNavigate();
 
-  function passState(id, rec) {
+  function passState(id, clothe) {
+    try {
+      editable(true, 'Edit')
+    } catch (error) {
+      
+    }
+    
     navigate(`/product/${id}`, {
-      state: rec
+      state: clothe
     })
     window.scroll({
       top: 0,
-      left: 0,
-      behavior: 'smooth'
+      left: 0
     });
   }
 
   return (
     <div>
-      <h1 style={style}>You may also like</h1>
+      <h1 style={h1style}>You may also like</h1>
       <div className='recommendationContainer'>
         {recommendedClothesData.map((clothe, index) => {
           return (

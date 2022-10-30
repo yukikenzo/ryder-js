@@ -22,12 +22,12 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
   }
 
   const login = async () => {
-    if (loginEmail == '') {
+    if (loginEmail === '') {
       document.querySelector('.login-form>.login-email+p5').innerHTML = 'Fill all fields!!';
       document.querySelector('.login-form>.login-email').style.borderColor = 'red'
     }
 
-    else if (loginPassword == '') {
+    else if (loginPassword === '') {
       document.querySelector('.login-form>.password-input+p5').innerHTML = 'Fill all fields!!';
       document.querySelector('.login-form>.password-input').style.borderColor = 'red'
     }

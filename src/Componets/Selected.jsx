@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { BiTrash } from 'react-icons/bi';
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
@@ -26,7 +25,7 @@ export default function Selected({ product, setSubtotal }) {
 
           // parseInt(product.price) * (product.quantity+amount) parses int from server data and and multiplies to previous product quatity and quantity
           // added now. You cannot multyply directly to product quandity because to do that you should fetch data every time when there is change in quantity.
-          // Therefore I save added or reduced amount localy and silultainiously send them to server. In this way there is no need to wait everytime fo answer of serwer.
+          // Therefore I save added or reduced amount localy and silultainiously send them to server. In this way there is no need to wait everytime for the answer of serwer.
           return { ...obj, price: parseInt(product.price) * (product.quantity + amount), quantity: product.quantity + amount };
         }
         return obj;

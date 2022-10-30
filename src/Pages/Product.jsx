@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
@@ -18,14 +17,14 @@ export default function Product({ setNotifyCart, products }) {
   async function changeData() {
     const warning = document.getElementById('updateWarnings')
 
-    if (price !== '' && name !== '' && details !== '') {
+    if (price && name && details !== '') {
       if (details.length < 50) {
         warning.style.color = 'red';
         warning.innerHTML = 'Details should be well described!';
       }
-      if (isNaN(price)) {
+      if (price < 1) {
         warning.style.color = 'red';
-        warning.innerHTML = 'Price should be integer';
+        warning.innerHTML = 'Invalid Price';
       }
       else {
         product.name = name;
@@ -63,7 +62,7 @@ export default function Product({ setNotifyCart, products }) {
     else {
       changeData()
     }
-    
+
   }
 
   async function addCart() {
@@ -109,7 +108,7 @@ export default function Product({ setNotifyCart, products }) {
           <input id="name1" readOnly onChange={event => setname(event.target.value)} value={name} />
           <div>
             <p style={{ display: 'inline', fontSize: '20px' }}>$</p>
-            <input id="price1" readOnly onChange={event => setprice(event.target.value)} value={price} />
+            <input id="price1" readOnly onChange={event => setprice(event.target.value)} type="number" value={price} />
           </div>
           <button id='myBtn' onClick={addCart} className='addToCart'>Add to cart</button>
           <h4 className='detailsHeader'>Details</h4>
@@ -127,7 +126,7 @@ export default function Product({ setNotifyCart, products }) {
         </div>
 
       </div>
-      {products.length == 0 ? void (0) : <Recommended products={products} />}
+      {products.length === 0 ? void (0) : <Recommended editable = {editable} products={products} />}
 
     </>
 

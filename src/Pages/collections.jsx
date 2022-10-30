@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Product from "../Componets/Products"
 import { BsXLg } from "react-icons/bs";
-import { useState } from 'react';
 
 export default function Collections({ products }) {
 

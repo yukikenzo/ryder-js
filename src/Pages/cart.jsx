@@ -1,10 +1,9 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import Recommended from '../Componets/Recommended'
-import Selected from '../Componets/Selected'
-import { collection, getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from 'react'
 import { db } from '../firebase-config'
+import { Link } from 'react-router-dom'
+import Selected from '../Componets/Selected'
+import Recommended from '../Componets/Recommended'
+import { collection, getDocs } from "firebase/firestore";
 
 export default function Cart({ products, setNotifyCart }) {
   const user = sessionStorage.getItem('loggedIn');
@@ -73,7 +72,7 @@ export default function Cart({ products, setNotifyCart }) {
 
           <div style={{ border: '2px groove', borderLeft: 'none', borderRight: 'none' }}>
             {cart.map((product, index) => {
-              return <Selected product={product} setSubtotal={setSubtotal} subtotal={subtotal} />
+              return <Selected key={index} product={product} setSubtotal={setSubtotal} subtotal={subtotal} />
             })}
           </div>
 
