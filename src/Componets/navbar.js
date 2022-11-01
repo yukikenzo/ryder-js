@@ -54,11 +54,13 @@ export default function Navbar({ isAdmin, notifyCart }) {
                         <BiShoppingBag className='main_icons' />
                     </Link>
 
-                    {notifyCart <= 0 || notifyCart === isNaN
-                        ? null
-                        : <div style={style1}>
+                    {notifyCart < 0
+                        ?
+                        <div style={style1}>
                             <p style={style2}>{notifyCart}</p>
                         </div>
+                        :
+                        null
                     }
 
                 </div>

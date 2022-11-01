@@ -14,24 +14,28 @@ const h1style = {
 export default function Recommended({ products, editable }) {
   let recommendedClothesData = [];
   let randomId = [];
-  while (randomId.length < 4) {
-    let random = Math.floor(Math.random() * products.length);
-    if (randomId.includes(random)) {
-      continue
+  console.log(products.length > 4)
+  if (products.length > 4){
+    while (randomId.length < 4) {
+      let random = Math.floor(Math.random() * products.length);
+      if (randomId.includes(random)) {
+        continue
+      }
+      else {
+        recommendedClothesData.push(products[random])
+        randomId.push(random);
+      }
     }
-    else {
-      recommendedClothesData.push(products[random])
-      randomId.push(random);
-    }
+  }
+  else {
+    recommendedClothesData.push(...products)
   }
 
   const navigate = useNavigate();
 
   function passState(id, clothe) {
-    try {
+    if(typeof editable === 'function') { // it may be undefined if componet was called in cart page
       editable(true, 'Edit')
-    } catch (error) {
-      
     }
     
     navigate(`/product/${id}`, {

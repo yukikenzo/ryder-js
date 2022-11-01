@@ -21,6 +21,8 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import { db } from './firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
 
+import ErrorBoundary from './ErrorBoundary';
+
 export default function App() {
   const [clotheArray, setClotheArray] = useState([]);
   const [isAuth, setAuth] = useState(sessionStorage.getItem('loggedIn') ? true : false);
@@ -41,18 +43,22 @@ export default function App() {
       <Treadmill />
       <HashRouter>
         <Navbar notifyCart={notifyCart} isAdmin={isAdmin} />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route element={<ProtectedRoutes isAuth={isAuth} />}>
-            <Route exact path="/collections" element={< Collections products={clotheArray} />} />
-            <Route path="/cart" element={<Cart products={clotheArray} setNotifyCart={setNotifyCart} />} />
-            <Route path="/addproduct" element={<AddProduct />} />
-            <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} products={clotheArray} />} />
-          </Route>
-          <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
-          <Route path="/register" element={<Register setAuth={setAuth} setAdmin={setAdmin} />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
-        </Routes>
+        <ErrorBoundary>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route element={<ProtectedRoutes isAuth={isAuth} />}>
+
+              <Route exact path="/collections" element={< Collections products={clotheArray} />} />
+              <Route path="/cart" element={<Cart products={clotheArray} setNotifyCart={setNotifyCart} />} />
+              <Route path="/addproduct" element={<AddProduct />} />
+              <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} products={clotheArray} />} />
+
+            </Route>
+            <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
+            <Route path="/register" element={<Register setAuth={setAuth} setAdmin={setAdmin} />} />
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
+          </Routes>
+        </ErrorBoundary>
       </HashRouter>
       <Footer />
     </div>

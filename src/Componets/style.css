@@ -288,6 +288,13 @@ body {
     direction: rtl;
 }
 
+.selPrice> h6:first-of-type {
+    text-decoration: line-through;
+    color: gray;
+    text-decoration-color: black;
+    text-decoration-thickness: 1px;
+  }
+
 @media only screen and (max-width: 740px) {
     .selTotal {
         grid-column-start: 2;

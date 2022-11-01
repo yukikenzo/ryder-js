@@ -23,18 +23,16 @@ export default function Cart({ products, setNotifyCart }) {
 
   useEffect(() => {
     //in case that subtotal is empty
-    try {
-      let sum = 0
-      let quantity = 0
+    let sum = 0
+    let quantity = 0
+
+    if (subtotal.length !== 0) {
       subtotal.map((obj) => {
         return (sum += obj.price, quantity += obj.quantity)
       })
       setTotalPrice(sum)
       setNotifyCart(quantity)
-    } catch (error) {
-
     }
-
   }, [subtotal])
 
   const style1 = {

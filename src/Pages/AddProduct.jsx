@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { doc, setDoc, query, orderBy, limit, collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config';
 
-let k = 1;
 export default function AddProduct() {
-
+  let k = 1;
   const citiesRef = collection(db, "products");
   const getLastProduct = query(citiesRef, orderBy("id", "desc"), limit(1));
 
@@ -18,16 +17,14 @@ export default function AddProduct() {
     img4: ""
   })
 
-  useEffect(() => {
-    const getLast = async () => {
-      const querySnapshot = await getDocs(getLastProduct);
-      querySnapshot.forEach((doc) => {
-        k = parseInt(doc.id) + 1;
-      });
-    };
-    getLast();
 
-  }, data)
+  const getLast = async () => {
+    const querySnapshot = await getDocs(getLastProduct);
+    querySnapshot.forEach((doc) => {
+      k = parseInt(doc.id) + 1;
+    });
+  };
+  getLast();
 
   async function submitData() {
     for (let i = 1; i < 8; i++) {
@@ -54,6 +51,8 @@ export default function AddProduct() {
       ...data, id: k
     })
 
+    k++;
+
     setData({
       name: "",
       price: "",
@@ -65,7 +64,7 @@ export default function AddProduct() {
     })
 
     document.getElementById('success').innerHTML = 'Success!!';
-    window.location.reload(false);
+    window.location.reload(false)
   }
 
   function clearWarning(e) {
