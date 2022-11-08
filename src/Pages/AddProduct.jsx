@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { doc, setDoc, query, orderBy, limit, collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config';
 
@@ -27,10 +27,10 @@ export default function AddProduct() {
   getLast();
 
   async function submitData() {
-    for (let i = 1; i < 8; i++) {
-      if (Object.values(data)[i - 1] === '') {
-        document.querySelector(`.addProduct .${Object.keys(data)[i - 1]} + p5`).innerHTML = 'Fill all fields!!';
-        document.querySelector(`.addProduct .${Object.keys(data)[i - 1]}`).style.borderColor = 'red'
+    for (let i = 0; i < 7; i++) {
+      if (Object.values(data)[i] === '') {
+        document.querySelector(`.addProduct .${Object.keys(data)[i]} + p5`).innerHTML = 'Fill all fields!!';
+        document.querySelector(`.addProduct .${Object.keys(data)[i]}`).style.borderColor = 'red'
         return;
       }
     }

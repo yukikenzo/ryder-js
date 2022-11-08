@@ -15,7 +15,6 @@ export default function Selected({ product, setSubtotal }) {
   const [amount, setAmount] = useState(0)
 
   useEffect(() => {
-    console.log("useEffect")
     setSubtotal(subtotal =>
       subtotal.map(obj => {
         if (obj.id === product.id) {
@@ -39,12 +38,11 @@ export default function Selected({ product, setSubtotal }) {
   }, [amount])
 
   function changeAmount(increase) {
-    console.log('setState')
     if (increase && product.quantity + amount < 50) {
-      setAmount(amount + 1)
+      setAmount(prev => ++prev)
     }
     else if (increase === false) {
-      setAmount(amount - 1)
+      setAmount(prev => --prev)
     }
   }
 

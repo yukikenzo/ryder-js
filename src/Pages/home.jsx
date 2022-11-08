@@ -42,8 +42,6 @@ export default function Home() {
         <input className='email-input' autoComplete='email' type="email" />
         <button className='sub-button'>Subscribe</button>
       </div>
-
-
     </div>
   )
 }

@@ -56,11 +56,11 @@ export default function Navbar({ isAdmin, notifyCart }) {
 
                     {notifyCart < 0
                         ?
+                        null
+                        :
                         <div style={style1}>
                             <p style={style2}>{notifyCart}</p>
                         </div>
-                        :
-                        null
                     }
 
                 </div>

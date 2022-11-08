@@ -14,8 +14,8 @@ const h1style = {
 export default function Recommended({ products, editable }) {
   let recommendedClothesData = [];
   let randomId = [];
-  console.log(products.length > 4)
-  if (products.length > 4){
+
+  if (products.length > 4) {
     while (randomId.length < 4) {
       let random = Math.floor(Math.random() * products.length);
       if (randomId.includes(random)) {
@@ -34,10 +34,10 @@ export default function Recommended({ products, editable }) {
   const navigate = useNavigate();
 
   function passState(id, clothe) {
-    if(typeof editable === 'function') { // it may be undefined if componet was called in cart page
+    if (typeof editable === 'function') { // it may be undefined if componet was called in cart page
       editable(true, 'Edit')
     }
-    
+
     navigate(`/product/${id}`, {
       state: clothe
     })
@@ -47,22 +47,22 @@ export default function Recommended({ products, editable }) {
     });
   }
 
-  return (
-    <div>
-      <h1 style={h1style}>You may also like</h1>
-      <div className='recommendationContainer'>
-        {recommendedClothesData.map((clothe, index) => {
-          return (
-            <div className='product_image' key={index.toString()}>
-              <div className='defalut_image_container'>
-                <img onClick={() => passState(clothe.id, clothe)} className='default_image' src={clothe.img1} alt="clothes" />
-              </div>
-              <p className='clothes_name'>{clothe.name}</p>
-              <h4 className='clothes_price'>{'$' + clothe.price + '.00'}</h4>
+return (
+  <div>
+    <h1 style={h1style}>You may also like</h1>
+    <div className='recommendationContainer'>
+      {recommendedClothesData.map((clothe, index) => {
+        return (
+          <div className='product_image' key={index.toString()}>
+            <div className='defalut_image_container'>
+              <img onClick={() => passState(clothe.id, clothe)} className='default_image' src={clothe.img1} alt="clothes" />
             </div>
-          )
-        })}
-      </div>
+            <p className='clothes_name'>{clothe.name}</p>
+            <h4 className='clothes_price'>{'$' + clothe.price + '.00'}</h4>
+          </div>
+        )
+      })}
     </div>
-  )
+  </div>
+)
 }
