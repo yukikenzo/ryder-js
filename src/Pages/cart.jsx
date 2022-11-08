@@ -82,7 +82,7 @@ export default function Cart({ products, setNotifyCart }) {
 
         </div>
       }
-      {products.length == 0 ? void (0) : <Recommended products={products} />}
+      {products.length === 0 ? void (0) : <Recommended products={products} />}
     </div>
   )
 }

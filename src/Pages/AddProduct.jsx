@@ -17,7 +17,6 @@ export default function AddProduct() {
     img4: ""
   })
 
-
   const getLast = async () => {
     const querySnapshot = await getDocs(getLastProduct);
     querySnapshot.forEach((doc) => {

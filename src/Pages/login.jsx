@@ -3,7 +3,7 @@ import { admin } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
 
-export default function Login({ isAuth, setAuth, setAdmin }) {
+export default function Login({ setNotifyCart, isAuth, setAuth, setAdmin }) {
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -15,9 +15,11 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
     signOut(auth).then(() => {
       setAdmin(false);
       setAuth(false);
-      sessionStorage.removeItem('loggedIn', 'admin')
-    }).catch((error) => {
-      void (0)
+      sessionStorage.removeItem('loggedIn', 'admin');
+      setNotifyCart(0);
+    }).catch((err) => {
+      let error = err.code.toString().slice(5).replaceAll('-', ' ') + '!!'
+      document.querySelector(".error-message").innerHTML = error.charAt(0).toUpperCase() + error.slice(1);
     });
   }
 
@@ -42,7 +44,6 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
           loginPassword
         );
         sessionStorage.setItem('loggedIn', auth.currentUser.email)
-        document.querySelector(".error-message").innerHTML = 'Success';
         setAuth(true);
         navigate('/collections');
 
@@ -96,7 +97,7 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
 
           <Link style={{ marginBottom: '50px' }} to={'/forgotpassword'}>Forgot your password?</Link>
 
-          <h5 className='error-message'></h5>
+          <p5 className='error-message'></p5>
 
           <button type='reset' className='sign_button' style={{ display: "block", marginTop: '30px' }} onClick={login} >Sign in</button>
 

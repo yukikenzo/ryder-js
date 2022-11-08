@@ -28,9 +28,16 @@ export default function Navbar({ isAdmin, notifyCart }) {
     let lastScroll = 0;
     window.addEventListener("scroll", function () {
         let coordinates = document.documentElement.scrollTop;
-        document.querySelector('.shop-link').style.top = coordinates < lastScroll ? '25px' : '-60px'
-        document.querySelector('.brand').style.top = coordinates < lastScroll ? '50px' : '-60px'
-        document.querySelector('.icons').style.top = coordinates < lastScroll ? '28px' : '-70px'
+        if (coordinates < 10) {
+            document.querySelector('.shop-link').style.top = '25px';
+            document.querySelector('.brand').style.top = '50px';
+            document.querySelector('.icons').style.top = '28px';
+        }
+        else {
+            document.querySelector('.shop-link').style.top = coordinates < lastScroll ? '25px' : '-60px'
+            document.querySelector('.brand').style.top = coordinates < lastScroll ? '50px' : '-60px'
+            document.querySelector('.icons').style.top = coordinates < lastScroll ? '28px' : '-70px'
+        }        
         lastScroll = coordinates <= 0 ? 0 : coordinates; // For Mobile or negative scrolling
     }, false);
 
@@ -54,13 +61,13 @@ export default function Navbar({ isAdmin, notifyCart }) {
                         <BiShoppingBag className='main_icons' />
                     </Link>
 
-                    {notifyCart < 0
+                    {notifyCart > 0 
                         ?
-                        null
-                        :
                         <div style={style1}>
                             <p style={style2}>{notifyCart}</p>
                         </div>
+                        :
+                        null
                     }
 
                 </div>

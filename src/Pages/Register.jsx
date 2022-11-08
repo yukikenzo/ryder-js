@@ -100,7 +100,7 @@ export default function Register({ setAuth, setAdmin }) {
 
       <p5></p5>
 
-      <h5 className='error-message'></h5>
+      <p5 className='error-message'></p5>
 
       <button type='reset' className='sign_button' style={{ display: "block", marginTop: '40px' }} onClick={register}> Create </button>
 

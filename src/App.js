@@ -28,10 +28,10 @@ export default function App() {
   const [isAuth, setAuth] = useState(sessionStorage.getItem('loggedIn') ? true : false);
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
   const [notifyCart, setNotifyCart] = useState(0)
-  const productsCollectionRef = collection(db, 'products');
 
   useEffect(() => {
     const getProducts = async () => {
+      const productsCollectionRef = collection(db, 'products');
       let fetchedData = await getDocs(productsCollectionRef);
       setClotheArray(fetchedData.docs.map((doc) => ({ ...doc.data() })));
     };
@@ -54,7 +54,7 @@ export default function App() {
               <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} products={clotheArray} />} />
 
             </Route>
-            <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
+            <Route path="/login" element={<Login setNotifyCart={setNotifyCart} isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
             <Route path="/register" element={<Register setAuth={setAuth} setAdmin={setAdmin} />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
           </Routes>
