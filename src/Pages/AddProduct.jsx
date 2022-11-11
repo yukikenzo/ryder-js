@@ -4,8 +4,6 @@ import { db } from '../firebase-config';
 
 export default function AddProduct() {
   let k = 1;
-  const citiesRef = collection(db, "products");
-  const getLastProduct = query(citiesRef, orderBy("id", "desc"), limit(1));
 
   let [data, setData] = useState({
     name: "",
@@ -15,15 +13,17 @@ export default function AddProduct() {
     img2: "",
     img3: "",
     img4: ""
-  })
+  });
 
-  const getLast = async () => {
+  (async function () {
+    const citiesRef = collection(db, "products");
+    const getLastProduct = query(citiesRef, orderBy("id", "desc"), limit(1));
     const querySnapshot = await getDocs(getLastProduct);
     querySnapshot.forEach((doc) => {
       k = parseInt(doc.id) + 1;
     });
-  };
-  getLast();
+    alert(k);
+  }());
 
   async function submitData() {
     for (let i = 0; i < 7; i++) {

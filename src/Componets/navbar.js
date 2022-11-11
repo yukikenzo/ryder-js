@@ -61,7 +61,7 @@ export default function Navbar({ isAdmin, notifyCart }) {
                         <BiShoppingBag className='main_icons' />
                     </Link>
 
-                    {notifyCart > 0 
+                    {notifyCart
                         ?
                         <div style={style1}>
                             <p style={style2}>{notifyCart}</p>
