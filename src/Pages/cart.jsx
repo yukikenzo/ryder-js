@@ -13,12 +13,11 @@ export default function Cart({ products, setNotifyCart }) {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    const getSelected = async () => {
+    (async () => {
       let data = await getDocs(cartCollectionRef);
       setCart(data.docs.map((doc) => ({ ...doc.data() })));
       setSubtotal(data.docs.map((doc) => ({ id: doc.data().id, price: parseInt(doc.data().price), quantity: doc.data().quantity })))
-    };
-    getSelected();
+    })();
   }, [])
 
   useEffect(() => {
@@ -26,7 +25,7 @@ export default function Cart({ products, setNotifyCart }) {
     let sum = 0
     let quantity = 0
 
-    if (subtotal.length) {
+    if (subtotal.length > 1) {
       subtotal.map((obj) => {
         return (sum += obj.price, quantity += obj.quantity)
       })

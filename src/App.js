@@ -30,12 +30,11 @@ export default function App() {
   const [notifyCart, setNotifyCart] = useState(0)
 
   useEffect(() => {
-    const getProducts = async () => {
+    (async () => {
       const productsCollectionRef = collection(db, 'products');
       let fetchedData = await getDocs(productsCollectionRef);
       setClotheArray(fetchedData.docs.map((doc) => ({ ...doc.data() })));
-    };
-    getProducts();
+    })();
   }, [])
 
   return (

@@ -22,7 +22,6 @@ export default function AddProduct() {
     querySnapshot.forEach((doc) => {
       k = parseInt(doc.id) + 1;
     });
-    alert(k);
   }());
 
   async function submitData() {
