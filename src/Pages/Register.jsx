@@ -10,17 +10,17 @@ export default function Register({ setAuth, setAdmin }) {
   const [repeatPassword, setRepeatPassword] = useState('')
 
   function register() {
-    if (registerEmail === '') {
+    if (!registerEmail) {
       document.querySelector('.register-form>.login-email+p5').innerHTML = 'Fill all fields!!';
       document.querySelector('.register-form>.login-email').style.borderColor = 'red'
     }
 
-    else if (registerPassword === '') {
+    else if (!registerPassword) {
       document.querySelector('.register-form>.password-input+p5').innerHTML = 'Fill all fields!!';
       document.querySelector('.register-form>.password-input').style.borderColor = 'red'
     }
 
-    else if (repeatPassword === '') {
+    else if (!repeatPassword) {
       document.querySelector('.register-form>.repeat-password+p5').innerHTML = 'Fill all fields!!';
       document.querySelector('.register-form>.repeat-password').style.borderColor = 'red'
     }

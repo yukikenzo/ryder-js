@@ -27,7 +27,7 @@ export default function AddProduct() {
 
   async function submitData() {
     for (let i = 0; i < 7; i++) {
-      if (Object.values(data)[i] === '') {
+      if (!Object.values(data)[i]) {
         document.querySelector(`.addProduct .${Object.keys(data)[i]} + p5`).innerHTML = 'Fill all fields!!';
         document.querySelector(`.addProduct .${Object.keys(data)[i]}`).style.borderColor = 'red'
         return;

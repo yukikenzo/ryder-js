@@ -34,10 +34,7 @@ export default function Recommended({ products, editable }) {
   const navigate = useNavigate();
 
   function passState(id, clothe) {
-    if (typeof editable === 'function') { // it may be undefined if componet was called in cart page
-      editable(true, 'Edit')
-    }
-
+    editable?.(true, 'Edit')
     navigate(`/product/${id}`, {
       state: clothe
     })
