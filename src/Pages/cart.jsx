@@ -21,7 +21,6 @@ export default function Cart({ products, setNotifyCart }) {
   }, [])
 
   useEffect(() => {
-    //in case that subtotal is empty
     let sum = 0
     let quantity = 0
 
