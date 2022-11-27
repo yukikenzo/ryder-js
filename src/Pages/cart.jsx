@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Selected from '../Componets/Selected'
 import Recommended from '../Componets/Recommended'
 import { collection, getDocs } from "firebase/firestore";
+import CheckOutModal from '../Componets/CheckOutModal'
 
 export default function Cart({ products, setNotifyCart }) {
   const user = sessionStorage.getItem('loggedIn');
@@ -11,6 +12,7 @@ export default function Cart({ products, setNotifyCart }) {
   const [cart, setCart] = useState([]);
   const [subtotal, setSubtotal] = useState([{}]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -75,7 +77,10 @@ export default function Cart({ products, setNotifyCart }) {
           <div className='checkOutContainer'>
             <p style={{ display: 'inline' }}>Subtotal <p style={{ marginLeft: '15px', display: 'inline', fontSize: '20px' }}>${parseInt(totalPrice)}.00 USD</p></p>
             <p style={{ fontSize: '15px', marginTop: '20px' }}>Tax included. Shipping calculated at checkout.</p>
-            <button className='checkOutButton'>Check out</button>
+            <button onClick={() => setIsOpen(true)} className='checkOutButton'>Check out</button>
+
+            <CheckOutModal total={totalPrice} product={cart} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+
           </div>
 
         </div>

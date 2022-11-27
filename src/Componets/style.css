@@ -113,7 +113,7 @@ body {
     outline: none;
 }
 
-.add_icon{
+.add_icon {
     color: black;
     font-size: 17px;
     margin: 0 0.7vw 0 0.7vw;
@@ -288,12 +288,12 @@ body {
     direction: rtl;
 }
 
-.selPrice> h6:first-of-type {
+.selPrice>h6:first-of-type {
     text-decoration: line-through;
     color: gray;
     text-decoration-color: black;
     text-decoration-thickness: 1px;
-  }
+}
 
 @media only screen and (max-width: 740px) {
     .selTotal {
@@ -376,5 +376,270 @@ body {
 @media only screen and (max-width: 500px) {
     .product_image {
         width: 40vw;
+    }
+}
+
+/* ------------------------- CheckOutModal ------------------------- */
+
+.orderContainerBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: 99;
+}
+
+.orderContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 70vw;
+    height: 80vh;
+    background-color: white;
+    display: flex;
+}
+
+.orderContainer input, .orderContainer select, .orderContainer button, .orderContainer img {
+    border: 2px solid black;
+    border-radius: 7px;
+    height: 40px;
+}
+
+.addressForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 50%;
+    border-right: 1px solid black;
+    padding: 2vw;
+}
+
+.addressForm>input, select {
+    width: 30vw;
+}
+
+.addressForm>div>input {
+    width: 14vw;
+}
+
+.addressForm>div>input:first-of-type {
+    margin-right: 2vw;
+}
+
+.orderButtons {
+    width: 30vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.orderButtons>button:first-of-type {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.orderButtons>button:last-of-type {
+    background-color: rgb(7, 6, 88);
+    color: #fff;
+    height: 55px;
+    width: 200px;
+    border: none;
+}
+
+.dropDown {
+    background-color: rgba(246, 246, 246, 1);
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.dropDown>p {
+    margin: 0;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.orderSummary {
+    margin: auto;
+}
+
+.orderProducts {
+    display: flex;
+    width: 25vw;
+    height: 80px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.orderProducts>p {
+    margin: 0 0 0 10px;
+}
+
+.orderProducts>div {
+    display: flex;
+    align-items: center;
+}
+
+.orderProducts>div>img {
+    width: 80px;
+    height: 75px;
+    overflow: hidden;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.orderProducts>div>span {
+    background-color: hsla(0, 0%, 45%, 90%);
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 0 0 73px -20px;
+    text-align: center;
+}
+
+.orderProducts>div>p {
+    margin: 0;
+}
+
+.orderPrice {
+    display: grid;
+    grid-template-columns: 15vw 10vw;
+    grid-template-rows: 50px 50px 50px 50px;
+    margin-top: 30px;
+}
+
+.orderPrice>h4::before {
+    content: 'USD';
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 10px;
+}
+
+.orderPrice>*:not(.gridItem5, .gridItem6) {
+    border-top: 2px solid black;
+}
+
+.gridItem1, .gridItem3, .gridItem5, .gridItem7 {
+    text-align: start;
+}
+
+.gridItem1 {
+    width: 18vw;
+}
+
+.gridItem2 {
+    width: 6vw;
+    margin-left: auto;
+}
+
+.gridItem3, .gridItem4 {
+    margin-bottom: 0;
+    padding-top: 20px;
+}
+
+.gridItem7, .gridItem8 {
+    padding-top: 20px;
+}
+
+.animationClass {
+    animation-name: removeMargin;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.animationReverse {
+    animation-name: addMargin;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@media only screen and (max-width: 1000px) {
+    .orderContainer {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        overflow-x: scroll;
+    }
+
+    .dropDown {
+        display: flex;
+    }
+
+    .orderSummary {
+        margin-top: 30px;
+    }
+
+    .orderProducts {
+        width: 60vw;
+    }
+
+    .orderPrice {
+        grid-template-columns: 30vw 30vw;
+    }
+
+    .gridItem1 {
+        width: 40vw;
+    }
+
+    .gridItem2 {
+        width: 15vw;
+    }
+
+    .addressForm {
+        border: none;
+        width: 100%;
+        height: max-content;
+        margin-bottom: 650px;
+        background-color: #fff;
+        margin-top: -440px;
+    }
+
+    .addressForm>* {
+        margin-bottom: 30px;
+    }
+
+    .addressForm>input, select {
+        width: 100%;
+    }
+
+    .addressForm>div {
+        width: 100%;
+    }
+
+    .addressForm>div>input {
+        width: 100%;
+    }
+
+    .addressForm>div>input:first-of-type {
+        margin: 0 0 30px 0;
+    }
+}
+
+@keyframes removeMargin {
+    0% {
+        margin-top: -440px;
+    }
+
+    100% {
+        margin-top: 0;
+    }
+}
+
+@keyframes addMargin {
+    0% {
+        margin-top: 0;
+    }
+
+    100% {
+        margin-top: -440px;
     }
 }

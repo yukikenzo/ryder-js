@@ -389,6 +389,7 @@ p5:not(#success) {
 
 .grid-container>div {
     padding: 20px 0;
+    z-index: 33;
 }
 
 .item1 {
@@ -436,6 +437,7 @@ p5:not(#success) {
 .checkOutContainer {
     text-align: right;
     margin-top: 50px;
+    z-index: 1;
 }
 
 @media only screen and (max-width: 740px) {
