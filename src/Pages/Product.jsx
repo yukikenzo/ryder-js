@@ -13,18 +13,19 @@ export default function Product({ setNotifyCart, products }) {
   const [name, setname] = useState(product.name)
   const [price, setprice] = useState(product.price)
   const [details, setdetails] = useState(product.details)
+  const [button, setButton] = useState({
+    disabled: false,
+    style: { backgroundColor: 'rgb(32, 37, 75)' }
+  })
+  const [warning, setWarning] = useState('')
 
   async function changeData() {
-    const warning = document.getElementById('updateWarnings')
-
     if (price && name && details !== '') {
       if (details.length < 50) {
-        warning.style.color = 'red';
-        warning.innerHTML = 'Details should be well described!';
+        setWarning('Details should be well described!')
       }
       if (price < 1) {
-        warning.style.color = 'red';
-        warning.innerHTML = 'Invalid Price';
+        setWarning('Invalid Price')
       }
       else {
         product.name = name;
@@ -33,16 +34,13 @@ export default function Product({ setNotifyCart, products }) {
         await setDoc(doc(db, "products", product.id.toString()), {
           ...product
         })
-        warning.style.color = 'green';
-        warning.innerHTML = 'Successfuly Updated :)';
         editable(true, 'Edit');
         navigate('/collections')
       }
 
     }
     else {
-      warning.style.color = 'red';
-      warning.innerHTML = 'Fill all fields!!';
+      setWarning('Fill all fields!!')
     }
   }
 
@@ -69,8 +67,7 @@ export default function Product({ setNotifyCart, products }) {
     let q = 1
     const docRef = doc(db, user, product.id.toString());
     const docSnap = await getDoc(docRef);
-    document.querySelector('#myBtn').disabled = true;
-    document.getElementById('myBtn').style.backgroundColor = "rgb(104, 110, 156)";
+    setButton({ disabled: true, style: { backgroundColor: "rgb(104, 110, 156)" } })
 
     document.querySelector('.shop-link').style.top = '25px';
     document.querySelector('.brand').style.top = '50px';
@@ -84,8 +81,7 @@ export default function Product({ setNotifyCart, products }) {
     await setDoc(doc(db, user, product.id.toString()), {
       ...product, quantity: q
     })
-    document.querySelector('#myBtn').disabled = false;
-    document.getElementById('myBtn').style.backgroundColor = "rgb(32, 37, 75)";
+    setButton({ disabled: false, style: { backgroundColor: "rgb(32, 37, 75)" } })
   }
 
   async function removeProduct() {
@@ -110,23 +106,22 @@ export default function Product({ setNotifyCart, products }) {
             <p style={{ display: 'inline', fontSize: '20px' }}>$</p>
             <input id="price1" readOnly onChange={event => setprice(event.target.value)} type="number" value={price} />
           </div>
-          <button id='myBtn' onClick={addCart} className='addToCart'>Add to cart</button>
+          <button {...button} onClick={addCart} className='addToCart'>Add to cart</button>
           <h4 className='detailsHeader'>Details</h4>
           <textarea id="detail1" readOnly onChange={event => setdetails(event.target.value)} value={details} />
 
           {isAdmin
             ? <>
+              <p style={{ color: 'red', textAlign: 'center' }} >{warning}</p>
               <button className='addToCart' id='editButton' onClick={editData}>Edit</button>
               <button className='addToCart' onClick={removeProduct}>Remove</button>
             </>
             : null
-
           }
-          <p id='updateWarnings'></p>
         </div>
 
       </div>
-      {products.length === 0 ? void (0) : <Recommended editable = {editable} products={products} />}
+      {products.length === 0 ? void (0) : <Recommended editable={editable} products={products} />}
 
     </>
 

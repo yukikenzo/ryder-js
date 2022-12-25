@@ -29,12 +29,14 @@ export default function App() {
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
   const [notifyCart, setNotifyCart] = useState(0)
 
+  async function fetchingProducts() {
+    const productsCollectionRef = collection(db, 'products');
+    let fetchedData = await getDocs(productsCollectionRef);
+    setClotheArray(fetchedData.docs.map((doc) => ({ ...doc.data() })));
+  }
+
   useEffect(() => {
-    (async () => {
-      const productsCollectionRef = collection(db, 'products');
-      let fetchedData = await getDocs(productsCollectionRef);
-      setClotheArray(fetchedData.docs.map((doc) => ({ ...doc.data() })));
-    })();
+    fetchingProducts()
   }, [])
 
   return (

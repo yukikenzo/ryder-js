@@ -13,9 +13,17 @@ export default function ForgotPassword() {
     function resetEmail(event) {
         event.preventDefault();
         if (document.querySelectorAll('.forgotPasswordContainer>input:invalid').length) {
-            return;
+          return;
         }
-        return sendPasswordResetEmail(auth, email).then(() => { setWarning({ value: 'Email Sent!', style: { color: 'green', margin: '0' } }) })
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                setWarning({ value: 'Email Sent!', style: { color: 'green', margin: '0' } })
+            })
+            .catch((err) => {
+                alert("error")
+                let error = err.code.toString().slice(5).replaceAll('-', ' ') + '!!'
+                setWarning({ value: error.charAt(0).toUpperCase() + error.slice(1), style: { color: 'red', margin: '0' } })
+            });
     }
 
     const style = {
