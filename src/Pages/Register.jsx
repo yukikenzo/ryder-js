@@ -2,112 +2,100 @@ import React, { useState } from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth'
 import { auth, admin } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
+import FormInput from '../Componets/FormInput';
 
 export default function Register({ setAuth, setAdmin }) {
   const navigate = useNavigate();
-  const [registerEmail, setRegisterEmail] = useState('')
-  const [registerPassword, setRegisterPassword] = useState('')
-  const [repeatPassword, setRepeatPassword] = useState('')
+  const [submitted, setSubmitted] = useState(false);
+  const [warning, setWarning] = useState('');
+  const [registerValues, setRegisterValues] = useState({
+    email: '',
+    password: '',
+    repeatPassword: ''
+  });
 
-  function register() {
-    if (!registerEmail) {
-      document.querySelector('.register-form>.login-email+p5').innerHTML = 'Fill all fields!!';
-      document.querySelector('.register-form>.login-email').style.borderColor = 'red'
+  function register(event) {
+    event.preventDefault();
+    if (document.querySelectorAll('.register-form>input:invalid').length) {
+      setSubmitted(true);
+      return;
     }
+    createUserWithEmailAndPassword(auth, registerValues.email, registerValues.password)
+      .then(() => {
+        const login = async () => {
+          setPersistence(auth, browserSessionPersistence)
+          await signInWithEmailAndPassword(
+            auth,
+            registerValues.email,
+            registerValues.password
+          );
+          sessionStorage.setItem('loggedIn', auth.currentUser.email)
+          setAuth(true);
+          navigate('/collections');
 
-    else if (!registerPassword) {
-      document.querySelector('.register-form>.password-input+p5').innerHTML = 'Fill all fields!!';
-      document.querySelector('.register-form>.password-input').style.borderColor = 'red'
-    }
-
-    else if (!repeatPassword) {
-      document.querySelector('.register-form>.repeat-password+p5').innerHTML = 'Fill all fields!!';
-      document.querySelector('.register-form>.repeat-password').style.borderColor = 'red'
-    }
-
-    else if (registerPassword !== repeatPassword) {
-      document.querySelector(".error-message").innerHTML = 'Passwords should match!!';
-    }
-
-    else {
-      createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
-        .then(() => {
-          login()
-          document.querySelector(".login-email, .password-input, .repeat-password").value = "";
-          document.querySelector(".error-message").style.color = 'green';
-          document.querySelector(".error-message").innerHTML = 'Success';
-
-        })
-        .catch(err => {
-          let error = err.code.toString().slice(5).replaceAll('-', ' ') + '!!'
-          document.querySelector(".error-message").innerHTML = error.charAt(0).toUpperCase() + error.slice(1);
-        })
-    }
-
+          if (registerValues.email === admin) {
+            sessionStorage.setItem('admin', true)
+            setAdmin(true);
+          }
+        }
+        login()
+      })
+      .catch(err => {
+        let error = err.code.toString().slice(5).replaceAll('-', ' ') + '!!'
+        setWarning(error.charAt(0).toUpperCase() + error.slice(1))
+      })
   }
 
-  const login = async () => {
-    setPersistence(auth, browserSessionPersistence)
-    await signInWithEmailAndPassword(
-      auth,
-      registerEmail,
-      registerPassword
-    );
-    sessionStorage.setItem('loggedIn', auth.currentUser.email)
-    setAuth(true);
-    navigate('/collections');
+  const onChange = (event) => {
+    setRegisterValues((user) => ({ ...user, [event.target.name]: event.target.value }))
+  }
 
-    if (registerEmail === admin) {
-      sessionStorage.setItem('admin', true)
-      setAdmin(true);
+  const inputs = [
+    {
+      id: 1,
+      name: 'email',
+      type: 'email',
+      className: 'login-email',
+      style: { margin: '0' },
+      error: 'Not valid email!',
+      h6: 'Email',
+      required: true,
+    },
+    {
+      id: 2,
+      name: 'password',
+      type: 'password',
+      className: 'password-input',
+      style: { margin: '40px 0 0 0' },
+      error: 'Password should be at least 8 characters and include at least 1 letter, 1 number and 1 special character!',
+      h6: 'Password',
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$`,
+      required: true,
+    },
+    {
+      id: 3,
+      name: 'repeatPassword',
+      type: 'password',
+      className: 'repeat-password',
+      style: { margin: '40px 0 0 0' },
+      error: 'Passwords should match!',
+      h6: 'Repeat Password',
+      pattern: registerValues.password,
+      required: true,
     }
-  }
-
-  function clearWarning(inputBorder) {
-    document.querySelector(`.register-form>.${inputBorder}+p5`).innerHTML = '';
-    document.querySelector(`.${inputBorder}`).style.borderColor = 'rgb(118, 118, 118)'
-  }
+  ];
 
   return (
     <form className="register-form">
-
       <h1 className='register_header'>Create account</h1>
 
-      <h6 style={{ margin: '0' }}>Email</h6>
+      {inputs.map((input) => (<FormInput submitted={submitted} {...input} onChange={onChange} value={registerValues[input.name]} />))}
 
-      <input value={registerEmail} type={'email'} className='login-email' style={{ width: "100%" }} onChange={event => {
-        setRegisterEmail(event.target.value)
-        clearWarning('login-email')
-      }}></input>
-
-      <p5></p5>
-
-      <h6 style={{ margin: '40px 0 0 0' }}>Password</h6>
-
-      <input value={registerPassword} type={'password'} className='password-input' onChange={event => {
-        setRegisterPassword(event.target.value)
-        clearWarning('password-input')
-      }}></input>
-
-      <p5></p5>
-
-      <h6 style={{ margin: '40px 0 0 0' }}>Repeat Password</h6>
-
-      <input value={repeatPassword} type={'password'} className='repeat-password' style={{ width: "100%" }} onChange={event => {
-        setRepeatPassword(event.target.value)
-        clearWarning('repeat-password')
-      }}></input>
-
-      <p5></p5>
-
-      <p5 className='error-message'></p5>
-
-      <button type='reset' className='sign_button' style={{ display: "block", marginTop: '40px' }} onClick={register}> Create </button>
-
+      <p5 className='error-message'>{warning}</p5>
+      <button className='sign_button' style={{ display: "block", marginTop: '40px' }} onClick={register}> Create </button>
       <p>
         <Link to='/login'>Sign In</Link>
       </p>
-
     </form>
   )
 }

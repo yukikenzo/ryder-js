@@ -1,42 +1,50 @@
 import React, { useState } from 'react'
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import FormInput from '../Componets/FormInput';
 
 export default function ForgotPassword() {
-
+    const [warning, setWarning] = useState({
+        value: '',
+        style: {}
+    });
     const [email, setEmail] = useState("");
     const auth = getAuth();
 
-    function resetEmail() {
-        sendPasswordResetEmail(auth, email)
-            .then(() => {
-                document.querySelector(".forgotPasswordAlert").style.color = 'green';
-                document.querySelector(".forgotPasswordAlert").innerHTML = "Email Sent!";
-            })
-            .catch((err) => {
-                document.querySelector(".forgotPasswordAlert").style.color = 'red';
-                let error = err.code.toString().slice(5).replaceAll('-', ' ') + '!!'
-                document.querySelector(".forgotPasswordAlert").innerHTML = error.charAt(0).toUpperCase() + error.slice(1);
-            });
+    function resetEmail(event) {
+        event.preventDefault();
+        if (document.querySelectorAll('.forgotPasswordContainer>input:invalid').length) {
+            return;
+        }
+        return sendPasswordResetEmail(auth, email).then(() => { setWarning({ value: 'Email Sent!', style: { color: 'green', margin: '0' } }) })
     }
 
     const style = {
-        height: '200px',
+        height: '350px',
+        width: '300px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: '100px'
+        margin: 'auto',
+        paddingBottom: '100px'
     }
 
-    const inputStyle = {
-        width: '300px'
-    }
+    const emailInput = {
+        id: 1,
+        name: 'email',
+        type: 'email',
+        className: 'login-email',
+        style: { margin: '0 0 20px 0' },
+        error: 'Not valid email!',
+        h6: 'Email',
+        required: true,
+    };
 
     return (
-        <div style={style}>
-            <input type={'email'} placeholder='Your Email' style={inputStyle} onChange={event => { setEmail(event.target.value) }} ></input>
-            <button onClick={resetEmail}>Sent Email</button>
-            <p5 className='forgotPasswordAlert'></p5>
-        </div>
+        <form className='forgotPasswordContainer' style={style}>
+            <FormInput submitted={false} {...emailInput} value={email} onChange={(e) => setEmail(e.target.value)} />
+            <p5 style={warning.style} className='error-message'>{warning.value}</p5>
+            <button className='sign_button' onClick={resetEmail}>Sent Email</button>
+        </form>
     )
 }

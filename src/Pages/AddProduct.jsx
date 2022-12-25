@@ -77,22 +77,22 @@ export default function AddProduct() {
       <div>
 
         <div className='productDetails'>
-          <input className='name' value={data.name} onChange={e => clearWarning(e)} placeholder='Name' type="text" />
+          <input className='name' value={data.name} onChange={clearWarning} placeholder='Name' type="text" />
           <p5></p5>
-          <input className='price' value={data.price} onChange={e => clearWarning(e)} placeholder='Price' type="number" />
+          <input className='price' value={data.price} onChange={clearWarning} placeholder='Price' type="number" />
           <p5></p5>
-          <textarea className='details' value={data.details} onChange={e => clearWarning(e)} placeholder='Details' cols="30" rows="10"></textarea>
+          <textarea className='details' value={data.details} onChange={clearWarning} placeholder='Details' cols="30" rows="10"></textarea>
           <p5></p5>
         </div>
 
         <div className='inputImgLink'>
-          <input className='img1' value={data.img1} onChange={e => clearWarning(e)} placeholder='Paste your Image links here' type="url" />
+          <input className='img1' value={data.img1} onChange={clearWarning} placeholder='Paste your Image links here' type="url" />
           <p5></p5>
-          <input className='img2' value={data.img2} onChange={e => clearWarning(e)} placeholder='Paste your Image links here' type="url" />
+          <input className='img2' value={data.img2} onChange={clearWarning} placeholder='Paste your Image links here' type="url" />
           <p5></p5>
-          <input className='img3' value={data.img3} onChange={e => clearWarning(e)} placeholder='Paste your Image links here' type="url" />
+          <input className='img3' value={data.img3} onChange={clearWarning} placeholder='Paste your Image links here' type="url" />
           <p5></p5>
-          <input className='img4' value={data.img4} onChange={e => clearWarning(e)} placeholder='Paste your Image links here' type="url" />
+          <input className='img4' value={data.img4} onChange={clearWarning} placeholder='Paste your Image links here' type="url" />
           <p5></p5>
         </div>
 

@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import { admin } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
+import FormInput from '../Componets/FormInput';
 
 export default function Login({ setNotifyCart, isAuth, setAuth, setAdmin }) {
-
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [submitted, setSubmitted] = useState(false)
   const navigate = useNavigate();
-
   const auth = getAuth();
+  const [warning, setWarning] = useState('')
 
   function logout() {
     signOut(auth).then(() => {
@@ -19,52 +20,58 @@ export default function Login({ setNotifyCart, isAuth, setAuth, setAdmin }) {
       setNotifyCart(0);
     }).catch((err) => {
       let error = err.code.toString().slice(5).replaceAll('-', ' ') + '!!'
-      document.querySelector(".error-message").innerHTML = error.charAt(0).toUpperCase() + error.slice(1);
+      setWarning(error.charAt(0).toUpperCase() + error.slice(1))
     });
   }
 
-  const login = async () => {
-    if (!loginEmail) {
-      document.querySelector('.login-form>.login-email+p5').innerHTML = 'Fill all fields!!';
-      document.querySelector('.login-form>.login-email').style.borderColor = 'red'
+  const login = async (event) => {
+    event.preventDefault();
+    if (document.querySelectorAll('.login-form>input:invalid').length) {
+      setSubmitted(true);
+      return;
     }
-
-    else if (!loginPassword) {
-      document.querySelector('.login-form>.password-input+p5').innerHTML = 'Fill all fields!!';
-      document.querySelector('.login-form>.password-input').style.borderColor = 'red'
-    }
-
-    else {
-      try {
-        setPersistence(auth, browserSessionPersistence)
-
-        await signInWithEmailAndPassword(
-          auth,
-          loginEmail,
-          loginPassword
-        );
-        sessionStorage.setItem('loggedIn', auth.currentUser.email)
-        setAuth(true);
-        navigate('/collections');
-
-
-        if (loginEmail === admin) {
-          sessionStorage.setItem('admin', true)
-          setAdmin(true);
-        }
-
-      } catch (err) {
-
-        let error = err.code.toString().slice(5).replaceAll('-', ' ') + '!!'
-        document.querySelector(".error-message").innerHTML = error.charAt(0).toUpperCase() + error.slice(1);
+    try {
+      setPersistence(auth, browserSessionPersistence)
+      await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      sessionStorage.setItem('loggedIn', auth.currentUser.email)
+      setAuth(true);
+      navigate('/collections');
+      if (loginEmail === admin) {
+        sessionStorage.setItem('admin', true)
+        setAdmin(true);
       }
+    } catch (err) {
+      let error = err.code.toString().slice(5).replaceAll('-', ' ') + '!!'
+      setWarning(error.charAt(0).toUpperCase() + error.slice(1))
     }
   }
 
-  function clearWarning(inputBorder) {
-    document.querySelector(`.login-form>.${inputBorder}+p5`).innerHTML = '';
-    document.querySelector(`.${inputBorder}`).style.borderColor = 'rgb(118, 118, 118)'
-  }
+  const emailInput = {
+    id: 1,
+    name: 'email',
+    type: 'email',
+    className: 'login-email',
+    style: { margin: '0' },
+    error: 'Not valid email!',
+    h6: 'Email',
+    required: true,
+  };
+
+  const passwordInput = {
+    id: 2,
+    name: 'password',
+    type: 'password',
+    className: 'password-input',
+    style: { margin: '40px 0 0 0' },
+    error: 'Password should be at least 8 characters and include at least 1 letter, 1 number and 1 special character!',
+    h6: 'Password',
+    pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$`,
+    required: true,
+  };
 
   return (
     <form className="login" >
@@ -73,41 +80,21 @@ export default function Login({ setNotifyCart, isAuth, setAuth, setAdmin }) {
           <h4>You are Logged In!</h4>
           <input className='logout_button' type="button" value={"Sign Out!"} onClick={logout} />
         </div>
-
         :
         <div className="login-form">
-
           <h1 className='login_header'>Login</h1>
 
-          <h6 style={{ margin: '0' }}>Email</h6>
-
-          <input value={loginEmail} type={'email'} className='login-email' onChange={event => {
-            setLoginEmail(event.target.value)
-            clearWarning('login-email')
-          }}></input>
-          <p5></p5>
-
-          <h6 style={{ margin: '40px 0 0 0' }}>Password</h6>
-
-          <input value={loginPassword} type={'password'} className='password-input' style={{ width: "100%" }} onChange={event => {
-            setLoginPassword(event.target.value)
-            clearWarning('password-input')
-          }}></input>
-          <p5></p5>
+          <FormInput submitted={submitted} {...emailInput} value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
+          <FormInput submitted={submitted} {...passwordInput} value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
 
           <Link style={{ marginBottom: '50px' }} to={'/forgotpassword'}>Forgot your password?</Link>
-
-          <p5 className='error-message'></p5>
-
-          <button type='reset' className='sign_button' style={{ display: "block", marginTop: '30px' }} onClick={login} >Sign in</button>
-
+          <p5 className='error-message'>{warning}</p5>
+          <button className='sign_button' style={{ display: "block", marginTop: '30px' }} onClick={login} >Sign in</button>
           <p>
             <Link className='register_link' to='/register'>Create Account</Link>
           </p>
-
         </div>
       }
-
     </form>
   )
 }
