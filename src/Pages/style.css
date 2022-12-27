@@ -94,7 +94,7 @@
     width: 350px;
     height: 45px;
     padding: 15px;
-    border: none;
+    border: 2px solid black;
     outline: none;
     position: relative;
     margin-bottom: 50px;
@@ -119,7 +119,7 @@
     margin-top: 10px;
 }
 
-.register-form>input, .login-form>input, .inputImgLink>input, .productDetails>input, .forgotPasswordContainer>input {
+input {
     border-top: none;
     border-left: none;
     border-right: none;
@@ -132,6 +132,14 @@ input:invalid[focused='true']+p5 {
 }
 
 input:invalid[focused="true"] {
+    border-color: red !important;
+}
+
+textarea:invalid[focused='true']+p5 {
+    display: block !important;
+}
+
+textarea:invalid[focused='true'] {
     border-color: red !important;
 }
 

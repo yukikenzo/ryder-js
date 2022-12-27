@@ -51,8 +51,6 @@ export default function Login({ setNotifyCart, isAuth, setAuth, setAdmin }) {
   }
 
   const emailInput = {
-    id: 1,
-    name: 'email',
     type: 'email',
     className: 'login-email',
     style: { margin: '0' },
@@ -62,8 +60,6 @@ export default function Login({ setNotifyCart, isAuth, setAuth, setAdmin }) {
   };
 
   const passwordInput = {
-    id: 2,
-    name: 'password',
     type: 'password',
     className: 'password-input',
     style: { margin: '40px 0 0 0' },

@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import { doc, setDoc, query, orderBy, limit, collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config';
+import FormInput from '../Componets/FormInput';
 
 export default function AddProduct() {
+  const [focused, setFocused] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [success, setSuccess] = useState('');
   let k = 1;
 
   let [data, setData] = useState({
@@ -25,51 +29,69 @@ export default function AddProduct() {
   }());
 
   async function submitData() {
-    for (let i = 0; i < 7; i++) {
-      if (!Object.values(data)[i]) {
-        document.querySelector(`.addProduct .${Object.keys(data)[i]} + p5`).innerHTML = 'Fill all fields!!';
-        document.querySelector(`.addProduct .${Object.keys(data)[i]}`).style.borderColor = 'red'
-        return;
-      }
+    if (document.querySelectorAll('.addProduct textarea:invalid,input:invalid').length) {
+      setSubmitted(true);
+      return;
     }
-
-    if (data.price < 1) {
-      document.querySelector('.addProduct p5:nth-of-type(2)').innerHTML = 'Invalid price';
-      document.querySelector('.price').style.borderColor = 'red'
-      return
-    }
-
-    if (data.details.length < 50) {
-      document.querySelector('.addProduct p5:nth-of-type(3)').innerHTML = 'Details should be well described!';
-      document.querySelector('.details').style.borderColor = 'red'
-      return
-    }
+    setSuccess('Success!!');   
 
     await setDoc(doc(db, "products", `${k}`), {
       ...data, id: k
     })
 
     k++;
-
-    setData({
-      name: "",
-      price: "",
-      details: "",
-      img1: "",
-      img2: "",
-      img3: "",
-      img4: ""
-    })
-
-    document.getElementById('success').innerHTML = 'Success!!';
     window.location.reload(false)
   }
 
   function clearWarning(e) {
     let clue = e.target.className
     setData({ ...data, [`${clue}`]: e.target.value })
-    document.querySelector(`.addProduct>div .${clue} + p5`).innerHTML = '';
-    e.target.style.borderColor = 'rgb(118, 118, 118)'
+  }
+
+  const inputs = {
+    id: 0,
+    type: 'url',
+    className: '',
+    style: { display: 'none' },
+    error: 'Fill all fields!',
+    h6: '',
+    required: true,
+    placeholder: 'Paste your Image links here'
+  }
+
+  const nameInput = {
+    type: 'text',
+    className: 'name',
+    style: { display: 'none' },
+    error: 'Fill all fields!',
+    h6: '',
+    required: true,
+    placeholder: 'Name'
+  }
+
+  const priceInput = {
+    type: 'text',
+    className: 'price',
+    style: { display: 'none' },
+    error: 'Invalid price',
+    h6: '',
+    pattern: `^[1-9]|[1-9][0-9]{1,5}|1000000`,
+    required: true,
+    placeholder: 'Price'
+  }
+
+  const textArea = {
+    type: 'text',
+    className: 'details',
+    error: 'Details should be well described!',
+    required: true,
+    placeholder: 'Details'
+  }
+
+  let linkInputs = [];
+
+  for(let i = 0; i < 4; i++) {
+    linkInputs.push({...inputs, id: i, className: `img${i+1}`})
   }
 
   return (
@@ -77,27 +99,18 @@ export default function AddProduct() {
       <div>
 
         <div className='productDetails'>
-          <input className='name' value={data.name} onChange={clearWarning} placeholder='Name' type="text" />
-          <p5></p5>
-          <input className='price' value={data.price} onChange={clearWarning} placeholder='Price' type="number" />
-          <p5></p5>
-          <textarea className='details' value={data.details} onChange={clearWarning} placeholder='Details' cols="30" rows="10"></textarea>
-          <p5></p5>
+          <FormInput submitted={submitted} value={data.name} onChange={clearWarning} {...nameInput} />
+          <FormInput submitted={submitted} value={data.price} onChange={clearWarning} {...priceInput} />
+          <textarea onBlur={() => setFocused(true)} focused={(focused || submitted).toString()} {...textArea} value={data.details} onChange={clearWarning} cols="30" rows="10"></textarea>
+          <p5>{textArea.error}</p5>
         </div>
 
         <div className='inputImgLink'>
-          <input className='img1' value={data.img1} onChange={clearWarning} placeholder='Paste your Image links here' type="url" />
-          <p5></p5>
-          <input className='img2' value={data.img2} onChange={clearWarning} placeholder='Paste your Image links here' type="url" />
-          <p5></p5>
-          <input className='img3' value={data.img3} onChange={clearWarning} placeholder='Paste your Image links here' type="url" />
-          <p5></p5>
-          <input className='img4' value={data.img4} onChange={clearWarning} placeholder='Paste your Image links here' type="url" />
-          <p5></p5>
+          {linkInputs.map((input) => <div><FormInput submitted={submitted} value={data[input.className]} onChange={clearWarning} {...input} /></div>)}
         </div>
 
       </div>
-      <p5 id='success'></p5>
+      <p5>{success}</p5>
       <button type='submit' onClick={submitData}>Submit</button>
     </div>
   )
