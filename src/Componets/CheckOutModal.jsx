@@ -5,7 +5,7 @@ import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 
 
 export default function CheckOutModal({ isOpen, onClose, product, total }) {
-
+    const [classList, setClassList] = useState('addressForm');
     const [isExpanded, setIsExpanded] = useState(false)
 
     if (!isOpen) {
@@ -18,22 +18,28 @@ export default function CheckOutModal({ isOpen, onClose, product, total }) {
 
     function showOrderDetails() {
         if (!isExpanded) {
-            document.querySelector(".addressForm").classList.remove("animationReverse")
-            document.querySelector(".addressForm").classList.add("animationClass")
+            setClassList('addressForm animationClass')
             setIsExpanded(true)
-        } 
+        }
         else {
-            document.querySelector(".addressForm").classList.remove("animationClass")
-            document.querySelector(".addressForm").classList.add("animationReverse")
+            setClassList('addressForm animationReverse')
             setIsExpanded(false)
-        } 
+        }
     }
+
+    let myMediaQuery = window.matchMedia('(min-width: 1001px)');
+    function widthChangeCallback(myMediaQuery) {
+        if (myMediaQuery.matches) {
+            setClassList('addressForm')
+        }
+    }
+    myMediaQuery.addEventListener('change', widthChangeCallback);
 
     return (
         <div onClick={(e) => clicked(e)} className='orderContainerBackground'>
             <div id='clickbox' className='orderContainer'>
 
-                <form className='addressForm'>
+                <form className={classList}>
                     <h5>Shipping address</h5>
                     <select name="Countres">
                         <option value="Australia">Australia</option>

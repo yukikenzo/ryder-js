@@ -8,59 +8,57 @@ export default function Product({ setNotifyCart, products }) {
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state;
+
   const user = sessionStorage.getItem('loggedIn');
   const isAdmin = sessionStorage.getItem('admin');
-  const [name, setname] = useState(product.name)
-  const [price, setprice] = useState(product.price)
-  const [details, setdetails] = useState(product.details)
+
+  const [buttonText, setButtonText] = useState('Edit');
+  const [readOnly, setReadOnly] = useState(true);
+  const [warning, setWarning] = useState('')
+  const [productProps, setProductProps] = useState({
+    name: product.name,
+    price: product.price,
+    details: product.details
+  });
   const [button, setButton] = useState({
     disabled: false,
     style: { backgroundColor: 'rgb(32, 37, 75)' }
   })
-  const [warning, setWarning] = useState('')
 
   async function changeData() {
-    if (price && name && details !== '') {
-      if (details.length < 50) {
+    if (productProps.price && productProps.name && productProps.details !== '') {
+      if (productProps.details.length < 50) {
         setWarning('Details should be well described!')
       }
-      if (price < 1) {
+      if (productProps.price < 1) {
         setWarning('Invalid Price')
       }
       else {
-        product.name = name;
-        product.price = price;
-        product.details = details;
+        product.name = productProps.name;
+        product.price = productProps.price;
+        product.details = productProps.details;
         await setDoc(doc(db, "products", product.id.toString()), {
           ...product
         })
-        editable(true, 'Edit');
+        setReadOnly(true);
         navigate('/collections')
       }
-
     }
     else {
       setWarning('Fill all fields!!')
     }
   }
 
-  function editable(read, value) {
-    document.getElementById("name1").readOnly = read;
-    document.getElementById("price1").readOnly = read;
-    document.getElementById("detail1").readOnly = read;
-    document.getElementById("editButton").replaceChildren(value)
-  }
-
   let toggler = true
   function editData() {
     if (toggler) {
-      editable(false, 'Save')
+      setReadOnly(false);
+      setButtonText('Save')
       toggler = false;
     }
     else {
       changeData()
     }
-
   }
 
   async function addCart() {
@@ -90,6 +88,11 @@ export default function Product({ setNotifyCart, products }) {
     window.location.reload(true)
   }
 
+  function editable(read, text) {
+    setReadOnly(read);
+    setButtonText(text)
+  }
+
   return (
     <>
       <div className='productPage'>
@@ -101,19 +104,19 @@ export default function Product({ setNotifyCart, products }) {
         </div>
 
         <div className='productDescription'>
-          <input id="name1" readOnly onChange={event => setname(event.target.value)} value={name} />
+          <input id="name1" readOnly={readOnly} onChange={event => setProductProps({ ...productProps, name: event.target.value })} value={productProps.name} />
           <div>
             <p style={{ display: 'inline', fontSize: '20px' }}>$</p>
-            <input id="price1" readOnly onChange={event => setprice(event.target.value)} type="number" value={price} />
+            <input id="price1" readOnly={readOnly} onChange={event => setProductProps({ ...productProps, price: event.target.value })} type="number" value={productProps.price} />
           </div>
           <button {...button} onClick={addCart} className='addToCart'>Add to cart</button>
           <h4 className='detailsHeader'>Details</h4>
-          <textarea id="detail1" readOnly onChange={event => setdetails(event.target.value)} value={details} />
+          <textarea id="detail1" readOnly={readOnly} onChange={event => setProductProps({ ...productProps, details: event.target.value })} value={productProps.details} />
 
           {isAdmin
             ? <>
               <p style={{ color: 'red', textAlign: 'center' }} >{warning}</p>
-              <button className='addToCart' id='editButton' onClick={editData}>Edit</button>
+              <button className='addToCart' id='editButton' onClick={editData}>{buttonText}</button>
               <button className='addToCart' onClick={removeProduct}>Remove</button>
             </>
             : null

@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-
 const h1style = {
   fontSize: '20px',
   display: 'block',

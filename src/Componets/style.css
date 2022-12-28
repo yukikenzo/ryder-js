@@ -398,7 +398,7 @@ body {
     transform: translate(-50%, -50%);
     z-index: 100;
     width: 70vw;
-    height: 80vh;
+    height: 700px;
     background-color: white;
     display: flex;
 }
@@ -600,7 +600,7 @@ body {
         height: max-content;
         margin-bottom: 650px;
         background-color: #fff;
-        margin-top: -440px;
+        margin-top: -640px;
     }
 
     .addressForm>* {
@@ -626,7 +626,7 @@ body {
 
 @keyframes removeMargin {
     0% {
-        margin-top: -440px;
+        margin-top: -640px;
     }
 
     100% {
@@ -640,6 +640,6 @@ body {
     }
 
     100% {
-        margin-top: -440px;
+        margin-top: -640px;
     }
 }
