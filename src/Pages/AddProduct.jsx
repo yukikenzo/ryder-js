@@ -19,8 +19,6 @@ export default function AddProduct() {
     img4: ""
   });
 
-  console.log(lastID.current);
-
   useEffect(() => {
     (async function () {
       const citiesRef = collection(db, "products");
@@ -106,7 +104,7 @@ export default function AddProduct() {
         <div className='productDetails'>
           <FormInput submitted={submitted} value={data.name} onChange={clearWarning} {...nameInput} />
           <FormInput submitted={submitted} value={data.price} onChange={clearWarning} {...priceInput} />
-          <textarea onBlur={() => setFocused(true)} focused={(focused || submitted).toString()} {...textArea} value={data.details} onChange={clearWarning} cols="30" rows="10"></textarea>
+          <textarea style={{border: '2px solid rgb(118, 118, 118)'}} onBlur={() => setFocused(true)} focused={(focused || submitted).toString()} {...textArea} value={data.details} onChange={clearWarning} cols="30" rows="10"></textarea>
           <p5>{textArea.error}</p5>
         </div>
 
