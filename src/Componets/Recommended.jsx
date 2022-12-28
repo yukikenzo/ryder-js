@@ -47,9 +47,9 @@ return (
   <div>
     <h1 style={h1style}>You may also like</h1>
     <div className='recommendationContainer'>
-      {recommendedClothesData.map((clothe, index) => {
+      {recommendedClothesData.map((clothe) => {
         return (
-          <div className='product_image' key={index.toString()}>
+          <div className='product_image' key={clothe.id}>
             <div className='defalut_image_container'>
               <img onClick={() => passState(clothe.id, clothe)} className='default_image' src={clothe.img1} alt="clothes" />
             </div>

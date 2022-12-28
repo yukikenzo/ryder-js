@@ -26,7 +26,7 @@ export default function Cart({ products, setNotifyCart }) {
     let sum = 0
     let quantity = 0
 
-    if (subtotal.length > 1) {
+    if (subtotal.length > 0) {
       subtotal.map((obj) => {
         return (sum += obj.price, quantity += obj.quantity)
       })
@@ -69,8 +69,8 @@ export default function Cart({ products, setNotifyCart }) {
           </div>
 
           <div style={{ border: '2px groove', borderLeft: 'none', borderRight: 'none' }}>
-            {cart.map((product, index) => {
-              return <Selected key={index} product={product} setSubtotal={setSubtotal} subtotal={subtotal} />
+            {cart.map((product) => {
+              return <Selected key={product.id} product={product} setSubtotal={setSubtotal} subtotal={subtotal} />
             })}
           </div>
 

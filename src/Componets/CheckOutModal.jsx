@@ -80,7 +80,7 @@ export default function CheckOutModal({ isOpen, onClose, product, total }) {
 
                 <div id='orderSummary' className='orderSummary'>
                     {product.map((product) => {
-                        return <div className='orderProducts'>
+                        return <div key={product.id} className='orderProducts'>
                             <div>
                                 <img src={product.img1} alt="" />
                                 <span>{product.quantity}</span>

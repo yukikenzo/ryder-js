@@ -128,7 +128,7 @@ input {
 }
 
 input:invalid[focused='true']+p5 {
-    display: block !important;
+    visibility: visible !important;
 }
 
 input:invalid[focused="true"] {
@@ -136,7 +136,7 @@ input:invalid[focused="true"] {
 }
 
 textarea:invalid[focused='true']+p5 {
-    display: block !important;
+    visibility: visible !important;
 }
 
 textarea:invalid[focused='true'] {
@@ -358,7 +358,8 @@ p5:not(#success) {
     color: red;
     font-size: small;
     font-weight: bold;
-    display: none;
+    display: block;
+    visibility: hidden;
 }
 
 #success {

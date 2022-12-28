@@ -106,7 +106,7 @@ export default function AddProduct() {
         </div>
 
         <div className='inputImgLink'>
-          {linkInputs.map((input) => <div><FormInput submitted={submitted} value={data[input.className]} onChange={clearWarning} {...input} /></div>)}
+          {linkInputs.map((input) => <div key={input.id} ><FormInput submitted={submitted} value={data[input.className]} onChange={clearWarning} {...input} /></div>)}
         </div>
 
       </div>

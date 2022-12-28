@@ -28,8 +28,8 @@ export default function Collections() {
       </div>
 
       <div className='product_container'>
-        {clothe.map((product, index) => {
-          return < Product product={product} key={index.toString()} />
+        {clothe.map((product) => {
+          return < Product product={product} key={product.id} />
         })}
       </div>
     </>
