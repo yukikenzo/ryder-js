@@ -37,29 +37,24 @@ export default function Navbar({ isAdmin, notifyCart }) {
             document.querySelector('.shop-link').style.top = coordinates < lastScroll ? '25px' : '-60px'
             document.querySelector('.brand').style.top = coordinates < lastScroll ? '50px' : '-60px'
             document.querySelector('.icons').style.top = coordinates < lastScroll ? '28px' : '-70px'
-        }        
+        }
         lastScroll = coordinates <= 0 ? 0 : coordinates; // For Mobile or negative scrolling
     }, false);
 
     return (
         <>
             <div id='nav-container' className='nav-container'>
-
                 <Link className='shop-link' to="/collections">Shop</Link>
-
                 <Link className='brand' to="/">RYDER</Link>
-
                 <div className='icons'>
 
                     {isAdmin
-                        ? <Link to="/addproduct"> <BsPlusLg className='add_icon' /> </Link>
+                        ? <Link to="/addproduct"><BsPlusLg className='add_icon' /></Link>
                         : null
                     }
 
-                    <Link to="/login"> <BiUser className='main_icons' /> </Link>
-                    <Link to="/cart">
-                        <BiShoppingBag className='main_icons' />
-                    </Link>
+                    <Link to="/login"><BiUser className='main_icons' /></Link>
+                    <Link to="/cart"><BiShoppingBag className='main_icons' /></Link>
 
                     {notifyCart
                         ?
@@ -71,7 +66,6 @@ export default function Navbar({ isAdmin, notifyCart }) {
                     }
 
                 </div>
-
             </div>
         </>
     )

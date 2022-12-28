@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { doc, setDoc, query, orderBy, limit, collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase-config';
 import FormInput from '../Componets/FormInput';
@@ -7,7 +7,7 @@ export default function AddProduct() {
   const [focused, setFocused] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [success, setSuccess] = useState('');
-  let k = 1;
+  const lastID = useRef(1)
 
   let [data, setData] = useState({
     name: "",
@@ -19,14 +19,19 @@ export default function AddProduct() {
     img4: ""
   });
 
-  (async function () {
-    const citiesRef = collection(db, "products");
-    const getLastProduct = query(citiesRef, orderBy("id", "desc"), limit(1));
-    const querySnapshot = await getDocs(getLastProduct);
-    querySnapshot.forEach((doc) => {
-      k = parseInt(doc.id) + 1;
-    });
-  }());
+  console.log(lastID.current);
+
+  useEffect(() => {
+    (async function () {
+      const citiesRef = collection(db, "products");
+      const getLastProduct = query(citiesRef, orderBy("id", "desc"), limit(1));
+      const querySnapshot = await getDocs(getLastProduct);
+      querySnapshot.forEach((doc) => {
+        lastID.current = parseInt(doc.id) + 1;
+      });
+    }());
+    console.log('USEEFFECT')
+  }, [])
 
   async function submitData() {
     if (document.querySelectorAll('.addProduct textarea:invalid,input:invalid').length) {
@@ -35,12 +40,12 @@ export default function AddProduct() {
     }
     setSuccess('Success!!');   
 
-    await setDoc(doc(db, "products", `${k}`), {
-      ...data, id: k
+    await setDoc(doc(db, "products", `${lastID.current}`), {
+      ...data, id: lastID.current
     })
-
-    k++;
-    window.location.reload(false)
+    lastID.current++;
+    alert("Success. Product added to Database!")
+    window.location.reload(false);
   }
 
   function clearWarning(e) {
