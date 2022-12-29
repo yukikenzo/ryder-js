@@ -63,7 +63,7 @@ export default function Selected({ product, setSubtotal }) {
 
       <div className='selPrice'>
         <h6>{'$' + (parseInt(product.price) + 10) + '.00'}</h6>
-        <h6>{'$' + product.price + '.00'}</h6>
+        <h6>{'$' + product.price}</h6>
       </div>
 
       <div className='selQuantity'>

@@ -39,7 +39,7 @@ export default function AddProduct() {
     setSuccess('Success!!');   
 
     await setDoc(doc(db, "products", `${lastID.current}`), {
-      ...data, id: lastID.current
+      ...data, price: data.price+'.00', id: lastID.current
     })
     lastID.current++;
     alert("Success. Product added to Database!")

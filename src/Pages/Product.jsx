@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
@@ -12,7 +12,10 @@ export default function Product({ setNotifyCart, products }) {
   const user = sessionStorage.getItem('loggedIn');
   const isAdmin = sessionStorage.getItem('admin');
 
+  const textarea = useRef()
+
   const [buttonText, setButtonText] = useState('Edit');
+  const [textareaHeight, setTextareaHeight] = useState({})
   const [readOnly, setReadOnly] = useState(true);
   const [warning, setWarning] = useState('')
   const [productProps, setProductProps] = useState({
@@ -24,6 +27,10 @@ export default function Product({ setNotifyCart, products }) {
     disabled: false,
     style: { backgroundColor: 'rgb(32, 37, 75)' }
   })
+
+  useEffect(() => {
+    setTextareaHeight({height: `${textarea.current.scrollHeight}px`})
+  }, [])
 
   async function changeData() {
     if (productProps.price && productProps.name && productProps.details !== '') {
@@ -93,6 +100,11 @@ export default function Product({ setNotifyCart, products }) {
     setButtonText(text)
   }
 
+  function fuckFunction(event) {
+    setProductProps({ ...productProps, details: event.target.value })
+    setTextareaHeight({height: `${event.target.scrollHeight}px`})
+  }
+
   return (
     <>
       <div className='productPage'>
@@ -111,7 +123,7 @@ export default function Product({ setNotifyCart, products }) {
           </div>
           <button {...button} onClick={addCart} className='addToCart'>Add to cart</button>
           <h4 className='detailsHeader'>Details</h4>
-          <textarea id="detail1" readOnly={readOnly} onChange={event => setProductProps({ ...productProps, details: event.target.value })} value={productProps.details} />
+          <textarea ref={textarea} style={textareaHeight} readOnly={readOnly} onChange={fuckFunction} value={productProps.details} />
 
           {isAdmin
             ? <>

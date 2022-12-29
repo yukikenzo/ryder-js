@@ -101,7 +101,7 @@ export default function CheckOutModal({ isOpen, onClose, product, total }) {
                         <p className='gridItem6'>Calculated at next step</p>
 
                         <p className='gridItem7'>Total</p>
-                        <h4 className='gridItem8'>${total}</h4>
+                        <h4 className='gridItem8'>${total+'.00'}</h4>
                     </div>
 
                 </div>

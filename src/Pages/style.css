@@ -211,10 +211,6 @@ textarea:invalid[focused='true'] {
     width: 50vw;
 }
 
-#detail1 {
-    height: 350px;
-}
-
 .primaryImage {
     width: 48.6vw;
     height: 50vw;
@@ -255,13 +251,14 @@ textarea:invalid[focused='true'] {
     flex-direction: column;
     padding-left: 3vw;
     width: 100%;
-    height: calc(1000px - 20vw);
+    height: fit-content;
     justify-content: space-between;
 }
 
 .productDescription>*, .productDescription>div>* {
     border: none;
     outline: none;
+    margin-bottom: 30px;
 }
 
 @media only screen and (min-width: 1000px) {
