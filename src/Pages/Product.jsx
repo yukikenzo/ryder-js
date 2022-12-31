@@ -53,7 +53,7 @@ export default function Product({ setNotifyCart }) {
         })
         readOnly.current = true;
         refetchProducts();
-        alert('refetched')
+        alert('Successfuly Edited')
         navigate('/collections')
       }
     }
@@ -62,12 +62,10 @@ export default function Product({ setNotifyCart }) {
     }
   }
 
-  let toggler = true
   function editData() {
-    if (toggler) {
+    if (buttonText == 'Edit') {
       readOnly.current = false;
       setButtonText('Save')
-      toggler = false;
     }
     else {
       changeData()

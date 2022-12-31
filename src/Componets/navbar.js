@@ -6,10 +6,10 @@ import { BsPlusLg } from "react-icons/bs";
 
 
 const style1 = {
-    width: '13px',
-    height: '13px',
+    width: '15px',
+    height: '15px',
     borderRadius: '50%',
-    backgroundColor: 'blue',
+    backgroundColor:  'rgb(32, 37, 75)',
     position: 'absolute',
     top: '15px',
     right: '6px',
