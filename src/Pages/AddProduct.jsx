@@ -24,11 +24,13 @@ export default function AddProduct() {
       const citiesRef = collection(db, "products");
       const getLastProduct = query(citiesRef, orderBy("id", "desc"), limit(1));
       const querySnapshot = await getDocs(getLastProduct);
+      console.log(querySnapshot)
       querySnapshot.forEach((doc) => {
+        console.log(doc.id)
         lastID.current = parseInt(doc.id) + 1;
       });
     }());
-    console.log('USEEFFECT')
+    
   }, [])
 
   async function submitData() {

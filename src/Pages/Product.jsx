@@ -3,8 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
 import Recommended from '../Componets/Recommended';
+import { Context } from '../Contex';
+import { useContext } from 'react';
 
-export default function Product({ setNotifyCart, products }) {
+export default function Product({ setNotifyCart }) {
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state;
@@ -14,9 +16,11 @@ export default function Product({ setNotifyCart, products }) {
 
   const textarea = useRef()
 
+  const {clotheArray, refetchProducts} = useContext(Context);
+
   const [buttonText, setButtonText] = useState('Edit');
   const [textareaHeight, setTextareaHeight] = useState({})
-  const [readOnly, setReadOnly] = useState(true);
+  const readOnly = useRef(true);
   const [warning, setWarning] = useState('')
   const [productProps, setProductProps] = useState({
     name: product.name,
@@ -47,7 +51,9 @@ export default function Product({ setNotifyCart, products }) {
         await setDoc(doc(db, "products", product.id.toString()), {
           ...product
         })
-        setReadOnly(true);
+        readOnly.current = true;
+        refetchProducts();
+        alert('refetched')
         navigate('/collections')
       }
     }
@@ -59,7 +65,7 @@ export default function Product({ setNotifyCart, products }) {
   let toggler = true
   function editData() {
     if (toggler) {
-      setReadOnly(false);
+      readOnly.current = false;
       setButtonText('Save')
       toggler = false;
     }
@@ -96,7 +102,7 @@ export default function Product({ setNotifyCart, products }) {
   }
 
   function editable(read, text) {
-    setReadOnly(read);
+    readOnly.current = read;
     setButtonText(text)
   }
 
@@ -116,14 +122,14 @@ export default function Product({ setNotifyCart, products }) {
         </div>
 
         <div className='productDescription'>
-          <input id="name1" readOnly={readOnly} onChange={event => setProductProps({ ...productProps, name: event.target.value })} value={productProps.name} />
+          <input id="name1" readOnly={readOnly.current} onChange={event => setProductProps({ ...productProps, name: event.target.value })} value={productProps.name} />
           <div>
             <p style={{ display: 'inline', fontSize: '20px' }}>$</p>
-            <input id="price1" readOnly={readOnly} onChange={event => setProductProps({ ...productProps, price: event.target.value })} type="number" value={productProps.price} />
+            <input id="price1" readOnly={readOnly.current} onChange={event => setProductProps({ ...productProps, price: event.target.value })} type="number" value={productProps.price} />
           </div>
           <button {...button} onClick={addCart} className='addToCart'>Add to cart</button>
           <h4 className='detailsHeader'>Details</h4>
-          <textarea ref={textarea} style={textareaHeight} readOnly={readOnly} onChange={fuckFunction} value={productProps.details} />
+          <textarea ref={textarea} style={{...textareaHeight, resize: 'none'}} readOnly={readOnly.current} onChange={fuckFunction} value={productProps.details} />
 
           {isAdmin
             ? <>
@@ -136,8 +142,7 @@ export default function Product({ setNotifyCart, products }) {
         </div>
 
       </div>
-      {products.length === 0 ? void (0) : <Recommended editable={editable} products={products} />}
-
+      <Recommended editable={editable} />
     </>
 
   )

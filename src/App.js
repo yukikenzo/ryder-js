@@ -21,22 +21,24 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import { db } from './firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
 
+import { Context } from './Contex';
+
 import ErrorBoundary from './ErrorBoundary';
 
 export default function App() {
   const [clotheArray, setClotheArray] = useState([]);
   const [isAuth, setAuth] = useState(sessionStorage.getItem('loggedIn') ? true : false);
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
-  const [notifyCart, setNotifyCart] = useState(0)
+  const [notifyCart, setNotifyCart] = useState(0);
 
-  async function fetchingProducts() {
+  async function fetchProducts() {
     const productsCollectionRef = collection(db, 'products');
     let fetchedData = await getDocs(productsCollectionRef);
     setClotheArray(fetchedData.docs.map((doc) => ({ ...doc.data() })));
   }
 
   useEffect(() => {
-    fetchingProducts()
+    fetchProducts()
   }, [])
 
   return (
@@ -45,20 +47,20 @@ export default function App() {
       <HashRouter>
         <Navbar notifyCart={notifyCart} isAdmin={isAdmin} />
         <ErrorBoundary>
+          <Context.Provider value={{products: clotheArray, refetchProducts: fetchProducts}}>
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route element={<ProtectedRoutes isAuth={isAuth} />}>
-
-              <Route exact path="/collections" element={< Collections />} />
-              <Route path="/cart" element={<Cart products={clotheArray} setNotifyCart={setNotifyCart} />} />
-              <Route path="/addproduct" element={<AddProduct />} />
-              <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} products={clotheArray} />} />
-
+                <Route exact path="/collections" element={< Collections />} />
+                <Route path="/cart" element={<Cart setNotifyCart={setNotifyCart} />} />
+                <Route path="/addproduct" element={<AddProduct />} />
+                <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} />} />
             </Route>
             <Route path="/login" element={<Login setNotifyCart={setNotifyCart} isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
             <Route path="/register" element={<Register setAuth={setAuth} setAdmin={setAdmin} />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
           </Routes>
+          </Context.Provider>
         </ErrorBoundary>
       </HashRouter>
       <Footer />

@@ -6,7 +6,7 @@ import Recommended from '../Componets/Recommended'
 import { collection, getDocs } from "firebase/firestore";
 import CheckOutModal from '../Componets/CheckOutModal'
 
-export default function Cart({ products, setNotifyCart }) {
+export default function Cart({ setNotifyCart }) {
   const user = sessionStorage.getItem('loggedIn');
   const cartCollectionRef = collection(db, user);
   const [cart, setCart] = useState([]);
@@ -85,7 +85,7 @@ export default function Cart({ products, setNotifyCart }) {
 
         </div>
       }
-      {products.length === 0 ? void (0) : <Recommended products={products} />}
+      <Recommended />
     </div>
   )
 }

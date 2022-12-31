@@ -46,7 +46,6 @@ body {
 .nav-container {
     display: flex;
     justify-content: center;
-    width: 100vw;
     height: 150px;
     margin-top: 40px;
 }

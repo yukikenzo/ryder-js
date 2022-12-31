@@ -1,22 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import Product from "../Componets/Products"
 import { BsXLg } from "react-icons/bs";
-import { db } from '../firebase-config';
-import { collection, getDocs } from 'firebase/firestore';
+import { Context } from '../Contex';
 
 export default function Collections() {
-  const [products, setProducts] = useState([])
-  async function fetchingProducts() {
-    const productsCollectionRef = collection(db, 'products');
-    let fetchedData = await getDocs(productsCollectionRef);
-    setProducts(fetchedData.docs.map((doc) => ({ ...doc.data() })));
-  }
-  
-  useEffect(() => {
-    fetchingProducts()
-  }, [])
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const [searchQuery, setSearchQuery] = useState('')
+  const {products, refetchProducts} = useContext(Context);
 
   const clothe = products.filter((product) => product.name.toLowerCase().includes(searchQuery.toLowerCase()))
 
@@ -28,9 +18,9 @@ export default function Collections() {
       </div>
 
       <div className='product_container'>
-        {clothe.map((product) => {
-          return < Product product={product} key={product.id} />
-        })}
+          {clothe.map((product) => {
+            return < Product product={product} key={product.id} />
+          })}
       </div>
     </>
   )
