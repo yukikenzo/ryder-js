@@ -2,7 +2,7 @@
 - This project was developed by Kutman Eshenkulov
 - Ryder is online woman clothing shop
 - Website deployed in [Github Pages](https://kut-man.github.io/ryder/)
-- If you want to get admin possiblites login as 'kutman.stel@gmail.com' password: 'kutman'
+- If you want to get admin possibilities log in as 'kutman.stel@gmail.com' password: 's&@QC59@7nJbpP3Y' (you will not be able to add or remove products for security reasons but you can see what opportunities does an admin have)
 ##  :wrench: Development
 Developed with JS, React.
 Server side: Firebase.
@@ -49,4 +49,4 @@ Server side: Firebase.
  If you think you have encountered a bug, and I should know about it, feel free to report it [here](https://t.me/kut_man) and I will take care of it.
 
 
-## This website is not original page of Ryder, it was developed only for educational purposes. Original website is [here.](https://ryderlabel.com/)
+## This website is not an original page of Ryder, it was developed only for educational purposes. The original website is [here.](https://ryderlabel.com/)
