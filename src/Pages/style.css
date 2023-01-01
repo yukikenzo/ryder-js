@@ -345,10 +345,14 @@ textarea:invalid[focused='true'] {
 }
 
 .addProduct>button {
-    margin: 0;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 50px 0 20px 0;
+}
+
+.addProduct>span {
+    display: block;
+    text-align: center;
 }
 
 p5:not(#success) {

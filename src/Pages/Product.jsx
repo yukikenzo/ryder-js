@@ -16,7 +16,7 @@ export default function Product({ setNotifyCart }) {
 
   const textarea = useRef()
 
-  const {clotheArray, refetchProducts} = useContext(Context);
+  const { clotheArray, refetchProducts } = useContext(Context);
 
   const [buttonText, setButtonText] = useState('Edit');
   const [textareaHeight, setTextareaHeight] = useState({})
@@ -33,7 +33,7 @@ export default function Product({ setNotifyCart }) {
   })
 
   useEffect(() => {
-    setTextareaHeight({height: `${textarea.current.scrollHeight}px`})
+    setTextareaHeight({ height: `${textarea.current.scrollHeight}px` })
   }, [])
 
   async function changeData() {
@@ -48,10 +48,17 @@ export default function Product({ setNotifyCart }) {
         product.name = productProps.name;
         product.price = productProps.price;
         product.details = productProps.details;
-        await setDoc(doc(db, "products", product.id.toString()), {
-          ...product
-        })
-        readOnly.current = true;
+        try {
+          await setDoc(doc(db, "products", product.id.toString()), {
+            ...product
+          })
+        } catch (err) {
+          const error = err.code.toString().replaceAll('-', ' ') + '!!'
+          setWarning(error.charAt(0).toUpperCase() + error.slice(1));
+          readOnly.current = true;
+          return;
+        }
+
         refetchProducts();
         alert('Successfuly Edited')
         navigate('/collections')
@@ -94,7 +101,14 @@ export default function Product({ setNotifyCart }) {
   }
 
   async function removeProduct() {
-    await deleteDoc(doc(db, "products", product.id.toString()))
+    try {
+      await deleteDoc(doc(db, "products", product.id.toString()))
+    } catch (err) {
+      const error = err.code.toString().replaceAll('-', ' ') + '!!'
+      setWarning(error.charAt(0).toUpperCase() + error.slice(1));
+      return;
+    }
+
     navigate('/collections')
     window.location.reload(true)
   }
@@ -106,7 +120,7 @@ export default function Product({ setNotifyCart }) {
 
   function fuckFunction(event) {
     setProductProps({ ...productProps, details: event.target.value })
-    setTextareaHeight({height: `${event.target.scrollHeight}px`})
+    setTextareaHeight({ height: `${event.target.scrollHeight}px` })
   }
 
   return (
@@ -127,7 +141,7 @@ export default function Product({ setNotifyCart }) {
           </div>
           <button {...button} onClick={addCart} className='addToCart'>Add to cart</button>
           <h4 className='detailsHeader'>Details</h4>
-          <textarea ref={textarea} style={{...textareaHeight, resize: 'none'}} readOnly={readOnly.current} onChange={fuckFunction} value={productProps.details} />
+          <textarea ref={textarea} style={{ ...textareaHeight, resize: 'none' }} readOnly={readOnly.current} onChange={fuckFunction} value={productProps.details} />
 
           {isAdmin
             ? <>

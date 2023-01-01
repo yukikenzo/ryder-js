@@ -6,7 +6,10 @@ import FormInput from '../Componets/FormInput';
 export default function AddProduct() {
   const [focused, setFocused] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [success, setSuccess] = useState('');
+  const [success, setSuccess] = useState({
+    value: '',
+    style: { color: 'red' }
+  });
   const lastID = useRef(1)
 
   let [data, setData] = useState({
@@ -24,13 +27,11 @@ export default function AddProduct() {
       const citiesRef = collection(db, "products");
       const getLastProduct = query(citiesRef, orderBy("id", "desc"), limit(1));
       const querySnapshot = await getDocs(getLastProduct);
-      console.log(querySnapshot)
       querySnapshot.forEach((doc) => {
-        console.log(doc.id)
         lastID.current = parseInt(doc.id) + 1;
       });
     }());
-    
+
   }, [])
 
   async function submitData() {
@@ -38,11 +39,18 @@ export default function AddProduct() {
       setSubmitted(true);
       return;
     }
-    setSuccess('Success!!');   
 
-    await setDoc(doc(db, "products", `${lastID.current}`), {
-      ...data, price: data.price+'.00', id: lastID.current
-    })
+    try {
+      await setDoc(doc(db, "products", `${lastID.current}`), {
+        ...data, price: data.price + '.00', id: lastID.current
+      })
+    } catch (err) {
+      const error = err.code.toString().replaceAll('-', ' ') + '!!'
+      setSuccess({ style: {color: 'red'}, value: error.charAt(0).toUpperCase() + error.slice(1) });
+      return;
+    }
+    setSuccess({ style: {color: 'green'}, value: 'Success!!' });
+
     lastID.current++;
     alert("Success. Product added to Database!")
     window.location.reload(false);
@@ -95,27 +103,25 @@ export default function AddProduct() {
 
   let linkInputs = [];
 
-  for(let i = 0; i < 4; i++) {
-    linkInputs.push({...inputs, id: i, className: `img${i+1}`})
+  for (let i = 0; i < 4; i++) {
+    linkInputs.push({ ...inputs, id: i, className: `img${i + 1}` })
   }
 
   return (
     <div className='addProduct'>
       <div>
-
         <div className='productDetails'>
           <FormInput submitted={submitted} value={data.name} onChange={clearWarning} {...nameInput} />
           <FormInput submitted={submitted} value={data.price} onChange={clearWarning} {...priceInput} />
-          <textarea style={{border: '2px solid rgb(118, 118, 118)'}} onBlur={() => setFocused(true)} focused={(focused || submitted).toString()} {...textArea} value={data.details} onChange={clearWarning} cols="30" rows="10"></textarea>
+          <textarea style={{ border: '2px solid rgb(118, 118, 118)' }} onBlur={() => setFocused(true)} focused={(focused || submitted).toString()} {...textArea} value={data.details} onChange={clearWarning} cols="30" rows="10"></textarea>
           <p5>{textArea.error}</p5>
         </div>
 
         <div className='inputImgLink'>
           {linkInputs.map((input) => <div key={input.id} ><FormInput submitted={submitted} value={data[input.className]} onChange={clearWarning} {...input} /></div>)}
         </div>
-
       </div>
-      <p5>{success}</p5>
+      <span style={success.style}>{success.value}</span>
       <button type='submit' onClick={submitData}>Submit</button>
     </div>
   )
