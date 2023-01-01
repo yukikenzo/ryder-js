@@ -10,31 +10,28 @@ Server side: Firebase.
 
 ```
 .
-├── src
-│   ├── Componets
-│   │   ├── Footer.js
-│   │   ├── Navbar.js
-│   │   ├── Products.jsx
-│   │   ├── Recemmended.jsx
-│   │   ├── Selected.jsx
-│   │   ├── style.css
-│   │   └── Treadmill.js
-│   ├── Pages
-│   │   ├── AddProduct.jsx
-│   │   ├── Cart.jsx
-│   │   ├── Collections.jsx
-│   │   ├── ForgotPassword
-│   │   ├── Home.jsx
-│   │   ├── Login.jsx
-│   │   ├── Product.jsx
-│   │   ├── Register.jsx
-│   │   └── style.css
-│   ├── App.js
-│   └── index.js
-|
-├── package-lock.json
-├── package.json
-└── README.md
+src
+├── Componets
+│   ├── Footer.js
+│   ├── Navbar.js
+│   ├── Products.jsx
+│   ├── Recemmended.jsx
+│   ├── Selected.jsx
+│   ├── style.css
+│   └── Treadmill.js
+├── Pages
+│   ├── AddProduct.jsx
+│   ├── Cart.jsx
+│   ├── Collections.jsx
+│   ├── ForgotPassword
+│   ├── Home.jsx
+│   ├── Login.jsx
+│   ├── Product.jsx
+│   ├── Register.jsx
+│   └── style.css
+├── App.js
+└── index.js
+
 ```
 
 | No | File Name | Details 
