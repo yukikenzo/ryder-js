@@ -31,15 +31,15 @@ export default function Home() {
       <a href="https://www.instagram.com/ryder_label/" target={'_blank'} rel="noreferrer">@ryder_label</a>
 
       <div className='instagram-photos'>
-        <a href="https://www.instagram.com/p/CYODokjMXdV/" target={'_blank'} rel="noreferrer"><img src="https://www.swedishnomad.com/wp-content/images/2019/04/Facts-about-Colosseum.jpg" alt='instagram images' /></a>
-        <a href="https://www.instagram.com/p/CYKfV3WB6S1/" target={'_blank'} rel="noreferrer"><img src="https://www.kevmrc.com/wp-content/uploads/2021/10/30-interesting-facts-about-corsica-france.jpg" alt='instagram images' /></a>
-        <a href="https://www.instagram.com/p/CYIJ3uvu-JA/" target={'_blank'} rel="noreferrer"><img src="https://images.unsplash.com/photo-1607427293702-036933bbf746?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cG9sYW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt='instagram images' /></a>
-        <a href="https://www.instagram.com/p/CX62jFhs5Ig/" target={'_blank'} rel="noreferrer"><img src="https://www.ephotozine.com/articles/5-easy-ways-to-make-shots-more-interesting-18694/images/lrg_347_1308571221.jpg" alt='instagram images' /></a>
+        <a href="https://www.instagram.com/p/CmjcNKMrS7a/" target={'_blank'} rel="noreferrer"><img src="https://scontent.cdninstagram.com/v/t51.29350-15/321180785_460802866255144_2598753441753189743_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=pdX4RQg6TqAAX9C9-IT&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfB7hWiU9rwYrzri2NuJc2zUCuxak8SHZy7EtXedaTqAwQ&oe=63B60F68" alt='instagram images' /></a>
+        <a href="https://www.instagram.com/p/ClkvwsDBgqr/" target={'_blank'} rel="noreferrer"><img src="https://scontent.cdninstagram.com/v/t51.29350-15/317394851_868873574424949_2279521613769796170_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=nZDb1ETQzoAAX-my9dz&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfBg6QnqcoXOS3o9k-fg53VOw13CnO73jxn4GRq9EHnatQ&oe=63B58A3F" alt='instagram images' /></a>
+        <a href="https://www.instagram.com/p/CdM5CL6uqfO/" target={'_blank'} rel="noreferrer"><img src="https://scontent.cdninstagram.com/v/t51.2885-15/279866685_514310067012347_271086022926494014_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=dOeqHpKNmmEAX-OiMKi&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfAse6ewNS1xDjwBPkK42HTQvv6PfKX4IkmkdIWIRZm6vA&oe=63B6793E" alt='instagram images' /></a>
+        <a href="https://www.instagram.com/p/CdJww4tryQV/" target={'_blank'} rel="noreferrer"><img src="https://scontent.cdninstagram.com/v/t51.2885-15/279770764_328185902787247_4740105843725735461_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8ae9d6&_nc_ohc=FiACh8eokx4AX9pVS5S&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfBTwfEk1VsyPUApEXrV6vYo6WHFTWupt-FtSt4FksZTGA&oe=63B51A69" alt='instagram images' /></a>
       </div>
 
       <p>Sign Up For 10% Off Your First Order</p>
       <div className='input-container'>
-        <input className='email-input' autoComplete='email' type="email" />
+        <input className='email-input' placeholder='Your Email' autoComplete='email' type="email" />
         <button className='sub-button'>Subscribe</button>
       </div>
     </div>
