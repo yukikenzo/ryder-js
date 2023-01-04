@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
 
-export default function Selected({ product, setSubtotal }) {
+export default function Selected({ product, setSubtotal, removeProductFromCart }) {
 
   const user = sessionStorage.getItem('loggedIn');
   async function remove() {
+    removeProductFromCart(product.id)
     await deleteDoc(doc(db, user, product.id.toString()))
-    window.location.reload(true)
   }
 
   const [amount, setAmount] = useState(0)

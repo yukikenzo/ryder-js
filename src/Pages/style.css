@@ -195,8 +195,14 @@ textarea:invalid[focused='true'] {
     background-color: #fff;
 }
 
+.clear_search_icon {
+    transform: scale(1);
+    transition-duration: 300ms;
+}
+
 .clear_search_icon:hover {
-    font-size: 17px;
+    transform: scale(1.3);
+    transition-duration: 300ms;
 }
 
 .product_container {

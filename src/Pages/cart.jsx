@@ -22,6 +22,11 @@ export default function Cart({ setNotifyCart }) {
     })();
   }, [])
 
+  function removeProductFromCart(id) {
+    setCart(cart.filter(obj => obj.id != id))
+  }
+
+
   useEffect(() => {
     let sum = 0
     let quantity = 0
@@ -70,7 +75,7 @@ export default function Cart({ setNotifyCart }) {
 
           <div style={{ border: '2px groove', borderLeft: 'none', borderRight: 'none' }}>
             {cart.map((product) => {
-              return <Selected key={product.id} product={product} setSubtotal={setSubtotal} subtotal={subtotal} />
+              return <Selected key={product.id} product={product} removeProductFromCart={removeProductFromCart} setSubtotal={setSubtotal} />
             })}
           </div>
 
