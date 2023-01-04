@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from '../firebase-config';
 import Recommended from '../Componets/Recommended';
 import { Context } from '../Contex';
-import { useContext } from 'react';
 
 export default function Product({ setNotifyCart }) {
   const location = useLocation();
@@ -16,7 +15,7 @@ export default function Product({ setNotifyCart }) {
 
   const textarea = useRef()
 
-  const { clotheArray, refetchProducts } = useContext(Context);
+  const { refetchProducts } = useContext(Context);
 
   const [buttonText, setButtonText] = useState('Edit');
   const [textareaHeight, setTextareaHeight] = useState({})

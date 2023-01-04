@@ -34,7 +34,7 @@ export default function App() {
   async function fetchProducts() {
     const productsCollectionRef = collection(db, 'products');
     let fetchedData = await getDocs(productsCollectionRef);
-    setClotheArray(fetchedData.docs.map((doc) => ({ ...doc.data() })));
+    setClotheArray(fetchedData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   }
 
   useEffect(() => {

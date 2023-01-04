@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { doc, setDoc, query, orderBy, limit, collection, getDocs } from "firebase/firestore";
+import React, { useState } from 'react'
+import { addDoc, collection } from "firebase/firestore";
 import { db } from '../firebase-config';
 import FormInput from '../Componets/FormInput';
 
@@ -10,7 +10,6 @@ export default function AddProduct() {
     value: '',
     style: { color: 'red' }
   });
-  const lastID = useRef(1)
 
   let [data, setData] = useState({
     name: "",
@@ -22,18 +21,6 @@ export default function AddProduct() {
     img4: ""
   });
 
-  useEffect(() => {
-    (async function () {
-      const citiesRef = collection(db, "products");
-      const getLastProduct = query(citiesRef, orderBy("id", "desc"), limit(1));
-      const querySnapshot = await getDocs(getLastProduct);
-      querySnapshot.forEach((doc) => {
-        lastID.current = parseInt(doc.id) + 1;
-      });
-    }());
-
-  }, [])
-
   async function submitData() {
     if (document.querySelectorAll('.addProduct textarea:invalid,input:invalid').length) {
       setSubmitted(true);
@@ -41,8 +28,8 @@ export default function AddProduct() {
     }
 
     try {
-      await setDoc(doc(db, "products", `${lastID.current}`), {
-        ...data, price: data.price + '.00', id: lastID.current
+      await addDoc(collection(db, "products"), {
+        ...data, price: data.price + '.00'
       })
     } catch (err) {
       const error = err.code.toString().replaceAll('-', ' ') + '!!'
@@ -51,7 +38,6 @@ export default function AddProduct() {
     }
     setSuccess({ style: {color: 'green'}, value: 'Success!!' });
 
-    lastID.current++;
     alert("Success. Product added to Database!")
     window.location.reload(false);
   }

@@ -14,7 +14,7 @@ const h1style = {
 export default function Recommended({ editable }) {
   let recommendedClothesData = [];
   let randomId = [];
-  const { products, refetchProducts } = useContext(Context);
+  const { products } = useContext(Context);
 
   if (products.length > 4) {
     while (randomId.length < 4) {
