@@ -7,14 +7,14 @@ import { collection, getDocs } from "firebase/firestore";
 import CheckOutModal from '../Componets/CheckOutModal'
 
 export default function Cart({ setNotifyCart }) {
-  const user = sessionStorage.getItem('loggedIn');
-  const cartCollectionRef = collection(db, user);
   const [cart, setCart] = useState([]);
   const [subtotal, setSubtotal] = useState([{}]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    const user = sessionStorage.getItem('loggedIn');
+    const cartCollectionRef = collection(db, user);
     (async () => {
       let data = await getDocs(cartCollectionRef);
       setCart(data.docs.map((doc) => ({ ...doc.data() })));
@@ -23,7 +23,7 @@ export default function Cart({ setNotifyCart }) {
   }, [])
 
   function removeProductFromCart(id) {
-    setCart(cart.filter(obj => obj.id != id))
+    setCart(cart.filter(obj => obj.id !== id))
   }
 
 
@@ -80,7 +80,7 @@ export default function Cart({ setNotifyCart }) {
           </div>
 
           <div className='checkOutContainer'>
-            <p style={{ display: 'inline' }}>Subtotal <p style={{ marginLeft: '15px', display: 'inline', fontSize: '20px' }}>${parseInt(totalPrice)}.00 USD</p></p>
+            <span style={{ display: 'inline' }}>Subtotal <p style={{ marginLeft: '15px', display: 'inline', fontSize: '20px' }}>${parseInt(totalPrice)}.00 USD</p></span>
             <p style={{ fontSize: '15px', marginTop: '20px' }}>Tax included. Shipping calculated at checkout.</p>
             <button onClick={() => setIsOpen(true)} className='checkOutButton'>Check out</button>
 

@@ -10,7 +10,8 @@ export default function Collections() {
 
   useEffect(() => {
     refetchProducts()
-  }, [])
+  }, [refetchProducts])
+  
 
   const clothe = products.filter((product) => product.name.toLowerCase().includes(searchQuery.toLowerCase()))
 

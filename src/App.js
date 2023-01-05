@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import Navbar from './Componets/Navbar';
 import Footer from './Componets/Footer';
@@ -31,15 +31,17 @@ export default function App() {
   const [isAdmin, setAdmin] = useState(sessionStorage.getItem('admin') ? true : false);
   const [notifyCart, setNotifyCart] = useState(0);
 
-  async function fetchProducts() {
-    const productsCollectionRef = collection(db, 'products');
-    let fetchedData = await getDocs(productsCollectionRef);
-    setClotheArray(fetchedData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  }
+  const fetchProducts = useCallback(
+     async () => {
+      const productsCollectionRef = collection(db, 'products');
+      let fetchedData = await getDocs(productsCollectionRef);
+      setClotheArray(fetchedData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    },[],
+  )
 
   useEffect(() => {
     fetchProducts()
-  }, [])
+  }, [fetchProducts])
 
   return (
     <div className="App">

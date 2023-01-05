@@ -1,16 +1,18 @@
 import { db } from '../firebase-config';
 import { BiTrash } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
 
 export default function Selected({ product, setSubtotal, removeProductFromCart }) {
 
   const user = sessionStorage.getItem('loggedIn');
-  async function remove() {
-    removeProductFromCart(product.id)
-    await deleteDoc(doc(db, user, product.id.toString()))
-  }
+  const remove = useCallback(
+    async () => {
+      removeProductFromCart(product.id)
+      await deleteDoc(doc(db, user, product.id.toString()))
+    },[],
+  )
 
   const [amount, setAmount] = useState(0)
 
@@ -35,7 +37,7 @@ export default function Selected({ product, setSubtotal, removeProductFromCart }
       }
     }
     changeQuatity()
-  }, [amount])
+  }, [amount, user, product, setSubtotal, remove])
 
   function changeAmount(increase) {
     if (increase && product.quantity + amount < 50) {

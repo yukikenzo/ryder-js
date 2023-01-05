@@ -69,7 +69,7 @@ export default function Product({ setNotifyCart }) {
   }
 
   function editData() {
-    if (buttonText == 'Edit') {
+    if (buttonText === 'Edit') {
       readOnly.current = false;
       setButtonText('Save')
     }
