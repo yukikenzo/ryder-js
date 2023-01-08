@@ -20,7 +20,7 @@ export default function Selected({ product, setSubtotal, removeProductFromCart }
     setSubtotal(subtotal =>
       subtotal.map(obj => {
         if (obj.id === product.id) {
-          return { ...obj, price: parseInt(product.price) * (product.quantity + amount), quantity: product.quantity + amount };
+          return { ...obj, quantity: product.quantity + amount };
         }
         return obj;
       }),

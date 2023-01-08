@@ -33,7 +33,7 @@ export default function Cart({ setNotifyCart }) {
 
     if (subtotal.length > 0) {
       subtotal.map((obj) => {
-        return (sum += obj.price, quantity += obj.quantity)
+        return (sum += obj.price*obj.quantity, quantity += obj.quantity)
       })
       setTotalPrice(sum)
       setNotifyCart(quantity)
