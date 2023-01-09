@@ -18,14 +18,13 @@ export default function Cart({ setNotifyCart }) {
     (async () => {
       let data = await getDocs(cartCollectionRef);
       setCart(data.docs.map((doc) => ({ ...doc.data() })));
-      setSubtotal(data.docs.map((doc) => ({ id: doc.data().id, price: parseInt(doc.data().price), quantity: doc.data().quantity })))
+      setSubtotal(cart.map((doc) => ({ id: doc.data().id, price: parseInt(doc.data().price), quantity: doc.data().quantity })))
     })();
   }, [])
 
   function removeProductFromCart(id) {
     setCart(cart.filter(obj => obj.id !== id))
   }
-
 
   useEffect(() => {
     let sum = 0
@@ -84,8 +83,7 @@ export default function Cart({ setNotifyCart }) {
             <p style={{ fontSize: '15px', marginTop: '20px' }}>Tax included. Shipping calculated at checkout.</p>
             <button onClick={() => setIsOpen(true)} className='checkOutButton'>Check out</button>
 
-            <CheckOutModal total={totalPrice} product={cart} isOpen={isOpen} onClose={() => setIsOpen(false)} />
-
+            {isOpen && <CheckOutModal total={totalPrice} product={cart} onClose={() => setIsOpen(false)} />}
           </div>
 
         </div>

@@ -5,7 +5,6 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
 
 export default function Selected({ product, setSubtotal, removeProductFromCart }) {
-
   const user = sessionStorage.getItem('loggedIn');
   const remove = useCallback(
     async () => {

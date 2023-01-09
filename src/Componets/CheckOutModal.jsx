@@ -4,13 +4,9 @@ import { IoIosArrowBack } from "react-icons/io";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 
 
-export default function CheckOutModal({ isOpen, onClose, product, total }) {
+export default function CheckOutModal({ onClose, product, total }) {
     const [classList, setClassList] = useState('addressForm');
     const [isExpanded, setIsExpanded] = useState(false)
-
-    if (!isOpen) {
-        return null;
-    }
 
     function clicked(e) {
         if (!document.getElementById('clickbox').contains(e.target)) onClose()
