@@ -11,7 +11,7 @@ export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const { setNotifyCart } = useContext(Context);
+  const { setNotifyCart, getCartProductsQuantity } = useContext(Context);
   const user = sessionStorage.getItem('loggedIn');
 
   useEffect(() => {
@@ -38,6 +38,7 @@ export default function Cart() {
   async function removeProductFromCart(id) {
     setCartItems(cartItems.filter(obj => obj.id != id))
     await deleteDoc(doc(db, user, id.toString()))
+    getCartProductsQuantity()
   }
 
   function changeQuatity(id, quantity) {

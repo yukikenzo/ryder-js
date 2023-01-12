@@ -1,9 +1,8 @@
 import React, { useState, useContext } from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth'
-import { db, auth, admin } from '../firebase-config'
+import { auth, admin } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
 import FormInput from '../Componets/FormInput';
-import { collection, getDocs } from "firebase/firestore";
 import { Context } from '../Contex';
 
 export default function Register({ setAuth, setAdmin }) {
@@ -15,7 +14,7 @@ export default function Register({ setAuth, setAdmin }) {
     password: '',
     repeatPassword: ''
   });
-  const { setNotifyCart } = useContext(Context);
+  const { getCartProductsQuantity } = useContext(Context);
 
   function register(event) {
     event.preventDefault();
@@ -34,11 +33,7 @@ export default function Register({ setAuth, setAdmin }) {
           );
           sessionStorage.setItem('loggedIn', auth.currentUser.email)
 
-          const cartCollectionRef = collection(db, auth.currentUser.email);
-          (async () => {
-            let data = await getDocs(cartCollectionRef);
-            setNotifyCart(data.docs.reduce((acc, cur) => acc + cur.data().quantity, 0))
-          })();
+          getCartProductsQuantity()
 
           setAuth(true);
           navigate('/collections');

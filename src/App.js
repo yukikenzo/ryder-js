@@ -42,12 +42,28 @@ export default function App() {
   const contexData = {
     products: clotheArray,
     refetchProducts: fetchProducts,
-    setNotifyCart: setNotifyCart
+    setNotifyCart: setNotifyCart,
+    getCartProductsQuantity: getCartProductsQuantity
   }
 
   useEffect(() => {
     fetchProducts()
   }, [fetchProducts])
+
+  useEffect(() => {
+    getCartProductsQuantity()
+  }, [])
+
+  function getCartProductsQuantity() {
+    const user = sessionStorage.getItem('loggedIn');
+    if(user) {
+      const cartCollectionRef = collection(db, user);
+      (async () => {
+        let data = await getDocs(cartCollectionRef);
+        setNotifyCart(data.docs.reduce((acc, cur) => acc + cur.data().quantity, 0))
+      })();
+    }
+  }
 
   return (
     <div className="App">
