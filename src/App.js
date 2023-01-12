@@ -32,12 +32,18 @@ export default function App() {
   const [notifyCart, setNotifyCart] = useState(0);
 
   const fetchProducts = useCallback(
-     async () => {
+    async () => {
       const productsCollectionRef = collection(db, 'products');
       let fetchedData = await getDocs(productsCollectionRef);
       setClotheArray(fetchedData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    },[],
+    }, [],
   )
+
+  const contexData = {
+    products: clotheArray,
+    refetchProducts: fetchProducts,
+    setNotifyCart: setNotifyCart
+  }
 
   useEffect(() => {
     fetchProducts()
@@ -49,19 +55,19 @@ export default function App() {
       <HashRouter>
         <Navbar notifyCart={notifyCart} isAdmin={isAdmin} />
         <ErrorBoundary>
-          <Context.Provider value={{products: clotheArray, refetchProducts: fetchProducts}}>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route element={<ProtectedRoutes isAuth={isAuth} />}>
+          <Context.Provider value={contexData}>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route element={<ProtectedRoutes isAuth={isAuth} />}>
                 <Route exact path="/collections" element={< Collections />} />
-                <Route path="/cart" element={<Cart setNotifyCart={setNotifyCart} />} />
+                <Route path="/cart" element={<Cart />} />
                 <Route path="/addproduct" element={<AddProduct />} />
-                <Route path="/product/:id" element={<Product setNotifyCart={setNotifyCart} />} />
-            </Route>
-            <Route path="/login" element={<Login setNotifyCart={setNotifyCart} isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
-            <Route path="/register" element={<Register setAuth={setAuth} setAdmin={setAdmin} />} />
-            <Route path="/forgotpassword" element={<ForgotPassword />} />
-          </Routes>
+                <Route path="/product/:id" element={<Product />} />
+              </Route>
+              <Route path="/login" element={<Login isAuth={isAuth} setAuth={setAuth} setAdmin={setAdmin} />} />
+              <Route path="/register" element={<Register setAuth={setAuth} setAdmin={setAdmin} />} />
+              <Route path="/forgotpassword" element={<ForgotPassword />} />
+            </Routes>
           </Context.Provider>
         </ErrorBoundary>
       </HashRouter>

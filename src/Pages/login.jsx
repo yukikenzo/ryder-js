@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
-import { admin } from '../firebase-config'
+import React, { useState, useContext } from 'react'
+import { db, admin } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
 import FormInput from '../Componets/FormInput';
+import { Context } from '../Contex';
 
-export default function Login({ setNotifyCart, isAuth, setAuth, setAdmin }) {
+export default function Login({ isAuth, setAuth, setAdmin }) {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [submitted, setSubmitted] = useState(false)
   const navigate = useNavigate();
   const auth = getAuth();
   const [warning, setWarning] = useState('')
+  const { setNotifyCart } = useContext(Context);
 
   function logout() {
     signOut(auth).then(() => {
@@ -38,6 +41,13 @@ export default function Login({ setNotifyCart, isAuth, setAuth, setAdmin }) {
         loginPassword
       );
       sessionStorage.setItem('loggedIn', auth.currentUser.email)
+
+      const cartCollectionRef = collection(db, auth.currentUser.email);
+      (async () => {
+        let data = await getDocs(cartCollectionRef);
+        setNotifyCart(data.docs.reduce((acc, cur) => acc + cur.data().quantity, 0))
+      })();
+
       setAuth(true);
       navigate('/collections');
       if (loginEmail === admin) {

@@ -5,7 +5,7 @@ import { db } from '../firebase-config';
 import Recommended from '../Componets/Recommended';
 import { Context } from '../Contex';
 
-export default function Product({ setNotifyCart }) {
+export default function Product() {
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state;
@@ -15,7 +15,7 @@ export default function Product({ setNotifyCart }) {
 
   const textarea = useRef()
 
-  const { refetchProducts } = useContext(Context);
+  const { refetchProducts, setNotifyCart } = useContext(Context);
 
   const [buttonText, setButtonText] = useState('Edit');
   const [textareaHeight, setTextareaHeight] = useState({})

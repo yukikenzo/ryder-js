@@ -110,7 +110,7 @@
     position: relative;
 }
 
-/* ----------------------------------------------------------- */
+/* ------------------------------SIGN IN/SIGN UP/SIGN OUT----------------------------- */
 .login-form {
     width: 70vw;
     max-width: 500px;
@@ -185,6 +185,23 @@ textarea:invalid[focused='true'] {
     text-align: center;
 }
 
+.logout_div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: 400px;
+}
+
+.logout_button {
+    margin-top: 100px;
+    border: none;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    color: red;
+}
+
 /* ---------------------------------------------------------- */
 
 #searchContainer {
@@ -211,7 +228,7 @@ textarea:invalid[focused='true'] {
     flex-wrap: wrap;
 }
 
-/* ---------------------------------------------------------- */
+/* -----------------------------PRODUCT----------------------------- */
 
 .productPage>div:nth-child(1) {
     width: 50vw;
@@ -328,7 +345,7 @@ textarea:invalid[focused='true'] {
     }
 }
 
-/* ---------------------------------------------------------- */
+/* ----------------------------ADD PRODUCT------------------------------ */
 .addProduct>div {
     display: flex;
     min-height: 400px;
@@ -381,26 +398,7 @@ p5:not(#success) {
     margin-top: 10px;
 }
 
-/*--------------------------------------------------------------*/
-
-.logout_div {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    height: 400px;
-}
-
-.logout_button {
-    margin-top: 100px;
-    border: none;
-    width: 150px;
-    height: 50px;
-    font-size: 20px;
-    color: red;
-}
-
-/* ------------------------------------------ */
+/* ---------------------CART--------------------- */
 
 .grid-container {
     display: grid;
@@ -464,6 +462,36 @@ p5:not(#success) {
     margin-top: 50px;
     z-index: 1;
 }
+
+.checkOutContainer>span {
+    display: inline;
+}
+
+.checkOutContainer>p {
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.checkOutContainer>span>p {
+    margin-left: 15px;
+    display: inline;
+    font-size: 20px;
+}
+
+.cartEmptyContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 300px;
+}
+
+.itemsContainer {
+    border: 2px groove;
+    border-left: none;
+    border-right: none;
+}
+
 
 @media only screen and (max-width: 740px) {
     .item6 {

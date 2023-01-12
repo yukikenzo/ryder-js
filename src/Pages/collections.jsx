@@ -6,12 +6,12 @@ import { Context } from '../Contex';
 export default function Collections() {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const {products, refetchProducts} = useContext(Context);
+  const { products, refetchProducts } = useContext(Context);
 
   useEffect(() => {
     refetchProducts()
   }, [refetchProducts])
-  
+
 
   const clothe = products.filter((product) => product.name.toLowerCase().includes(searchQuery.toLowerCase()))
 
@@ -23,9 +23,9 @@ export default function Collections() {
       </div>
 
       <div className='product_container'>
-          {clothe.map((product) => {
-            return < Product product={product} key={product.id} />
-          })}
+        {clothe.map((product) => {
+          return < Product product={product} key={product.id} />
+        })}
       </div>
     </>
   )

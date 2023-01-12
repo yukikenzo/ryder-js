@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth'
-import { auth, admin } from '../firebase-config'
+import { db, auth, admin } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
 import FormInput from '../Componets/FormInput';
+import { collection, getDocs } from "firebase/firestore";
+import { Context } from '../Contex';
 
 export default function Register({ setAuth, setAdmin }) {
   const navigate = useNavigate();
@@ -13,6 +15,7 @@ export default function Register({ setAuth, setAdmin }) {
     password: '',
     repeatPassword: ''
   });
+  const { setNotifyCart } = useContext(Context);
 
   function register(event) {
     event.preventDefault();
@@ -30,6 +33,13 @@ export default function Register({ setAuth, setAdmin }) {
             registerValues.password
           );
           sessionStorage.setItem('loggedIn', auth.currentUser.email)
+
+          const cartCollectionRef = collection(db, auth.currentUser.email);
+          (async () => {
+            let data = await getDocs(cartCollectionRef);
+            setNotifyCart(data.docs.reduce((acc, cur) => acc + cur.data().quantity, 0))
+          })();
+
           setAuth(true);
           navigate('/collections');
 

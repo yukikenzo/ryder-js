@@ -1,49 +1,22 @@
-import { db } from '../firebase-config';
 import { BiTrash } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect, useCallback } from 'react'
-import { doc, deleteDoc, setDoc } from "firebase/firestore";
+import React from 'react'
 
-export default function Selected({ product, setSubtotal, removeProductFromCart }) {
-  const user = sessionStorage.getItem('loggedIn');
-  const remove = useCallback(
-    async () => {
-      removeProductFromCart(product.id)
-      await deleteDoc(doc(db, user, product.id.toString()))
-    },[],
-  )
+export default function Selected({ product, changeProductQuantity, removeProductFromCart }) {
 
-  const [amount, setAmount] = useState(0)
-
-  useEffect(() => {
-    setSubtotal(subtotal =>
-      subtotal.map(obj => {
-        if (obj.id === product.id) {
-          return { ...obj, quantity: product.quantity + amount };
-        }
-        return obj;
-      }),
-    );
-    
-    async function changeQuatity() {
-      if (product.quantity + amount < 1) {
-        remove()
-      }
-      else {
-        await setDoc(doc(db, user, product.id.toString()), {
-          ...product, quantity: product.quantity + amount
-        })
-      }
-    }
-    changeQuatity()
-  }, [amount, user, product, setSubtotal, remove])
+  function remove() {
+    removeProductFromCart(product.id);
+  }
 
   function changeAmount(increase) {
-    if (increase && product.quantity + amount < 50) {
-      setAmount(prev => ++prev)
+    if (product.quantity <= 1 && !increase) {
+      remove();
     }
-    else if (increase === false) {
-      setAmount(prev => --prev)
+    else if (increase && product.quantity < 50) {
+      changeProductQuantity(product.id, 1);
+    }
+    else if (!increase) {
+      changeProductQuantity(product.id, -1);
     }
   }
 
@@ -51,7 +24,7 @@ export default function Selected({ product, setSubtotal, removeProductFromCart }
   function passState() {
     navigate(`/product/${product.id}`, {
       state: product
-    })
+    });
   }
 
   return (
@@ -69,15 +42,15 @@ export default function Selected({ product, setSubtotal, removeProductFromCart }
 
       <div className='selQuantity'>
         <button onClick={() => { changeAmount(false) }}>-</button>
-        <h6 style={{ marginTop: '9px' }}>{product.quantity + amount}</h6>
+        <h6 style={{ marginTop: '9px' }}>{product.quantity}</h6>
         <button onClick={() => { changeAmount(true) }}>+</button>
       </div>
 
       <div className='selTotal'>
-        <h6 className='totalH6'>{'$' + (parseInt(product.price) * (product.quantity + amount)) + '.00'}</h6>
+        <h6 className='totalH6'>{'$' + (parseInt(product.price) * (product.quantity)) + '.00'}</h6>
         <BiTrash onClick={remove} />
       </div>
-      
+
     </div>
   )
 }
