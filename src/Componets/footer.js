@@ -6,7 +6,7 @@ import { Row, Col } from 'react-bootstrap';
 export default function Footer() {
     return (
         <Row className='row'>
-            <Col md={5} sm={5}>
+            <Col md={4} sm={5}>
                 <p className='copyright text-center'>
                     © 2023 by Kutman Eshenkulov. <br />
                     Proudly created with HTML/CSS
@@ -24,9 +24,15 @@ export default function Footer() {
                 <h5>Follow</h5>
                 <ul className="list-unstyled">
                     <li>
-                        <a href="https://www.instagram.com/_.kutman/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
-                        <a href="https://www.pinterest.com/kutmanesenkulov/_saved/" target="_blank" rel="noopener noreferrer"><FaPinterest /></a>
-                        <a href="https://www.facebook.com/kutman.eshenkulov.50/" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
+                        <a href="https://www.instagram.com/_.kutman/" target="_blank" rel="noopener noreferrer">
+                            <FaInstagram />
+                        </a>
+                        <a href="https://www.pinterest.com/kutmanesenkulov/_saved/" target="_blank" rel="noopener noreferrer">
+                            <FaPinterest />
+                        </a>
+                        <a href="https://www.facebook.com/kutman.eshenkulov.50/" target="_blank" rel="noopener noreferrer">
+                            <FaFacebook />
+                        </a>
                     </li>
                 </ul>
             </Col>

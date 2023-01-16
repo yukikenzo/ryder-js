@@ -190,7 +190,7 @@ textarea:invalid[focused='true'] {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    height: 400px;
+    min-height: calc(100vh - 390px);
 }
 
 .logout_button {
@@ -367,6 +367,11 @@ textarea:invalid[focused='true'] {
     width: 40vw;
 }
 
+.productDetails>textarea {
+    border: 2px solid rgb(118, 118, 118);
+    height: 13em;
+}
+
 .addProduct>button {
     left: 50%;
     transform: translate(-50%, -50%);
@@ -483,7 +488,7 @@ p5:not(#success) {
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    height: 300px;
+    height: 252px;
 }
 
 .itemsContainer {

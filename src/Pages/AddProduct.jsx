@@ -33,10 +33,10 @@ export default function AddProduct() {
       })
     } catch (err) {
       const error = err.code.toString().replaceAll('-', ' ') + '!!'
-      setSuccess({ style: {color: 'red'}, value: error.charAt(0).toUpperCase() + error.slice(1) });
+      setSuccess({ style: { color: 'red' }, value: error.charAt(0).toUpperCase() + error.slice(1) });
       return;
     }
-    setSuccess({ style: {color: 'green'}, value: 'Success!!' });
+    setSuccess({ style: { color: 'green' }, value: 'Success!!' });
 
     alert("Success. Product added to Database!")
     window.location.reload(false);
@@ -99,12 +99,21 @@ export default function AddProduct() {
         <div className='productDetails'>
           <FormInput submitted={submitted} value={data.name} onChange={clearWarning} {...nameInput} />
           <FormInput submitted={submitted} value={data.price} onChange={clearWarning} {...priceInput} />
-          <textarea style={{ border: '2px solid rgb(118, 118, 118)' }} onBlur={() => setFocused(true)} focused={(focused || submitted).toString()} {...textArea} value={data.details} onChange={clearWarning} cols="30" rows="10"></textarea>
+
+          <textarea onBlur={() => setFocused(true)} focused={(focused || submitted).toString()} {...textArea} 
+          value={data.details} onChange={clearWarning}></textarea>
+
           <p5>{textArea.error}</p5>
         </div>
 
         <div className='inputImgLink'>
-          {linkInputs.map((input) => <div key={input.id} ><FormInput submitted={submitted} value={data[input.className]} onChange={clearWarning} {...input} /></div>)}
+
+          {linkInputs.map((input) =>
+            <div key={input.id} >
+              <FormInput submitted={submitted} value={data[input.className]} onChange={clearWarning} {...input} />
+            </div>)
+          }
+
         </div>
       </div>
       <span style={success.style}>{success.value}</span>

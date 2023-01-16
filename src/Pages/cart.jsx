@@ -90,7 +90,7 @@ export default function Cart() {
         </div>
         :
         <div className='cartEmptyContainer'>
-          <h3>Your cartItems is empty</h3>
+          <h3>Your cart is empty</h3>
           <Link to={'/collections'}>Continue shopping</Link>
         </div>
       }

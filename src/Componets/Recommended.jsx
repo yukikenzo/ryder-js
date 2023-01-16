@@ -12,26 +12,8 @@ const h1style = {
 }
 
 export default function Recommended({ editable }) {
-  let recommendedClothesData = [];
-  let randomId = [];
   const { products } = useContext(Context);
-
-  if (products.length > 4) {
-    while (randomId.length < 4) {
-      let random = Math.floor(Math.random() * products.length);
-      if (randomId.includes(random)) {
-        continue
-      }
-      else {
-        recommendedClothesData.push(products[random])
-        randomId.push(random);
-      }
-    }
-  }
-  else {
-    recommendedClothesData.push(...products)
-  }
-
+  let recommendedClothesData = products.slice(0, 4);
   const navigate = useNavigate();
 
   function passState(id, clothe) {

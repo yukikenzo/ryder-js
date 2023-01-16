@@ -20,7 +20,6 @@ const style1 = {
 const style2 = {
     fontSize: '10px',
     color: 'white',
-    fontFamily: "'Jost', sans-serif"
 }
 
 export default function Navbar({ isAdmin, notifyCart }) {
@@ -48,10 +47,7 @@ export default function Navbar({ isAdmin, notifyCart }) {
                 <Link className='brand' to="/">RYDER</Link>
                 <div className='icons'>
 
-                    {isAdmin
-                        ? <Link to="/addproduct"><BsPlusLg className='add_icon' /></Link>
-                        : null
-                    }
+                    {isAdmin && <Link to="/addproduct"><BsPlusLg className='add_icon' /></Link>}
 
                     <Link to="/login"><BiUser className='main_icons' /></Link>
                     <Link to="/cart"><BiShoppingBag className='main_icons' /></Link>

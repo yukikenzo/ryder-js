@@ -16,7 +16,7 @@ export default function Collections() {
   const clothe = products.filter((product) => product.name.toLowerCase().includes(searchQuery.toLowerCase()))
 
   return (
-    <>
+    <div style={{minHeight: 'calc(100vh - 390px)'}}>
       <div id='searchContainer'>
         <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className='searchInput' placeholder='Search Product' type="text" />
         <button onClick={() => setSearchQuery('')}> <BsXLg className='clear_search_icon' /> </button>
@@ -27,6 +27,6 @@ export default function Collections() {
           return < Product product={product} key={product.id} />
         })}
       </div>
-    </>
+    </div>
   )
 }
