@@ -74,7 +74,7 @@ export default function Register({ setAuth, setAdmin }) {
       style: { margin: '40px 0 0 0' },
       error: 'Password should be at least 8 characters and include at least 1 letter, 1 number and 1 special character!',
       h6: 'Password',
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$`,
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*?])[a-zA-Z0-9!@#$%^&*?]{8,}$`,
       required: true,
     },
     {

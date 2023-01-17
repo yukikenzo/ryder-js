@@ -18,7 +18,7 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
     signOut(auth).then(() => {
       setAdmin(false);
       setAuth(false);
-      sessionStorage.removeItem('loggedIn', 'admin');
+      sessionStorage.clear()
       setNotifyCart(0);
     }).catch((err) => {
       let error = err.code.toString().slice(5).replaceAll('-', ' ') + '!!'
