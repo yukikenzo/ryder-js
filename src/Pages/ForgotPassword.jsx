@@ -17,10 +17,10 @@ export default function ForgotPassword() {
         }
         sendPasswordResetEmail(auth, email)
             .then(() => {
-                setWarning({ value: 'Email Sent!', style: { color: 'green', margin: '0' } })
+                setWarning({ value: 'Email Sent!', style: { color: 'green', margin: '0' } });
+                alert("Email sent!");
             })
             .catch((err) => {
-                alert("error")
                 let error = err.code.toString().slice(5).replaceAll('-', ' ') + '!!'
                 setWarning({ value: error.charAt(0).toUpperCase() + error.slice(1), style: { color: 'red', margin: '0' } })
             });
@@ -51,8 +51,8 @@ export default function ForgotPassword() {
     return (
         <form className='forgotPasswordContainer' style={style}>
             <FormInput submitted={false} {...emailInput} value={email} onChange={(e) => setEmail(e.target.value)} />
-            <p5 style={warning.style} className='error-message'>{warning.value}</p5>
-            <button className='sign_button' onClick={resetEmail}>Sent Email</button>
+            <p3 style={warning.style} className='error-message'>{warning.value}</p3>
+            <button className='sign_button' onClick={resetEmail}>Reset Password</button>
         </form>
     )
 }
