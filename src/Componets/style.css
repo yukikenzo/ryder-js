@@ -53,7 +53,7 @@ body {
 .nav-container>* {
     margin-top: 40px;
     position: fixed;
-    z-index: 5;
+    z-index: 2;
     transition: top 0.3s;
 }
 
@@ -346,7 +346,7 @@ body {
 .product_image {
     width: 20vw;
     min-width: 100px;
-    z-index: 4;
+    z-index: 1;
 }
 
 .defalut_image_container {
@@ -384,26 +384,17 @@ body {
 
 /* ------------------------- CheckOutModal ------------------------- */
 
-.orderContainerBackground {
+.orderContainer {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, .8);
-    z-index: 99;
-}
-
-.orderContainer {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    width: 70vw;
-    height: 700px;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
     background-color: white;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .orderContainer input, .orderContainer select, .orderContainer button, .orderContainer img {
@@ -416,8 +407,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
-    width: 50%;
+    align-items: center;
+    width: 60%;
     border-right: 1px solid black;
     padding: 2vw;
 }
@@ -568,9 +559,10 @@ body {
 @media only screen and (max-width: 1000px) {
     .orderContainer {
         flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
         overflow-x: scroll;
+        padding: 0 18%;
     }
 
     .dropDown {
@@ -579,6 +571,7 @@ body {
 
     .orderSummary {
         margin-top: 30px;
+        transition-duration: .7s;
     }
 
     .orderProducts {
@@ -600,10 +593,9 @@ body {
     .addressForm {
         border: none;
         width: 100%;
-        height: max-content;
-        margin-bottom: 650px;
         background-color: #fff;
-        margin-top: -640px;
+        transition-duration: .7s;
+        transition-property: transform;
     }
 
     .addressForm>* {
@@ -624,25 +616,5 @@ body {
 
     .addressForm>div>input:first-of-type {
         margin: 0 0 30px 0;
-    }
-}
-
-@keyframes removeMargin {
-    0% {
-        margin-top: -640px;
-    }
-
-    100% {
-        margin-top: 0;
-    }
-}
-
-@keyframes addMargin {
-    0% {
-        margin-top: 0;
-    }
-
-    100% {
-        margin-top: -640px;
     }
 }
