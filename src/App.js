@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import Navbar from './Componets/Navbar';
-import Footer from './Componets/Footer';
-import Treadmill from './Componets/Treadmill';
+import Navbar from './Layout/Navbar';
+import Footer from './Layout/Footer';
+import Treadmill from './Layout/Treadmill';
 
 import Home from './Pages/Home';
 import Cart from './Pages/Cart';

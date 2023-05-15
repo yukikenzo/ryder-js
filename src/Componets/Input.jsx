@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function FormInput({ submitted, style, h6, error, ...inputProps }) {
+export default function Input({ submitted, style, h6, error, ...inputProps }) {
     const [focused, setFocused] = useState(false)
     return (
         <>

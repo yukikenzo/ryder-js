@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { addDoc, collection } from "firebase/firestore";
 import { db } from '../firebase-config';
-import FormInput from '../Componets/FormInput';
+import Input from '../Componets/Input';
 
 export default function AddProduct() {
   const [focused, setFocused] = useState(false);

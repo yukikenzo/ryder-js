@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { admin } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
-import FormInput from '../Componets/FormInput';
+import Input from '../Componets/Input';
 import { Context } from '../Contex';
 
 export default function Login({ isAuth, setAuth, setAdmin }) {
