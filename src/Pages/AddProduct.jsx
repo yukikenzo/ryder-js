@@ -97,8 +97,8 @@ export default function AddProduct() {
     <div className='addProduct'>
       <div>
         <div className='productDetails'>
-          <FormInput submitted={submitted} value={data.name} onChange={clearWarning} {...nameInput} />
-          <FormInput submitted={submitted} value={data.price} onChange={clearWarning} {...priceInput} />
+          <Input submitted={submitted} value={data.name} onChange={clearWarning} {...nameInput} />
+          <Input submitted={submitted} value={data.price} onChange={clearWarning} {...priceInput} />
 
           <textarea onBlur={() => setFocused(true)} focused={(focused || submitted).toString()} {...textArea} 
           value={data.details} onChange={clearWarning}></textarea>
@@ -110,7 +110,7 @@ export default function AddProduct() {
 
           {linkInputs.map((input) =>
             <div key={input.id} >
-              <FormInput submitted={submitted} value={data[input.className]} onChange={clearWarning} {...input} />
+              <Input submitted={submitted} value={data[input.className]} onChange={clearWarning} {...input} />
             </div>)
           }
 

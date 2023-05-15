@@ -50,7 +50,7 @@ export default function ForgotPassword() {
 
     return (
         <form className='forgotPasswordContainer' style={style}>
-            <FormInput submitted={false} {...emailInput} value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Input submitted={false} {...emailInput} value={email} onChange={(e) => setEmail(e.target.value)} />
             <p3 style={warning.style} className='error-message'>{warning.value}</p3>
             <button className='sign_button' onClick={resetEmail}>Reset Password</button>
         </form>
