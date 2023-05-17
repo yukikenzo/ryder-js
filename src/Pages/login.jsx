@@ -89,7 +89,7 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
           <Input submitted={submitted} {...passwordInput} value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
 
           <Link style={{ marginBottom: '50px' }} to={'/forgotpassword'}>Forgot your password?</Link>
-          <p5 style={{visibility: "visible"}} className='error-message'>{warning}</p5>
+          <p5 style={{ visibility: "visible" }} className='error-message'>{warning}</p5>
           <button className='sign_button' style={{ display: "block", marginTop: '30px' }} onClick={login} >Sign in</button>
           <p>
             <Link className='register_link' to='/register'>Create Account</Link>

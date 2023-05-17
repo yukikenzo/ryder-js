@@ -96,7 +96,7 @@ export default function Register({ setAuth, setAdmin }) {
 
       {inputs.map((input) => (<Input key={input.id} submitted={submitted} {...input} onChange={onChange} value={registerValues[input.name]} />))}
 
-      <p5 style={{visibility: "visible"}} className='error-message'>{warning}</p5>
+      <p5 style={{ visibility: "visible" }} className='error-message'>{warning}</p5>
       <button className='sign_button' style={{ display: "block", marginTop: '40px' }} onClick={register}> Create </button>
       <p>
         <Link to='/login'>Sign In</Link>

@@ -13,7 +13,7 @@ export default function ForgotPassword() {
     function resetEmail(event) {
         event.preventDefault();
         if (document.querySelectorAll('.forgotPasswordContainer>input:invalid').length) {
-          return;
+            return;
         }
         sendPasswordResetEmail(auth, email)
             .then(() => {
