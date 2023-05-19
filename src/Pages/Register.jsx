@@ -94,7 +94,15 @@ export default function Register({ setAuth, setAdmin }) {
     <form className="register-form">
       <h1 className='register_header'>Create account</h1>
 
-      {inputs.map((input) => (<Input key={input.id} submitted={submitted} {...input} onChange={onChange} value={registerValues[input.name]} />))}
+      {inputs.map((input) =>
+        (<Input 
+          key={input.id} 
+          submitted={submitted} 
+          {...input} 
+          onChange={onChange} 
+          value={registerValues[input.name]} 
+        />)
+      )}
 
       <p5 style={{ visibility: "visible" }} className='error-message'>{warning}</p5>
       <button className='sign_button' style={{ display: "block", marginTop: '40px' }} onClick={register}> Create </button>

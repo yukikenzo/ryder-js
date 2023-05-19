@@ -202,6 +202,17 @@ textarea:invalid[focused='true'] {
     color: red;
 }
 
+.forgotPasswordContainer {
+    height: 350px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    padding-bottom: 100px;
+}
+
 /* ---------------------------------------------------------- */
 
 #searchContainer {

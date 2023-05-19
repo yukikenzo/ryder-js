@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
 import Input from '../Componets/Input';
 import { Context } from '../Contex';
+import { loginInputs } from '../inputConfig';
 
 export default function Login({ isAuth, setAuth, setAdmin }) {
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [loginValues, setLoginValues] = useState({email: "", password: ""});
   const [submitted, setSubmitted] = useState(false)
   const navigate = useNavigate();
   const auth = getAuth();
@@ -36,8 +36,8 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
       setPersistence(auth, browserSessionPersistence)
       await signInWithEmailAndPassword(
         auth,
-        loginEmail,
-        loginPassword
+        loginValues.email,
+        loginValues.password
       );
       sessionStorage.setItem('loggedIn', auth.currentUser.email)
 
@@ -45,7 +45,7 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
 
       setAuth(true);
       navigate('/collections');
-      if (loginEmail === admin) {
+      if (loginValues.email === admin) {
         sessionStorage.setItem('admin', true)
         setAdmin(true);
       }
@@ -54,25 +54,6 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
       setWarning(error.charAt(0).toUpperCase() + error.slice(1))
     }
   }
-
-  const emailInput = {
-    type: 'email',
-    className: 'login-email',
-    style: { margin: '0' },
-    error: 'Not valid email!',
-    h6: 'Email',
-    required: true,
-  };
-
-  const passwordInput = {
-    type: 'password',
-    className: 'password-input',
-    style: { margin: '40px 0 0 0' },
-    error: 'Password should be at least 8 characters and include at least 1 letter, 1 number and 1 special character!',
-    h6: 'Password',
-    pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$`,
-    required: true,
-  };
 
   return (
     <form className="login" >
@@ -85,8 +66,8 @@ export default function Login({ isAuth, setAuth, setAdmin }) {
         <div className="login-form">
           <h1 className='login_header'>Login</h1>
 
-          <Input submitted={submitted} {...emailInput} value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
-          <Input submitted={submitted} {...passwordInput} value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
+          <Input submitted={submitted} {...loginInputs.emailInput} value={loginValues.email} onChange={(e) => setLoginValues((prev) => ({...prev, email : e.target.value}))} />
+          <Input submitted={submitted} {...loginInputs.passwordInput} value={loginValues.password} onChange={(e) => setLoginValues((prev) => ({...prev, password : e.target.value}))} />
 
           <Link style={{ marginBottom: '50px' }} to={'/forgotpassword'}>Forgot your password?</Link>
           <p5 style={{ visibility: "visible" }} className='error-message'>{warning}</p5>

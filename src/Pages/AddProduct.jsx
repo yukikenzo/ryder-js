@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { addDoc, collection } from "firebase/firestore";
 import { db } from '../firebase-config';
 import Input from '../Componets/Input';
+import { addProductInputs } from '../inputConfig';
 
 export default function AddProduct() {
   const [focused, setFocused] = useState(false);
@@ -47,63 +48,23 @@ export default function AddProduct() {
     setData({ ...data, [`${clue}`]: e.target.value })
   }
 
-  const inputs = {
-    id: 0,
-    type: 'url',
-    className: '',
-    style: { display: 'none' },
-    error: 'Fill all fields!',
-    h6: '',
-    required: true,
-    placeholder: 'Paste your Image links here'
-  }
-
-  const nameInput = {
-    type: 'text',
-    className: 'name',
-    style: { display: 'none' },
-    error: 'Fill all fields!',
-    h6: '',
-    required: true,
-    placeholder: 'Name'
-  }
-
-  const priceInput = {
-    type: 'text',
-    className: 'price',
-    style: { display: 'none' },
-    error: 'Invalid price',
-    h6: '',
-    pattern: `^[1-9]|[1-9][0-9]{1,5}|1000000`,
-    required: true,
-    placeholder: 'Price'
-  }
-
-  const textArea = {
-    type: 'text',
-    className: 'details',
-    error: 'Details should be well described!',
-    required: true,
-    placeholder: 'Details'
-  }
-
   let linkInputs = [];
 
   for (let i = 0; i < 4; i++) {
-    linkInputs.push({ ...inputs, id: i, className: `img${i + 1}` })
+    linkInputs.push({ ...addProductInputs.inputs, id: i, className: `img${i + 1}` })
   }
 
   return (
     <div className='addProduct'>
       <div>
         <div className='productDetails'>
-          <Input submitted={submitted} value={data.name} onChange={clearWarning} {...nameInput} />
-          <Input submitted={submitted} value={data.price} onChange={clearWarning} {...priceInput} />
+          <Input submitted={submitted} value={data.name} onChange={clearWarning} {...addProductInputs.nameInput} />
+          <Input submitted={submitted} value={data.price} onChange={clearWarning} {...addProductInputs.priceInput} />
 
-          <textarea onBlur={() => setFocused(true)} focused={(focused || submitted).toString()} {...textArea} 
+          <textarea onBlur={() => setFocused(true)} focused={(focused || submitted).toString()} {...addProductInputs.textArea} 
           value={data.details} onChange={clearWarning}></textarea>
 
-          <p5>{textArea.error}</p5>
+          <p5>{addProductInputs.textArea.error}</p5>
         </div>
 
         <div className='inputImgLink'>

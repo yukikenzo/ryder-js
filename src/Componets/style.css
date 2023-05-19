@@ -409,12 +409,13 @@
     }
 
     .orderSummary {
+        margin: 0;
         margin-top: 30px;
         transition-duration: .7s;
     }
 
     .orderProducts {
-        width: 60vw;
+        width: 100%;
     }
 
     .orderPrice {
@@ -430,6 +431,7 @@
     }
 
     .addressForm {
+        padding: 0;
         border: none;
         width: 100%;
         background-color: #fff;

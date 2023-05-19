@@ -78,8 +78,8 @@ export default function Product() {
     }
   }
 
-  async function addCart() {
-    let q = 1
+  async function addToCart() {
+    let productQuantity = 1
     const docRef = doc(db, user, product.id.toString());
     const docSnap = await getDoc(docRef);
     setButton({ disabled: true, style: { backgroundColor: "rgb(104, 110, 156)" } })
@@ -90,11 +90,11 @@ export default function Product() {
     setNotifyCart(prev => ++prev);
 
     if (docSnap.exists()) {
-      q = docSnap.data().quantity + 1
+      productQuantity = docSnap.data().quantity + 1
     }
 
     await setDoc(doc(db, user, product.id.toString()), {
-      ...product, quantity: q
+      ...product, quantity: productQuantity
     })
     setButton({ disabled: false, style: { backgroundColor: "rgb(32, 37, 75)" } })
   }
@@ -138,7 +138,7 @@ export default function Product() {
             <p style={{ display: 'inline', fontSize: '20px' }}>$</p>
             <input id="price1" readOnly={readOnly.current} onChange={event => setProductProps({ ...productProps, price: event.target.value })} type="number" value={productProps.price} />
           </div>
-          <button {...button} onClick={addCart} className='addToCart'>Add to cart</button>
+          <button {...button} onClick={addToCart} className='addToCart'>Add to cart</button>
           <h4 className='detailsHeader'>Details</h4>
           <textarea ref={textarea} style={{ ...textareaHeight, resize: 'none' }} readOnly={readOnly.current} onChange={fuckFunction} value={productProps.details} />
 

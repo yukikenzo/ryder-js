@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import Input from '../Componets/Input';
+import { forgotPasswordInputs } from '../inputConfig';
 
 export default function ForgotPassword() {
     const [warning, setWarning] = useState({
@@ -26,31 +27,9 @@ export default function ForgotPassword() {
             });
     }
 
-    const style = {
-        height: '350px',
-        width: '300px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: 'auto',
-        paddingBottom: '100px'
-    }
-
-    const emailInput = {
-        id: 1,
-        name: 'email',
-        type: 'email',
-        className: 'login-email',
-        style: { margin: '0 0 20px 0' },
-        error: 'Not valid email!',
-        h6: 'Email',
-        required: true,
-    };
-
     return (
-        <form className='forgotPasswordContainer' style={style}>
-            <Input submitted={false} {...emailInput} value={email} onChange={(e) => setEmail(e.target.value)} />
+        <form className='forgotPasswordContainer'>
+            <Input submitted={false} {...forgotPasswordInputs} value={email} onChange={(e) => setEmail(e.target.value)} />
             <p3 style={warning.style} className='error-message'>{warning.value}</p3>
             <button className='sign_button' onClick={resetEmail}>Reset Password</button>
         </form>
