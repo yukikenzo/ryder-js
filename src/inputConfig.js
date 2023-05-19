@@ -77,3 +77,38 @@ export const loginInputs = {
         required: true,
     }
 };
+
+// Register
+
+export const registerInputs = [
+    {
+      id: 1,
+      name: 'email',
+      type: 'email',
+      className: 'login-email',
+      style: { margin: '0' },
+      error: 'Not valid email!',
+      h6: 'Email',
+      required: true,
+    },
+    {
+      id: 2,
+      name: 'password',
+      type: 'password',
+      className: 'password-input',
+      style: { margin: '40px 0 0 0' },
+      error: 'Password should be at least 8 characters and include at least 1 letter, 1 number and 1 special character!',
+      h6: 'Password',
+      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*?])[a-zA-Z0-9!@#$%^&*?]{8,}$`,
+      required: true,
+    },
+    {
+      id: 3,
+      name: 'repeatPassword',
+      type: 'password',
+      className: 'repeat-password',
+      style: { margin: '40px 0 0 0' },
+      h6: 'Repeat Password',
+      required: true,
+    }
+  ];

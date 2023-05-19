@@ -4,6 +4,7 @@ import { auth, admin } from '../firebase-config'
 import { Link, useNavigate } from 'react-router-dom';
 import Input from '../Componets/Input';
 import { Context } from '../Contex';
+import { registerInputs } from '../inputConfig';
 
 export default function Register({ setAuth, setAdmin }) {
   const navigate = useNavigate();
@@ -20,6 +21,10 @@ export default function Register({ setAuth, setAdmin }) {
     event.preventDefault();
     if (document.querySelectorAll('.register-form>input:invalid').length) {
       setSubmitted(true);
+      return;
+    }
+    else if (registerValues.password !== registerValues.repeatPassword) {
+      setWarning("Passwords should match!")
       return;
     }
     createUserWithEmailAndPassword(auth, registerValues.email, registerValues.password)
@@ -55,46 +60,11 @@ export default function Register({ setAuth, setAdmin }) {
     setRegisterValues((user) => ({ ...user, [event.target.name]: event.target.value }))
   }
 
-  const inputs = [
-    {
-      id: 1,
-      name: 'email',
-      type: 'email',
-      className: 'login-email',
-      style: { margin: '0' },
-      error: 'Not valid email!',
-      h6: 'Email',
-      required: true,
-    },
-    {
-      id: 2,
-      name: 'password',
-      type: 'password',
-      className: 'password-input',
-      style: { margin: '40px 0 0 0' },
-      error: 'Password should be at least 8 characters and include at least 1 letter, 1 number and 1 special character!',
-      h6: 'Password',
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*?])[a-zA-Z0-9!@#$%^&*?]{8,}$`,
-      required: true,
-    },
-    {
-      id: 3,
-      name: 'repeatPassword',
-      type: 'password',
-      className: 'repeat-password',
-      style: { margin: '40px 0 0 0' },
-      error: 'Passwords should match!',
-      h6: 'Repeat Password',
-      pattern: registerValues.password,
-      required: true,
-    }
-  ];
-
   return (
     <form className="register-form">
       <h1 className='register_header'>Create account</h1>
 
-      {inputs.map((input) =>
+      {registerInputs.map((input) =>
         (<Input 
           key={input.id} 
           submitted={submitted} 

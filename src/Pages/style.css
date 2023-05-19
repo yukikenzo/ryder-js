@@ -275,7 +275,7 @@ textarea:invalid[focused='true'] {
     color: white;
 }
 
-.addToCart:last-of-type {
+.addToCart:nth-of-type(3) {
     background-color: black;
     color: red;
 }

@@ -62,7 +62,7 @@ export default function Cart() {
         <div style={{ width: '90vw', margin: 'auto' }}>
 
           <div className="grid-container">
-            <div className="item1">Your cartItems</div>
+            <div className="item1">Your cart</div>
             <div className="item2"><Link to={'/collections'}>Continue shopping</Link></div>
             <div className="item3">PRODUCT</div>
             <div className="item4">PRICE</div>
