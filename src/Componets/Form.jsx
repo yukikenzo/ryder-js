@@ -1,9 +1,9 @@
 import React from 'react'
 import { IoIosArrowBack } from "react-icons/io";
 
-export default function Form({isExpanded, onClose}) {
+export default function Form({onClose}) {
     return (
-        <form style={{ transform: `translateY(${isExpanded ? "0" : "-440px"})` }} className='addressForm'>
+        <form className='addressForm'>
             <h5>Shipping address</h5>
             <select name="Countres">
                 <option value="Australia">Australia</option>

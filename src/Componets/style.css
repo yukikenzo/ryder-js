@@ -232,7 +232,7 @@
     height: 100%;
     background-color: white;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: center;
 }
 
@@ -395,11 +395,33 @@
     animation-fill-mode: forwards;
 }
 
+@keyframes disappear {
+    0% {
+        padding-top: 30px;
+        height: 100%;
+    }
+
+    100% {
+        padding-top: 0;
+        height: 0;
+    }
+}
+
+@keyframes appear {
+    0% {
+        padding-top: 0;
+        height: 0;
+    }
+
+    100% {
+        padding-top: 30px;
+        height: 100%;
+    }
+}
+
 @media only screen and (max-width: 1000px) {
     .orderContainer {
-        flex-direction: column-reverse;
-        justify-content: flex-start !important;
-        align-items: flex-start !important;
+        display: block;
         overflow-x: scroll;
         padding: 0 18%;
     }
@@ -410,8 +432,18 @@
 
     .orderSummary {
         margin: 0;
-        margin-top: 30px;
-        transition-duration: .7s;
+        padding-top: 30px;
+        overflow: hidden;
+    }
+
+    .orderSummary[expanded="false"]{
+        animation: disappear .6s;
+        animation-fill-mode: forwards;
+    }
+
+    .orderSummary[expanded="true"]{
+        animation: appear .6s;
+        animation-fill-mode: forwards;
     }
 
     .orderProducts {
@@ -435,8 +467,6 @@
         border: none;
         width: 100%;
         background-color: #fff;
-        transition-duration: .7s;
-        transition-property: transform;
     }
 
     .addressForm>* {

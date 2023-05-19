@@ -17,9 +17,12 @@ export default function CheckOutModal({ onClose, product, total }) {
     return (
         <div id='clickbox' className='orderContainer'>
 
-            <Form isExpanded={isExpanded} onClose={onClose}/>
+            <div onClick={() => setIsExpanded(!isExpanded)} className='dropDown'>
+                <FiShoppingCart />
+                <p>Show order summary {isExpanded ? <BiChevronUp /> : <BiChevronDown />} </p>
+            </div>
 
-            <div id='orderSummary' className='orderSummary'>
+            <div id='orderSummary' expanded={`${isExpanded}`} className='orderSummary'>
                 {product.map((product) => {
                     return <div key={product.id} className='orderProducts'>
                         <div>
@@ -46,10 +49,9 @@ export default function CheckOutModal({ onClose, product, total }) {
                 </div>
 
             </div>
-            <div onClick={() => setIsExpanded(!isExpanded)} className='dropDown'>
-                <FiShoppingCart />
-                <p>Show order summary {isExpanded ? <BiChevronUp /> : <BiChevronDown />} </p>
-            </div>
+
+            <Form onClose={onClose} />
+
         </div>
     )
 }
