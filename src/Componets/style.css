@@ -165,6 +165,15 @@
 
 /* ------------------------- Recommended ------------------------- */
 
+.recommendedHeader {
+    font-size: 20px;
+    display: block;
+    width: 85vw;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 50px;
+  }
+
 .recommendationContainer {
     display: flex;
     justify-content: space-between;
