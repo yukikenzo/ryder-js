@@ -135,6 +135,26 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+/* -----------------------------PROFILE----------------------------- */
+
+.profile-container {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    height: calc(100vh - (200px + 150px + 40px));
+}
+
+.profile-image {
+    width: 200px;
+    border-radius: 50%;
+}
+
+.profile-listitem {
+    word-wrap: break-word;
+}
 
 /* -----------------------------PRODUCT----------------------------- */
 
