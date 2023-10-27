@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 
 export default function Login() {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, logout } = useAuth0();
 
   return (
     isAuthenticated && (
@@ -16,7 +16,7 @@ export default function Login() {
           <li className="profile-listitem">Nickname: {user.nickname}</li>
           <li className="profile-listitem">Email: {user.email}</li>
         </ul>
-        <button className="sub-button">Sign Out</button>
+        <button onClick={logout} className="sub-button">Sign Out</button>
       </article>
     )
   );
