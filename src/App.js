@@ -10,7 +10,7 @@ import AddProduct from "./Pages/AddProduct";
 import Collections from "./Pages/Collections";
 import ForgotPassword from "./Pages/ForgotPassword";
 import "./Pages/style.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { db } from "./firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 import { Context } from "./Contex";
@@ -60,7 +60,7 @@ export default function App() {
   return (
     <div className="App">
       <Treadmill />
-      <BrowserRouter>
+      <HashRouter>
         <Navbar
           isAdmin={false}
           isAuth={isAuthenticated}
@@ -82,7 +82,7 @@ export default function App() {
             </Routes>
           </Context.Provider>
         </ErrorBoundary>
-      </BrowserRouter>
+      </HashRouter>
       <Footer />
     </div>
   );
