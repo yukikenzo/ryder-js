@@ -4,7 +4,7 @@ import Footer from "./Layout/Footer";
 import Treadmill from "./Layout/Treadmill";
 import Home from "./Pages/Home";
 import Cart from "./Pages/Cart";
-import Login from "./Pages/Login";
+import Login from "./Pages/Profile";
 import Product from "./Pages/Product";
 import AddProduct from "./Pages/AddProduct";
 import Collections from "./Pages/Collections";

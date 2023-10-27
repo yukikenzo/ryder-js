@@ -16,6 +16,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const { setNotifyCart, getCartProductsQuantity } = useContext(Context);
@@ -27,6 +28,7 @@ export default function Cart() {
       (async () => {
         let data = await getDocs(cartCollectionRef);
         setCartItems(data.docs.map((doc) => ({ ...doc.data() })));
+        setIsLoading(false);
       })();
     }
   }, [user, isAuthenticated]);
@@ -47,7 +49,7 @@ export default function Cart() {
   }
 
   async function removeProductFromCart(id) {
-    setCartItems(cartItems.filter((obj) => obj.id != id));
+    setCartItems(cartItems.filter((obj) => obj.id !== id));
     await deleteDoc(doc(db, user.email, id.toString()));
     getCartProductsQuantity();
   }
@@ -70,55 +72,64 @@ export default function Cart() {
 
   return (
     <div>
-      {cartItems.length ? (
-        <div style={{ width: "90vw", margin: "auto" }}>
-          <div className="grid-container">
-            <div className="item1">Your cart</div>
-            <div className="item2">
-              <Link to={"/collections"}>Continue shopping</Link>
+      {!isLoading ? (
+        cartItems.length ? (
+          <div style={{ width: "90vw", margin: "auto" }}>
+            <div className="grid-container">
+              <div className="item1">Your cart</div>
+              <div className="item2">
+                <Link to={"/collections"}>Continue shopping</Link>
+              </div>
+              <div className="item3">PRODUCT</div>
+              <div className="item4">PRICE</div>
+              <div className="item5">QUANTITY</div>
+              <div className="item6">TOTAL:</div>
             </div>
-            <div className="item3">PRODUCT</div>
-            <div className="item4">PRICE</div>
-            <div className="item5">QUANTITY</div>
-            <div className="item6">TOTAL:</div>
-          </div>
 
-          <div className="itemsContainer">
-            {cartItems.map((product) => {
-              return (
-                <Selected
-                  key={product.id}
-                  product={product}
-                  removeProductFromCart={removeProductFromCart}
-                  changeProductQuantity={changeQuatity}
+            <div className="itemsContainer">
+              {cartItems.map((product) => {
+                return (
+                  <Selected
+                    key={product.id}
+                    product={product}
+                    removeProductFromCart={removeProductFromCart}
+                    changeProductQuantity={changeQuatity}
+                  />
+                );
+              })}
+            </div>
+
+            <div className="checkOutContainer">
+              <span>
+                Subtotal
+                <p>${parseInt(totalPrice)}.00 USD</p>
+              </span>
+              <p>Tax included. Shipping calculated at checkout.</p>
+              <button
+                onClick={() => setIsOpen(true)}
+                className="checkOutButton"
+              >
+                Check out
+              </button>
+
+              {isOpen && (
+                <CheckOutModal
+                  total={totalPrice}
+                  product={cartItems}
+                  onClose={() => setIsOpen(false)}
                 />
-              );
-            })}
+              )}
+            </div>
           </div>
-
-          <div className="checkOutContainer">
-            <span>
-              Subtotal
-              <p>${parseInt(totalPrice)}.00 USD</p>
-            </span>
-            <p>Tax included. Shipping calculated at checkout.</p>
-            <button onClick={() => setIsOpen(true)} className="checkOutButton">
-              Check out
-            </button>
-
-            {isOpen && (
-              <CheckOutModal
-                total={totalPrice}
-                product={cartItems}
-                onClose={() => setIsOpen(false)}
-              />
-            )}
+        ) : (
+          <div className="cartEmptyContainer">
+            <h3>Your cart is empty</h3>
+            <Link to={"/collections"}>Continue shopping</Link>
           </div>
-        </div>
+        )
       ) : (
         <div className="cartEmptyContainer">
-          <h3>Your cart is empty</h3>
-          <Link to={"/collections"}>Continue shopping</Link>
+          <h3>Loading...</h3>
         </div>
       )}
       <Recommended />

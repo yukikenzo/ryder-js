@@ -81,14 +81,14 @@ export default function Product() {
   }
 
   async function addToCart() {
+    setButton({
+      disabled: true,
+      style: { backgroundColor: "rgb(104, 110, 156)" },
+    });
     if (isAuthenticated) {
       let productQuantity = 1;
       const docRef = doc(db, user.email, product.id.toString());
       const docSnap = await getDoc(docRef);
-      setButton({
-        disabled: true,
-        style: { backgroundColor: "rgb(104, 110, 156)" },
-      });
 
       document.querySelector(".shop-link").style.top = "25px";
       document.querySelector(".brand").style.top = "50px";
