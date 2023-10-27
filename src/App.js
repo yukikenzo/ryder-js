@@ -21,7 +21,7 @@ export default function App() {
   const [clotheArray, setClotheArray] = useState([]);
   const [notifyCart, setNotifyCart] = useState(0);
   const { user, isAuthenticated } = useAuth0();
-
+ 
   const fetchProducts = useCallback(async () => {
     const productsCollectionRef = collection(db, "products");
     let fetchedData = await getDocs(productsCollectionRef);

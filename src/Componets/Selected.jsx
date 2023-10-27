@@ -1,9 +1,12 @@
-import { BiTrash } from 'react-icons/bi';
-import { useNavigate } from 'react-router-dom';
-import React from 'react'
+import { BiTrash } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
+import React from "react";
 
-export default function Selected({ product, changeProductQuantity, removeProductFromCart }) {
-
+export default function Selected({
+  product,
+  changeProductQuantity,
+  removeProductFromCart,
+}) {
   function remove() {
     removeProductFromCart(product.id);
   }
@@ -11,11 +14,9 @@ export default function Selected({ product, changeProductQuantity, removeProduct
   function changeAmount(increase) {
     if (product.quantity <= 1 && !increase) {
       remove();
-    }
-    else if (increase && product.quantity < 50) {
+    } else if (increase && product.quantity < 50) {
       changeProductQuantity(product.id, 1);
-    }
-    else if (!increase) {
+    } else if (!increase) {
       changeProductQuantity(product.id, -1);
     }
   }
@@ -23,34 +24,48 @@ export default function Selected({ product, changeProductQuantity, removeProduct
   const navigate = useNavigate();
   function passState() {
     navigate(`/product/${product.id}`, {
-      state: product
+      state: product,
     });
   }
 
   return (
-    <div className='selContainer'>
-
-      <div className='selTitles'>
-        <img className='selPhoto' src={product.img1} alt="" />
-        <div onClick={passState} className='selName'>{product.name}</div>
+    <div className="selContainer">
+      <div className="selTitles">
+        <img className="selPhoto" src={product.img1} alt="" />
+        <div onClick={passState} className="selName">
+          {product.name}
+        </div>
       </div>
 
-      <div className='selPrice'>
-        <h6>{'$' + (parseInt(product.price) + 10) + '.00'}</h6>
-        <h6>{'$' + product.price}</h6>
+      <div className="selPrice">
+        <h6>{"$" + (parseInt(product.price) + 10) + ".00"}</h6>
+        <h6>{"$" + product.price}</h6>
       </div>
 
-      <div className='selQuantity'>
-        <button onClick={() => { changeAmount(false) }}>-</button>
-        <h6 style={{ marginTop: '9px' }}>{product.quantity}</h6>
-        <button onClick={() => { changeAmount(true) }}>+</button>
+      <div className="selQuantity">
+        <button
+          onClick={() => {
+            changeAmount(false);
+          }}
+        >
+          -
+        </button>
+        <h6 style={{ marginTop: "9px" }}>{product.quantity}</h6>
+        <button
+          onClick={() => {
+            changeAmount(true);
+          }}
+        >
+          +
+        </button>
       </div>
 
-      <div className='selTotal'>
-        <h6 className='totalH6'>{'$' + (parseInt(product.price) * (product.quantity)) + '.00'}</h6>
+      <div className="selTotal">
+        <h6 className="totalH6">
+          {"$" + parseInt(product.price) * product.quantity + ".00"}
+        </h6>
         <BiTrash onClick={remove} />
       </div>
-
     </div>
-  )
+  );
 }

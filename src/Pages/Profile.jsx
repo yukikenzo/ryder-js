@@ -16,7 +16,9 @@ export default function Login() {
           <li className="profile-listitem">Nickname: {user.nickname}</li>
           <li className="profile-listitem">Email: {user.email}</li>
         </ul>
-        <button onClick={logout} className="sub-button">Sign Out</button>
+        <button onClick={logout} className="sub-button">
+          Sign Out
+        </button>
       </article>
     )
   );

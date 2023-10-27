@@ -107,8 +107,7 @@ export default function Product() {
         disabled: false,
         style: { backgroundColor: "rgb(32, 37, 75)" },
       });
-    }
-    else {
+    } else {
       loginWithRedirect();
     }
   }

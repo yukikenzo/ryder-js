@@ -71,7 +71,9 @@ export default function Navbar({ isAdmin, isAuth, notifyCart }) {
               </Link>
             </>
           ) : (
-            <button onClick={loginWithRedirect}>{isLoading ? "Loading..." : "Sign In"}</button>
+            <button onClick={loginWithRedirect}>
+              {isLoading ? "Loading..." : "Sign In"}
+            </button>
           )}
 
           {notifyCart ? (
