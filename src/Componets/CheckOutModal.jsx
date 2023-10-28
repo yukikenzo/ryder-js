@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import Form from "./Form";
+import ReactDOM from "react-dom";
 
 export default function CheckOutModal({ onClose, product, total }) {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -14,7 +15,9 @@ export default function CheckOutModal({ onClose, product, total }) {
     };
   }, []);
 
-  return (
+  return ReactDOM.createPortal (
+
+    <>
     <div id="clickbox" className="orderContainer">
       <div onClick={() => setIsExpanded(!isExpanded)} className="dropDown">
         <FiShoppingCart />
@@ -62,5 +65,8 @@ export default function CheckOutModal({ onClose, product, total }) {
 
       <Form onClose={onClose} />
     </div>
+    </>,
+    
+    document.getElementById("portal")
   );
 }

@@ -16,7 +16,12 @@ export default function Login() {
           <li className="profile-listitem">Nickname: {user.nickname}</li>
           <li className="profile-listitem">Email: {user.email}</li>
         </ul>
-        <button onClick={logout} className="sub-button">
+        <button
+          className="sub-button"
+          onClick={() =>
+            logout({ logoutParams: { returnTo: window.location.origin } })
+          }
+        >
           Sign Out
         </button>
       </article>

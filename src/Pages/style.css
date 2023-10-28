@@ -149,6 +149,7 @@
 
 .profile-image {
     width: 200px;
+    height: 200px;
     border-radius: 50%;
 }
 
@@ -176,6 +177,11 @@
     margin-right: 0.6vw;
 }
 
+.additionalImages:last-of-type {
+    width: 48.6vw;
+    height: 70vw;
+}
+
 #name1 {
     font-size: 25px;
 }
@@ -200,10 +206,11 @@
 .productDescription {
     display: flex;
     flex-direction: column;
-    padding-left: 3vw;
+    padding: 3vw;
     width: 100%;
     height: fit-content;
-    justify-content: space-between;
+    position: sticky;
+    top: 0;
 }
 
 .productDescription>*, .productDescription>div>* {

@@ -253,15 +253,21 @@
 }
 
 .addressForm>input, select {
-    width: 30vw;
+    max-width: 500px;
+    width: 80%;
+}
+
+.addressForm>div {
+    max-width: 500px;
+    width: 80%;
 }
 
 .addressForm>div>input {
-    width: 14vw;
+    width: 49%;
 }
 
 .addressForm>div>input:first-of-type {
-    margin-right: 2vw;
+    margin-right: 2%;
 }
 
 .orderButtons {
