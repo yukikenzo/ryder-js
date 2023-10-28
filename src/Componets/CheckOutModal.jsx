@@ -6,10 +6,11 @@ import ReactDOM from "react-dom";
 
 export default function CheckOutModal({ onClose, product, total }) {
   const [isExpanded, setIsExpanded] = useState(true);
+  const [orderSummaryHeight, setOrderSummaryHeight] = useState();
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-
+    setOrderSummaryHeight(document.querySelector(".orderSummary").offsetHeight)
     return () => {
       document.body.style.overflow = null;
     };
@@ -28,6 +29,7 @@ export default function CheckOutModal({ onClose, product, total }) {
 
       <div
         id="orderSummary"
+        style={{height: isExpanded ? `${orderSummaryHeight + 30}px` : "0", paddingTop: isExpanded ? "30px" : "0"}}
         expanded={`${isExpanded}`}
         className="orderSummary"
       >

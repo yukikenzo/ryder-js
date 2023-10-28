@@ -1,497 +1,472 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500&display=swap");
 
 /* ------------------------- Products ------------------------- */
 
 .clothes_img {
-    width: 30vw;
-    overflow: hidden;
+  width: 30vw;
+  overflow: hidden;
 }
 
 .clothes_img_container {
-    width: inherit;
-    overflow: hidden;
+  width: inherit;
+  overflow: hidden;
 }
 
-.clothes_img_container>img {
-    width: inherit;
-    object-fit: cover;
-    margin-bottom: 1vw;
+.clothes_img_container > img {
+  width: inherit;
+  object-fit: cover;
+  margin-bottom: 1vw;
 }
 
 .clothes_alt_img {
-    margin-left: -30vw;
-    opacity: 0;
-    transition-duration: 300ms;
+  margin-left: -30vw;
+  opacity: 0;
+  transition-duration: 300ms;
 }
 
 .clothes_alt_img:hover {
-    transform: scale(1.1);
-    opacity: 100;
-    transition-duration: 300ms;
+  transform: scale(1.1);
+  opacity: 100;
+  transition-duration: 300ms;
 }
 
 .clothes_name {
-    font-size: 80%;
-    margin: 0 0 10px 0;
+  font-size: 80%;
+  margin: 0 0 10px 0;
 }
 
 .clothes_price {
-    font-size: 90%;
-    font-weight: 300;
-    margin-bottom: 50px;
+  font-size: 90%;
+  font-weight: 300;
+  margin-bottom: 50px;
 }
 
-
 @media only screen and (max-width: 770px) {
-    .clothes_price {
-        margin-bottom: 20px;
-    }
+  .clothes_price {
+    margin-bottom: 20px;
+  }
 
-    .clothes_alt_img {
-        margin-left: 0;
-        margin-top: -45vw;
-    }
+  .clothes_alt_img {
+    margin-left: 0;
+    margin-top: -45vw;
+  }
 
-    .clothes_img>img {
-        height: 40vw;
-    }
+  .clothes_img > img {
+    height: 40vw;
+  }
 }
 
 /* ------------------------- Selected ------------------------- */
 
 .selContainer {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 35vw 80px 145px auto;
-    height: 160px !important;
-    column-gap: 3vw;
-    row-gap: 5px;
-    width: 100%;
-    overflow: hidden;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 35vw 80px 145px auto;
+  height: 160px !important;
+  column-gap: 3vw;
+  row-gap: 5px;
+  width: 100%;
+  overflow: hidden;
 }
 
-.selQuantity>* {
-    display: inline;
-    font-size: 15px;
-    border: none;
-    background-color: transparent;
+.selQuantity > * {
+  display: inline;
+  font-size: 15px;
+  border: none;
+  background-color: transparent;
 }
 
 .selTitles {
-    display: flex;
-    align-content: center;
-    justify-content: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .selPhoto {
-    height: 100px;
-    width: 100px;
-    display: inline;
-    object-fit: cover;
+  height: 100px;
+  width: 100px;
+  display: inline;
+  object-fit: cover;
 }
 
 .selName {
-    margin-left: 10px;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    width: calc(35vw - 115px);
-    height: 100px;
-    margin-top: auto;
-    word-wrap: break-word;
-    overflow: hidden;
+  margin-left: 10px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  width: calc(35vw - 115px);
+  height: 100px;
+  margin-top: auto;
+  word-wrap: break-word;
+  overflow: hidden;
 }
 
 .selName:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .selQuantity {
-    border: 2px groove;
-    width: 140px;
-    height: 45px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  border: 2px groove;
+  width: 140px;
+  height: 45px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.selTotal, .selPrice {
-    margin-left: 0;
-    margin-right: 0;
-    direction: rtl;
+.selTotal,
+.selPrice {
+  margin-left: 0;
+  margin-right: 0;
+  direction: rtl;
 }
 
-.selPrice>h6:first-of-type {
-    text-decoration: line-through;
-    color: gray;
-    text-decoration-color: black;
-    text-decoration-thickness: 1px;
+.selPrice > h6:first-of-type {
+  text-decoration: line-through;
+  color: gray;
+  text-decoration-color: black;
+  text-decoration-thickness: 1px;
 }
 
 @media only screen and (max-width: 740px) {
-    .selTotal {
-        grid-column-start: 2;
-        text-align: center;
-        margin-bottom: 30px;
-    }
+  .selTotal {
+    grid-column-start: 2;
+    text-align: center;
+    margin-bottom: 30px;
+  }
 
-    .totalH6 {
-        display: none;
-    }
+  .totalH6 {
+    display: none;
+  }
 
-    .selContainer {
-        grid-template-columns: 35vw 80px auto;
-        justify-content: space-between;
-        column-gap: 3vw;
-        row-gap: 0;
-    }
+  .selContainer {
+    grid-template-columns: 35vw 80px auto;
+    justify-content: space-between;
+    column-gap: 3vw;
+    row-gap: 0;
+  }
 }
 
 @media only screen and (max-width: 540px) {
-    .selContainer {
-        grid-template-columns: 60vw auto;
-    }
+  .selContainer {
+    grid-template-columns: 60vw auto;
+  }
 
-    .selQuantity {
-        grid-column-start: 1;
-        margin: 0 0 15px 115px;
+  .selQuantity {
+    grid-column-start: 1;
+    margin: 0 0 15px 115px;
+  }
 
-    }
-
-    .selName {
-        width: calc(60vw - 115px);
-    }
+  .selName {
+    width: calc(60vw - 115px);
+  }
 }
 
 /* ------------------------- Recommended ------------------------- */
 
 .recommendedHeader {
-    font-size: 20px;
-    display: block;
-    width: 85vw;
-    margin: auto;
-    margin-top: 80px;
-    margin-bottom: 50px;
-  }
+  font-size: 20px;
+  display: block;
+  width: 85vw;
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
 
 .recommendationContainer {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 85vw;
-    margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 85vw;
+  margin: auto;
 }
 
 .product_image {
-    width: 20vw;
-    min-width: 100px;
-    z-index: 1;
+  width: 20vw;
+  min-width: 100px;
+  z-index: 1;
 }
 
 .defalut_image_container {
-    width: inherit;
-    overflow: hidden;
+  width: inherit;
+  overflow: hidden;
 }
 
 .default_image {
-    width: inherit;
-    object-fit: cover;
-    margin-bottom: 1vw;
-    transition-duration: 300ms;
+  width: inherit;
+  object-fit: cover;
+  margin-bottom: 1vw;
+  transition-duration: 300ms;
 }
 
 .default_image:hover {
-    transform: scale(1.3);
+  transform: scale(1.3);
 }
 
 .clothes_name {
-    font-size: 80%;
-    margin: 0 0 10px 0;
+  font-size: 80%;
+  margin: 0 0 10px 0;
 }
 
 .clothes_price {
-    font-size: 90%;
-    font-weight: 300;
-    margin-bottom: 50px;
+  font-size: 90%;
+  font-weight: 300;
+  margin-bottom: 50px;
 }
 
 @media only screen and (max-width: 500px) {
-    .product_image {
-        width: 40vw;
-    }
+  .product_image {
+    width: 40vw;
+  }
 }
 
 /* ------------------------- CheckOutModal ------------------------- */
 
 .orderContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
 }
 
-.orderContainer input, .orderContainer select, .orderContainer button, .orderContainer img {
-    border: 2px solid black;
-    border-radius: 7px;
-    height: 40px;
+.orderContainer input,
+.orderContainer select,
+.orderContainer button,
+.orderContainer img {
+  border: 2px solid black;
+  border-radius: 7px;
+  height: 40px;
 }
 
 .addressForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 60%;
-    border-right: 1px solid black;
-    padding: 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  border-right: 1px solid black;
+  padding: 2vw;
 }
 
-.addressForm>input, select {
-    max-width: 500px;
-    width: 80%;
+.addressForm > input,
+select {
+  max-width: 500px;
+  width: 80%;
 }
 
-.addressForm>div {
-    max-width: 500px;
-    width: 80%;
+.addressForm > div {
+  max-width: 500px;
+  width: 80%;
 }
 
-.addressForm>div>input {
-    width: 49%;
+.addressForm > div > input {
+  width: 49%;
 }
 
-.addressForm>div>input:first-of-type {
-    margin-right: 2%;
+.addressForm > div > input:first-of-type {
+  margin-right: 2%;
 }
 
 .orderButtons {
-    width: 30vw;
-    display: flex;
-    justify-content: space-between;
+  width: 30vw;
+  display: flex;
+  justify-content: space-between;
 }
 
-.orderButtons>button:first-of-type {
-    background-color: transparent;
-    border: none;
-    outline: none;
+.orderButtons > button:first-of-type {
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 
-.orderButtons>button:last-of-type {
-    background-color: rgb(7, 6, 88);
-    color: #fff;
-    height: 55px;
-    width: 200px;
-    border: none;
+.orderButtons > button:last-of-type {
+  background-color: rgb(7, 6, 88);
+  color: #fff;
+  height: 55px;
+  width: 200px;
+  border: none;
 }
 
 .dropDown {
-    background-color: rgba(246, 246, 246, 1);
-    width: 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+  background-color: rgba(246, 246, 246, 1);
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.dropDown>p {
-    margin: 0;
-    padding: 20px;
-    cursor: pointer;
+.dropDown > p {
+  margin: 0;
+  padding: 20px;
+  cursor: pointer;
 }
 
 .orderSummary {
-    margin: auto;
+  transition-duration: .5s;
+  margin: auto;
 }
 
 .orderProducts {
-    display: flex;
-    width: 25vw;
-    height: 80px;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  width: 25vw;
+  height: 80px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.orderProducts>p {
-    margin: 0 0 0 10px;
+.orderProducts > p {
+  margin: 0 0 0 10px;
 }
 
-.orderProducts>div {
-    display: flex;
-    align-items: center;
+.orderProducts > div {
+  display: flex;
+  align-items: center;
 }
 
-.orderProducts>div>img {
-    width: 80px;
-    height: 75px;
-    overflow: hidden;
-    object-fit: cover;
-    margin-right: 10px;
+.orderProducts > div > img {
+  width: 80px;
+  height: 75px;
+  overflow: hidden;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
-.orderProducts>div>span {
-    background-color: hsla(0, 0%, 45%, 90%);
-    color: #fff;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin: 0 0 73px -20px;
-    text-align: center;
+.orderProducts > div > span {
+  background-color: hsla(0, 0%, 45%, 90%);
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 0 0 73px -20px;
+  text-align: center;
 }
 
-.orderProducts>div>p {
-    margin: 0;
+.orderProducts > div > p {
+  margin: 0;
 }
 
 .orderPrice {
-    display: grid;
-    grid-template-columns: 15vw 10vw;
-    grid-template-rows: 50px 50px 50px 50px;
-    margin-top: 30px;
+  display: grid;
+  grid-template-columns: 15vw 10vw;
+  grid-template-rows: 50px 50px 50px 50px;
+  margin-top: 30px;
 }
 
-.orderPrice>h4::before {
-    content: 'USD';
-    font-size: 15px;
-    font-weight: 400;
-    margin-right: 10px;
+.orderPrice > h4::before {
+  content: "USD";
+  font-size: 15px;
+  font-weight: 400;
+  margin-right: 10px;
 }
 
-.orderPrice>*:not(.gridItem5, .gridItem6) {
-    border-top: 2px solid black;
+.orderPrice > *:not(.gridItem5, .gridItem6) {
+  border-top: 2px solid black;
 }
 
-.gridItem1, .gridItem3, .gridItem5, .gridItem7 {
-    text-align: start;
+.gridItem1,
+.gridItem3,
+.gridItem5,
+.gridItem7 {
+  text-align: start;
 }
 
 .gridItem1 {
-    width: 18vw;
+  width: 18vw;
 }
 
 .gridItem2 {
-    width: 6vw;
-    margin-left: auto;
+  width: 6vw;
+  margin-left: auto;
 }
 
-.gridItem3, .gridItem4 {
-    margin-bottom: 0;
-    padding-top: 20px;
+.gridItem3,
+.gridItem4 {
+  margin-bottom: 0;
+  padding-top: 20px;
 }
 
-.gridItem7, .gridItem8 {
-    padding-top: 20px;
+.gridItem7,
+.gridItem8 {
+  padding-top: 20px;
 }
 
 .animationClass {
-    animation-name: removeMargin;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
+  animation-name: removeMargin;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 
 .animationReverse {
-    animation-name: addMargin;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
-}
-
-@keyframes disappear {
-    0% {
-        padding-top: 30px;
-        height: 100%;
-    }
-
-    100% {
-        padding-top: 0;
-        height: 0;
-    }
-}
-
-@keyframes appear {
-    0% {
-        padding-top: 0;
-        height: 0;
-    }
-
-    100% {
-        padding-top: 30px;
-        height: 100%;
-    }
+  animation-name: addMargin;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 
 @media only screen and (max-width: 1000px) {
-    .orderContainer {
-        display: block;
-        overflow-x: scroll;
-        padding: 0 18%;
-    }
+  .orderContainer {
+    display: block;
+    overflow-x: scroll;
+    padding: 0 18%;
+  }
 
-    .dropDown {
-        display: flex;
-    }
+  .dropDown {
+    display: flex;
+  }
 
-    .orderSummary {
-        margin: 0;
-        padding-top: 30px;
-        overflow: hidden;
-    }
+  .orderSummary {
+    margin: 0 0 50px 0;
+    overflow: hidden;
+  }
 
-    .orderSummary[expanded="false"]{
-        animation: disappear .6s;
-        animation-fill-mode: forwards;
-    }
+  .orderProducts {
+    width: 100%;
+  }
 
-    .orderSummary[expanded="true"]{
-        animation: appear .6s;
-        animation-fill-mode: forwards;
-    }
+  .orderPrice {
+    grid-template-columns: 30vw 30vw;
+  }
 
-    .orderProducts {
-        width: 100%;
-    }
+  .gridItem1 {
+    width: 40vw;
+  }
 
-    .orderPrice {
-        grid-template-columns: 30vw 30vw;
-    }
+  .gridItem2 {
+    width: 15vw;
+  }
 
-    .gridItem1 {
-        width: 40vw;
-    }
+  .addressForm {
+    padding: 0;
+    border: none;
+    width: 100%;
+    background-color: #fff;
+  }
 
-    .gridItem2 {
-        width: 15vw;
-    }
+  .addressForm > * {
+    margin-bottom: 30px;
+  }
 
-    .addressForm {
-        padding: 0;
-        border: none;
-        width: 100%;
-        background-color: #fff;
-    }
+  .addressForm > input,
+  select {
+    width: 100%;
+  }
 
-    .addressForm>* {
-        margin-bottom: 30px;
-    }
+  .addressForm > div {
+    width: 100%;
+  }
 
-    .addressForm>input, select {
-        width: 100%;
-    }
+  .addressForm > div > input {
+    width: 100%;
+  }
 
-    .addressForm>div {
-        width: 100%;
-    }
-
-    .addressForm>div>input {
-        width: 100%;
-    }
-
-    .addressForm>div>input:first-of-type {
-        margin: 0 0 30px 0;
-    }
+  .addressForm > div > input:first-of-type {
+    margin: 0 0 30px 0;
+  }
 }
