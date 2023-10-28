@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiUser, BiShoppingBag } from "react-icons/bi";
 import { BsPlusLg } from "react-icons/bs";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -15,6 +15,7 @@ const style1 = {
   right: "6px",
   display: "flex",
   justifyContent: "center",
+  cursor: "pointer",
 };
 
 const style2 = {
@@ -24,6 +25,7 @@ const style2 = {
 
 export default function Navbar({ isAdmin, isAuth, notifyCart }) {
   const { loginWithRedirect, isLoading } = useAuth0();
+  const navigate = useNavigate();
   let lastScroll = 0;
   window.addEventListener(
     "scroll",
@@ -77,7 +79,7 @@ export default function Navbar({ isAdmin, isAuth, notifyCart }) {
           )}
 
           {notifyCart ? (
-            <div style={style1}>
+            <div onClick={() => navigate("/cart")} style={style1}>
               <p style={style2}>{notifyCart}</p>
             </div>
           ) : null}

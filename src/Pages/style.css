@@ -148,8 +148,8 @@
 }
 
 .profile-image {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
 }
 
@@ -323,7 +323,6 @@ p5:not(#success) {
     font-size: small;
     font-weight: bold;
     display: block;
-    visibility: hidden;
 }
 
 #success {
@@ -437,24 +436,22 @@ p5:not(#success) {
     }
 
     .grid-container {
-        grid-template-columns: 35vw 80px auto !important;
+        grid-template-columns: 35vw auto;
         justify-content: space-between;
     }
 
     .item1 {
         grid-column-start: 1;
-        grid-column-end: 3;
+        grid-column-end: 2;
     }
 
     .item2 {
-        grid-column-start: 3;
-        grid-column-end: 4;
+        grid-column-start: 2;
+        grid-column-end: 3;
     }
-}
 
-@media only screen and (max-width: 540px) {
     .checkOutContainer {
-        text-align: center;
+        text-align: end;
         margin-Right: 0;
     }
 

@@ -8,7 +8,6 @@ import Login from "./Pages/Profile";
 import Product from "./Pages/Product";
 import AddProduct from "./Pages/AddProduct";
 import Collections from "./Pages/Collections";
-import ForgotPassword from "./Pages/ForgotPassword";
 import "./Pages/style.css";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { db } from "./firebase-config";
@@ -21,7 +20,8 @@ export default function App() {
   const [clotheArray, setClotheArray] = useState([]);
   const [notifyCart, setNotifyCart] = useState(0);
   const { user, isAuthenticated } = useAuth0();
- 
+  const [isAdmin, setIsAdmin] = useState();
+
   const fetchProducts = useCallback(async () => {
     const productsCollectionRef = collection(db, "products");
     let fetchedData = await getDocs(productsCollectionRef);
@@ -35,6 +35,7 @@ export default function App() {
     refetchProducts: fetchProducts,
     setNotifyCart: setNotifyCart,
     getCartProductsQuantity: getCartProductsQuantity,
+    isAdmin
   };
 
   useEffect(() => {
@@ -43,6 +44,9 @@ export default function App() {
 
   useEffect(() => {
     if (isAuthenticated) {
+      if (user.email === process.env.REACT_APP_ADMIN_URL) {
+        setIsAdmin(true);
+      }
       getCartProductsQuantity();
     }
   }, [isAuthenticated]);
@@ -62,7 +66,7 @@ export default function App() {
       <Treadmill />
       <HashRouter>
         <Navbar
-          isAdmin={false}
+          isAdmin={isAdmin}
           isAuth={isAuthenticated}
           notifyCart={notifyCart}
         />
@@ -78,7 +82,6 @@ export default function App() {
                 path="/user"
                 element={<Login isAuth={isAuthenticated} />}
               />
-              <Route path="/forgotpassword" element={<ForgotPassword />} />
             </Routes>
           </Context.Provider>
         </ErrorBoundary>

@@ -12,11 +12,10 @@ export default function Product() {
   const product = location.state;
 
   const { user, isAuthenticated, loginWithRedirect } = useAuth0();
-  const isAdmin = false;
 
   const textarea = useRef();
 
-  const { refetchProducts, setNotifyCart } = useContext(Context);
+  const { refetchProducts, setNotifyCart, isAdmin } = useContext(Context);
 
   const [buttonText, setButtonText] = useState("Edit");
   const [textareaHeight, setTextareaHeight] = useState({});

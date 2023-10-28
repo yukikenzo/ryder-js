@@ -30,11 +30,9 @@ export default function Selected({
 
   return (
     <div className="selContainer">
-      <div className="selTitles">
-        <img className="selPhoto" src={product.img1} alt="" />
-        <div onClick={passState} className="selName">
-          {product.name}
-        </div>
+      <img className="selPhoto" src={product.img1} alt="" />
+      <div onClick={passState} className="selName">
+        {product.name}
       </div>
 
       <div className="selPrice">
