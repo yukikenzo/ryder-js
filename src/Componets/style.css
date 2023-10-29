@@ -147,9 +147,8 @@
   }
 
   .selContainer {
-    grid-template-columns: 100px 50vw auto;
+    grid-template-columns: 100px 40vw auto;
     grid-template-rows: 50px 50px;
-  
     column-gap: 3vw;
     row-gap: 0;
   }
@@ -309,7 +308,7 @@ select {
 }
 
 .orderSummary {
-  transition-duration: .5s;
+  transition-duration: 0.5s;
   margin: auto;
   margin-left: 0;
   margin-right: 0;

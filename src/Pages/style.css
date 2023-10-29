@@ -313,28 +313,21 @@
     margin: 50px 0 20px 0;
 }
 
-.addProduct>span {
+.addProduct span {
     display: block;
-    text-align: center;
-}
-
-p5:not(#success) {
     color: red;
-    font-size: small;
-    font-weight: bold;
-    display: block;
 }
 
-#success {
-    text-align: center;
-    margin-top: 30px;
-    color: green;
-    display: block;
+.addProductError {
+    height: 20px;
+    position: relative;
+    top: -10px;
 }
 
-#updateWarnings {
-    text-align: center;
-    margin-top: 10px;
+.addProductErrorURL {
+    height: 20px;
+    position: relative;
+    top: -25px;
 }
 
 /* ---------------------CART--------------------- */
@@ -436,7 +429,7 @@ p5:not(#success) {
     }
 
     .grid-container {
-        grid-template-columns: 35vw auto;
+        grid-template-columns: 45vw auto;
         justify-content: space-between;
     }
 

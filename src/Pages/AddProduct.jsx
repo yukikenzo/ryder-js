@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase-config";
-import Input from "../Componets/Input";
-import { addProductInputs } from "../inputConfig";
+import * as Yup from "yup";
+import { Formik, Form, ErrorMessage, Field } from "formik";
 
 export default function AddProduct() {
-  const [focused, setFocused] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [success, setSuccess] = useState({
     value: "",
     style: { color: "red" },
   });
-
-  let [data, setData] = useState({
+  const initialValues = {
     name: "",
     price: "",
     details: "",
@@ -20,17 +17,19 @@ export default function AddProduct() {
     img2: "",
     img3: "",
     img4: "",
+  };
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    price: Yup.number().required("Price is required"),
+    details: Yup.string().required("Description is required"),
+    img1: Yup.string().required("Image is required").url("Invalid URL"),
+    img2: Yup.string().required("Image is required").url("Invalid URL"),
+    img3: Yup.string().required("Image is required").url("Invalid URL"),
+    img4: Yup.string().required("Image is required").url("Invalid URL"),
   });
 
-  async function submitData() {
-    if (
-      document.querySelectorAll(".addProduct textarea:invalid,input:invalid")
-        .length
-    ) {
-      setSubmitted(true);
-      return;
-    }
-
+  async function submitData(data) {
     try {
       await addDoc(collection(db, "products"), {
         ...data,
@@ -50,66 +49,59 @@ export default function AddProduct() {
     window.location.reload(false);
   }
 
-  function clearWarning(e) {
-    let clue = e.target.className;
-    setData({ ...data, [`${clue}`]: e.target.value });
-  }
-
-  let linkInputs = [];
-
-  for (let i = 0; i < 4; i++) {
-    linkInputs.push({
-      ...addProductInputs.inputs,
-      id: i,
-      className: `img${i + 1}`,
-    });
-  }
-
   return (
-    <div className="addProduct">
-      <div>
-        <div className="productDetails">
-          <Input
-            submitted={submitted}
-            value={data.name}
-            onChange={clearWarning}
-            {...addProductInputs.nameInput}
-          />
-          <Input
-            submitted={submitted}
-            value={data.price}
-            onChange={clearWarning}
-            {...addProductInputs.priceInput}
-          />
+    <Formik
+      initialValues={initialValues}
+      onSubmit={submitData}
+      validationSchema={validationSchema}
+    >
+      {() => (
+        <Form className="addProduct">
+          <div>
+            <div className="productDetails">
+              <Field name="name" placeholder="Name" />
+              <div className="addProductError">
+                <ErrorMessage name="name" component="span" />
+              </div>
 
-          <textarea
-            onBlur={() => setFocused(true)}
-            focused={(focused || submitted).toString()}
-            {...addProductInputs.textArea}
-            value={data.details}
-            onChange={clearWarning}
-          ></textarea>
+              <Field type="number" name="price" placeholder="Price" />
+              <div className="addProductError">
+                <ErrorMessage name="price" component="span" />
+              </div>
 
-          <p5>{addProductInputs.textArea.error}</p5>
-        </div>
-
-        <div className="inputImgLink">
-          {linkInputs.map((input) => (
-            <div key={input.id}>
-              <Input
-                submitted={submitted}
-                value={data[input.className]}
-                onChange={clearWarning}
-                {...input}
-              />
+              <Field name="details" as="textarea" placeholder="Description" />
+              <div className="addProductError">
+                <ErrorMessage name="details" component="span" />
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-      <span style={success.style}>{success.value}</span>
-      <button type="submit" onClick={submitData}>
-        Submit
-      </button>
-    </div>
+
+            <div className="inputImgLink">
+              <Field name="img1" placeholder="Image URL" />
+              <div className="addProductErrorURL">
+                <ErrorMessage name="img1" component="span" />
+              </div>
+              <Field name="img2" placeholder="Image URL" />
+              <div className="addProductErrorURL">
+                <ErrorMessage name="img2" component="span" />
+              </div>
+              <Field name="img3" placeholder="Image URL" />
+              <div className="addProductErrorURL">
+                <ErrorMessage name="img3" component="span" />
+              </div>
+              <Field name="img4" placeholder="Image URL" />
+              <div className="addProductErrorURL">
+                <ErrorMessage name="img4" component="span" />
+              </div>
+            </div>
+          </div>
+          <span
+            style={{ display: "block", textAlign: "center", ...success.style }}
+          >
+            {success.value}
+          </span>
+          <button type="submit">Submit</button>
+        </Form>
+      )}
+    </Formik>
   );
 }
