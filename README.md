@@ -2,7 +2,7 @@
 - This project was developed by Kutman Eshenkulov
 - Ryder is online woman clothing shop
 - Website deployed in [Github Pages](https://kut-man.github.io/ryder/)
-- If you want to get admin possibilities log in as 'kutman.stel@gmail.com' password: 's&@QC59@7nJbpP3Y' (you will not be able to add or remove products for security reasons but you can see what opportunities does an admin have)
+- If you want to get admin possibilities log in as 'admin@mail.com' password: 'Admin12345'
 
 # Project Overview
 Ryder is an e-commerce web application built using React, designed to simulate an online shopping experience. It provides a user-friendly interface where users can browse and search for products, add items to their cart, and proceed to checkout. The project incorporates various features commonly found in e-commerce applications, such as product categories, product details, shopping cart management, and user authentication.
@@ -25,3 +25,5 @@ This project utilizes the following technologies:
 2. React Router: Library for handling routing in a React application.
 3. Bootstrap: CSS framework for responsive web design.
 4. Firebase: Platform for building web and mobile applications, providing authentication, database, and hosting services.
+5. Auth0: Identity and access management platform that provides authentication and authorization services.
+6. Formik: A library for handling forms in React applications.
