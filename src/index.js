@@ -12,7 +12,7 @@ ReactDOM.render(
       domain={domain}
       clientId={client}
       authorizationParams={{
-        redirect_uri: window.location.origin,
+        redirect_uri: process.env.REACT_APP_ORIGIN_URI,
       }}
       cacheLocation="localstorage"
     >

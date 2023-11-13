@@ -19,7 +19,7 @@ export default function Login() {
         <button
           className="sub-button"
           onClick={() =>
-            logout({ logoutParams: { returnTo: window.location.origin } })
+            logout({ logoutParams: { returnTo: process.env.REACT_APP_ORIGIN_URI } })
           }
         >
           Sign Out
